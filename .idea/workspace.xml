@@ -4,24 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b814519f-0af3-4663-b0b4-45204460e1a6" name="Changes" comment="adicionando dependencias iniciais">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/api/controller/PacienteREST.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/configuration/SwaggerConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/Exceptions/PacienteNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/model/ContatoED/ContatoED.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/model/EnderecoED/EnderecoED.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/model/ExameED/ExameED.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/model/PacienteED/EstadoCivil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/model/PacienteED/PacienteED.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/model/TipoResidencia/TipoResidencia.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/repository/PacienteDB/PacienteDB.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/service/PacienteRN/PacienteRN.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application-teste.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/messages.properties" afterDir="false" />
+    <list default="true" id="b814519f-0af3-4663-b0b4-45204460e1a6" name="Changes" comment="CRUD basico implementado!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cuidar/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/CuidarApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/model/ExameED/ExameED.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/model/ExameED/ExameED.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/model/PacienteED/PacienteED.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/model/PacienteED/PacienteED.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/service/PacienteRN/PacienteRN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/service/PacienteRN/PacienteRN.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +108,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680978111578</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="CRUD basico implementado!">
+      <created>1681079596829</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1681079596829</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -137,24 +131,12 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="adicionando dependencias iniciais" />
-    <option name="LAST_COMMIT_MESSAGE" value="adicionando dependencias iniciais" />
+    <MESSAGE value="CRUD basico implementado!" />
+    <option name="LAST_COMMIT_MESSAGE" value="CRUD basico implementado!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/cuidar/api/controller/PacienteREST.java</url>
-          <line>74</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/cuidar/api/controller/PacienteREST.java</url>
-          <line>75</line>
-          <properties>
-            <option name="lambda-ordinal" value="0" />
-          </properties>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cuidar/api/controller/PacienteREST.java</url>
           <line>77</line>
@@ -164,6 +146,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/cuidar/api/controller/PacienteREST.java</url>
           <line>80</line>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cuidar/api/controller/PacienteREST.java</url>
+          <line>74</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -60,6 +60,9 @@ public class PacienteED {
 //            " THEN 1 ELSE 0 END)")
     private Integer idade;
 
+    @Column(name = "RG", nullable = true, length = 9)
+    private String RG;
+
 
     @Column(name = "ESTADO_CIVIL", nullable = true, length = 10)
     private EstadoCivil estadoCivil;
