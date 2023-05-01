@@ -17,6 +17,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class PacienteED {
     @DateTimeFormat(pattern = "dd-MM-yyyy")
 //    @CreationTimestamp
     @Column(name = "DATA_NASC", nullable = true, columnDefinition = "TIMESTAMP")
-    private LocalDateTime dataNasc;
+    private LocalDate dataNasc;
 
 //    @NotBlank(message = "idade {campo.texto.notBlank.obrigatorio}")
     @Positive(message = "idade não pode ser negativa")

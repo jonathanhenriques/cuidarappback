@@ -34,14 +34,15 @@ public class PacienteREST {
         return ResponseEntity.ok(pacienteRN.obterPacientePorId(id).get());
     }
 
-
-    @Operation(summary = "Obtem todos os pacientes, ativos ou não")
+    @Operation(summary = "Obtem todos os paciente")
     @GetMapping(
 //            consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = "application/json;charset=UTF-8")
     public ResponseEntity<List<PacienteED>> obterTodosPacientes() {
         return ResponseEntity.ok(pacienteRN.obterTodosPacientes());
     }
+
+
 
     @Operation(summary = "Obtem todos os pacientes por isAtivo, true ou falso ")
     @GetMapping(path ="/isAtivo/{isAtivo}",
