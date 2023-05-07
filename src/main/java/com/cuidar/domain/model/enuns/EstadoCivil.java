@@ -1,4 +1,4 @@
-package com.cuidar.domain.model.PacienteED;
+package com.cuidar.domain.model.enuns;
 
 public enum EstadoCivil {
     SOLTEIRO("Solteiro(a)"),

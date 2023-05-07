@@ -1,9 +1,10 @@
 package com.cuidar.api.controller;
 
-import com.cuidar.domain.Exceptions.PacienteNotFoundException;
-import com.cuidar.domain.model.PacienteED.PacienteED;
-import com.cuidar.domain.service.PacienteRN.PacienteRN;
 
+
+import com.cuidar.domain.Exceptions.PacienteNotFoundException;
+import com.cuidar.domain.repository.PacienteED;
+import com.cuidar.domain.service.PacienteRN;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -34,7 +34,7 @@ public class PacienteREST {
         return ResponseEntity.ok(pacienteRN.obterPacientePorId(id).get());
     }
 
-    @Operation(summary = "Obtem todos os paciente")
+    @Operation(summary = "Obtem todos os pacientes")
     @GetMapping(
 //            consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = "application/json;charset=UTF-8")

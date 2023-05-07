@@ -1,10 +1,12 @@
-package com.cuidar.domain.model.ContatoED;
+package com.cuidar.domain.model.contato;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
+
 
 //@Entity
 //@Table(name = "contato")
@@ -18,11 +20,11 @@ public class ContatoED {
 //    private Long id;
 
     @Pattern(regexp = "\\(\\d{2}\\)\\s\\d{5}-\\d{4}")
-    @Column(name = "CONT_CELULAR", nullable = true, length = 11)
+    @Column(name = "CONT_CELULAR", nullable = true, length = 15)
     private String celular;
 
     @Pattern(regexp = "\\(\\d{2}\\)\\s\\d{4}-\\d{4}")
-    @Column(name = "CONT_TELEFONE", nullable = true, length = 10)
+    @Column(name = "CONT_TELEFONE", nullable = true, length = 14)
     private String telefone;
 
     @Column(name = "CONT_FACEBOOK", nullable = true, length = 50)

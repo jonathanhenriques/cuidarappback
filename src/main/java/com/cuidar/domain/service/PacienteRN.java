@@ -1,10 +1,8 @@
-package com.cuidar.domain.service.PacienteRN;
+package com.cuidar.domain.service;
 
 import com.cuidar.domain.Exceptions.PacienteNotFoundException;
-import com.cuidar.domain.model.PacienteED.PacienteED;
-import com.cuidar.domain.repository.PacienteDB.PacienteDB;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.cuidar.domain.model.paciente.PacienteDB;
+import com.cuidar.domain.repository.PacienteED;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

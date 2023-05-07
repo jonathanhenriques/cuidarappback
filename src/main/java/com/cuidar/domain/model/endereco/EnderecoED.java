@@ -1,6 +1,6 @@
-package com.cuidar.domain.model.EnderecoED;
+package com.cuidar.domain.model.endereco;
 
-import com.cuidar.domain.model.TipoResidencia.TipoResidencia;
+import com.cuidar.domain.model.enuns.TipoResidencia;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -20,8 +20,8 @@ public class EnderecoED {
     @Column(name = "END_RUA", nullable = true, length = 75)
     private String endRua;
 
-    @Column(name = "END_NUMERO", nullable = true)
-    @Positive(message = "numero não pode ser negativo")
+    @Column(name = "END_NUMERO", nullable = true, length = 20)
+//    @Positive(message = "numero não pode ser negativo")
     private String endNumero;
 
     @Column(name = "END_BAIRRO", nullable = true, length = 50)
@@ -34,7 +34,7 @@ public class EnderecoED {
     private String endCep;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "END_TIPO_RESIDENCIA", nullable = false, length = 11)
+    @Column(name = "END_TIPO_RESIDENCIA", nullable = true, length = 11)
     private TipoResidencia endTipoResidencia;
 
     @Column(name = "END_OBSERVACAO", nullable = true, length = 100)

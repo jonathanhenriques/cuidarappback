@@ -1,14 +1,15 @@
-package com.cuidar.domain.model.PacienteED;
+package com.cuidar.domain.repository;
 
-import com.cuidar.domain.model.ContatoED.ContatoED;
-import com.cuidar.domain.model.ExameED.ExameED;
-import com.cuidar.domain.model.EnderecoED.EnderecoED;
+
+import com.cuidar.domain.model.enuns.EstadoCivil;
+import com.cuidar.domain.model.contato.ContatoED;
+import com.cuidar.domain.model.endereco.EnderecoED;
+import com.cuidar.domain.model.exame.ExameED;
 import lombok.*;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.Formula;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -21,12 +22,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-
-@Getter
-@Setter
-@NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@NoArgsConstructor
+@Setter
+@Getter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "TB_PACIENTE")
@@ -39,9 +38,9 @@ public class PacienteED {
     private Long id;
 
 
-    @NotBlank(message = "nome {campo.texto.notBlank.obrigatorio}")
+//    @NotBlank(message = "nome {campo.texto.notBlank.obrigatorio}")
     @Size(max = 100, min = 3, message = "nome {campo.texto.sizeMax} 100")
-    @Column(name = "NOME", nullable = false, length = 100)
+    @Column(name = "NOME", nullable = true, length = 100)
     private String nome;
 
 
@@ -84,7 +83,7 @@ public class PacienteED {
     @Embedded
     private EnderecoED endereco;
 
-    @Column(name = "IS_DEFICIENTE", nullable = false, columnDefinition = "BIT")
+    @Column(name = "IS_DEFICIENTE", nullable = true, columnDefinition = "BIT")
     private Boolean deficiente;
 
     @Column(name = "DEFICIENCIA", nullable = true, length = 50)
@@ -99,7 +98,7 @@ public class PacienteED {
     @Column(name = "OBSERVACAO", nullable = true, length = 500)
     private String observacao;
 
-    @Column(name = "IS_ACEITE", nullable = false, columnDefinition = "BIT")
+    @Column(name = "IS_ACEITE", nullable = true, columnDefinition = "BIT")
     private Boolean aceite; //substitui assinatura
 
     @ElementCollection
@@ -130,13 +129,13 @@ public class PacienteED {
     @Column(name = "INDICACAO", nullable = true, length = 100)
     private String indicacao;
 
-    @Column(name = "IS_ATIVO", nullable = false, columnDefinition = "BIT")
+    @Column(name = "IS_ATIVO", nullable = true, columnDefinition = "BIT")
     private Boolean isAtivo;
 
     @CreationTimestamp
 //    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "DATA_CADASTRO", nullable = true, columnDefinition = "TIMESTAMP")
-    private LocalDateTime dataCadastro;
+    private LocalDate dataCadastro;
 
 
 }

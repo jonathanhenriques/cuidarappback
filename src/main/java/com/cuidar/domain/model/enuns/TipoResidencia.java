@@ -1,4 +1,4 @@
-package com.cuidar.domain.model.TipoResidencia;
+package com.cuidar.domain.model.enuns;
 
 public enum TipoResidencia {
 

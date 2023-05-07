@@ -1,6 +1,7 @@
-package com.cuidar.domain.repository.PacienteDB;
+package com.cuidar.domain.model.paciente;
 
-import com.cuidar.domain.model.PacienteED.PacienteED;
+
+import com.cuidar.domain.repository.PacienteED;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,7 +19,7 @@ public interface PacienteDB extends JpaRepository<PacienteED, Long> {
 
     List<PacienteED> findAllPacientesByNomeContainingIgnoreCase(@Param("nome") String nome);
 
-    @Query("SELECT p FROM PacienteED p JOIN p.exames e WHERE LOWER(e.nomeExame) LIKE %:nomeExame%")
+    @Query("SELECT p FROM com.cuidar.domain.repository.PacienteED p JOIN p.exames e WHERE LOWER(e.nomeExame) LIKE %:nomeExame%")
     List<PacienteED> findAllPacientesBynomeExameContainingIgnoreCase(@Param("nomeExame") String nomeExame);
 
     List<PacienteED> findAllPacientesByEnderecoEndRuaContainingIgnoreCase(@Param("endRua") String endRua);

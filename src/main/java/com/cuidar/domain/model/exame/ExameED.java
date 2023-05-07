@@ -1,6 +1,6 @@
-package com.cuidar.domain.model.ExameED;
+package com.cuidar.domain.model.exame;
 
-import com.cuidar.domain.model.PacienteED.PacienteED;
+import com.cuidar.domain.repository.PacienteED;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -36,7 +36,9 @@ public class ExameED {
     @Column(name = "LOCAL", nullable = false, length = 100)
     private String local;
 
-    @JsonIgnoreProperties(value = {"exames"})
+    @JsonIgnoreProperties(value = {"nome", "dataNasc", "observacao", "valor", "dataExame","rg", "dataCadastro","isAtivo","indicacao", "local","medicoAtendente",
+            "atendente","aceite","observacao","convenio", "deficienciaFamilia", "deficiencia", "deficiente", "endereco","profissao", "contato","nomeResponsavelPaciente",
+            "filhos", "estadoCivil", "idade", "exames"})
 //    @NotBlank(message = "paciente {campo.texto.notBlank.obrigatorio}")
 //    @Column(name = "ID_PACIENTE", nullable = false)
     @ManyToOne
