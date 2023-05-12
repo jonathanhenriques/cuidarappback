@@ -1,11 +1,13 @@
 package com.cuidar.domain.service;
 
 import com.cuidar.domain.Exceptions.PacienteNotFoundException;
+import com.cuidar.domain.model.exame.ExameED;
 import com.cuidar.domain.model.paciente.PacienteDB;
 import com.cuidar.domain.repository.PacienteED;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,8 +48,17 @@ public class PacienteRN {
     }
 
     public PacienteED salvarPaciente(PacienteED pacienteED) {
-        return pacienteDB.save(pacienteED);
+        List<ExameED> exames = pacienteED.getExames();
+        pacienteED.setExames(null);
+
+        PacienteED pacienteSalvo = pacienteDB.save(pacienteED);
+        exames.forEach(exame -> exame.setPaciente(pacienteSalvo));
+        pacienteSalvo.setExames(exames);
+
+        pacienteDB.save(pacienteSalvo);
+        return pacienteSalvo;
     }
+
 
     public PacienteED atualizarPaciente(PacienteED pacienteED) {
         return pacienteDB.save(pacienteED);

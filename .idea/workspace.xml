@@ -4,36 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b814519f-0af3-4663-b0b4-45204460e1a6" name="Changes" comment="cors liberado e script sql criado.">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/api/controller/AutenticacaoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/model/dto/DadosAutenticacao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/model/usuario/AutenticacaoService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/model/usuario/Usuario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/model/usuario/UsuarioRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/service/TokenService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/infra/security/CorsConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/infra/security/SecurityConfigurations.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/infra/security/SecurityFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/infra/security/token/DadosTokenJWT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="b814519f-0af3-4663-b0b4-45204460e1a6" name="Changes" comment="Cors liberado, security + token implementados">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cuidar/CuidarApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/CuidarApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cuidar/api/controller/PacienteREST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/api/controller/PacienteREST.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cuidar/configuration/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/configuration/WebConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/model/ContatoED/ContatoED.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/model/contato/ContatoED.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/model/EnderecoED/EnderecoED.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/model/endereco/EnderecoED.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/model/ExameED/ExameED.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/model/exame/ExameED.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/model/PacienteED/EstadoCivil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/model/enuns/EstadoCivil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/model/PacienteED/PacienteED.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/repository/PacienteED.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/model/TipoResidencia/TipoResidencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/model/enuns/TipoResidencia.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/repository/PacienteDB/PacienteDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/model/paciente/PacienteDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/service/PacienteRN/PacienteRN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/service/PacienteRN.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application-teste.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-teste.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/service/PacienteRN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cuidar/domain/service/PacienteRN.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +26,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="01_estrutura" />
+        <entry key="$PROJECT_DIR$" value="03_security" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -74,7 +47,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "02__CORSConfig",
+    "git-widget-placeholder": "04__hotfix__exames__em__pacientes",
     "ignore.virus.scanning.warn.message": "true",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
@@ -159,7 +132,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682908139781</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Cors liberado, security + token implementados">
+      <created>1683434149187</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1683434149187</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -178,25 +158,16 @@
     <MESSAGE value="CRUD basico implementado!" />
     <MESSAGE value="put revisado" />
     <MESSAGE value="cors liberado e script sql criado." />
-    <option name="LAST_COMMIT_MESSAGE" value="cors liberado e script sql criado." />
+    <MESSAGE value="Cors liberado, security + token implementados" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cors liberado, security + token implementados" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/cuidar/domain/service/PacienteRN.java</url>
-          <line>48</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cuidar/api/controller/PacienteREST.java</url>
           <line>83</line>
           <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/cuidar/infra/security/SecurityConfigurations.java</url>
-          <line>42</line>
-          <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cuidar/infra/security/SecurityFilter.java</url>
