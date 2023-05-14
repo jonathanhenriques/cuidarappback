@@ -3,7 +3,7 @@ package com.cuidar.api.controller;
 
 
 import com.cuidar.domain.Exceptions.PacienteNotFoundException;
-import com.cuidar.domain.repository.PacienteED;
+import com.cuidar.domain.model.paciente.PacienteED;
 import com.cuidar.domain.service.PacienteRN;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;

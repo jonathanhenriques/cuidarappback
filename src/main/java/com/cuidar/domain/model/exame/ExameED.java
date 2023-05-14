@@ -1,6 +1,6 @@
 package com.cuidar.domain.model.exame;
 
-import com.cuidar.domain.repository.PacienteED;
+import com.cuidar.domain.model.paciente.PacienteED;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;

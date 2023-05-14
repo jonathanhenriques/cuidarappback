@@ -1,4 +1,4 @@
-package com.cuidar.domain.repository;
+package com.cuidar.domain.model.paciente;
 
 
 import com.cuidar.domain.model.enuns.EstadoCivil;

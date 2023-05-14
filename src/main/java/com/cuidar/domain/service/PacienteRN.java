@@ -2,12 +2,11 @@ package com.cuidar.domain.service;
 
 import com.cuidar.domain.Exceptions.PacienteNotFoundException;
 import com.cuidar.domain.model.exame.ExameED;
-import com.cuidar.domain.model.paciente.PacienteDB;
-import com.cuidar.domain.repository.PacienteED;
+import com.cuidar.domain.repository.PacienteDB;
+import com.cuidar.domain.model.paciente.PacienteED;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
