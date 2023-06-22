@@ -60,8 +60,10 @@ public class PacienteRN {
 
 
     public PacienteED atualizarPaciente(PacienteED pacienteED) {
+
         return pacienteDB.save(pacienteED);
     }
+
 
 
 

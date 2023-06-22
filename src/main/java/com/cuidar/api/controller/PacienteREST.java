@@ -94,7 +94,7 @@ public class PacienteREST {
 //        BeanUtils.copyProperties(pacienteBanco, pacienteED,
 //                "id", "idade", "endereco","atendente","medicoAtendente","exames","local", "dataCadastro");
 
-        return ResponseEntity.ok(pacienteRN.salvarPaciente(pacienteED));
+        return ResponseEntity.ok(pacienteRN.atualizarPaciente(pacienteED));
     }
 
 

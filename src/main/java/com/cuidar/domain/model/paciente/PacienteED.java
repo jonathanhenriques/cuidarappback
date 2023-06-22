@@ -101,29 +101,29 @@ public class PacienteED {
     @Column(name = "IS_ACEITE", nullable = true, columnDefinition = "BIT")
     private Boolean aceite; //substitui assinatura
 
-    @ElementCollection
-    @CollectionTable(name = "TB_ATENDENTE", joinColumns = @JoinColumn(name = "ID_PACIENTE"))
-    @Column(name = "ID_ATENDENTE")
-    private List<String> atendente;
-
-    @ElementCollection
-    @CollectionTable(name = "TB_MEDICO_ATENDENTE", joinColumns = @JoinColumn(name = "ID_PACIENTE"))
-    @Column(name = "ID_MEDICO_ATENDENTE")
-    private List<String> medicoAtendente;
+//    @ElementCollection
+//    @CollectionTable(name = "TB_ATENDENTE", joinColumns = @JoinColumn(name = "ID_PACIENTE"))
+//    @Column(name = "ID_ATENDENTE")
+//    private List<String> atendente;
+//
+//    @ElementCollection
+//    @CollectionTable(name = "TB_MEDICO_ATENDENTE", joinColumns = @JoinColumn(name = "ID_PACIENTE"))
+//    @Column(name = "ID_MEDICO_ATENDENTE")
+//    private List<String> medicoAtendente;
 
 //    @ElementCollection
 //    @CollectionTable(name = "TB_EXAME", joinColumns = @JoinColumn(name = "ID_PACIENTE"))
     @Column(name = "ID_EXAME")
-    @OneToMany(mappedBy = "paciente",orphanRemoval = true)
+    @OneToMany()
     @Cascade(CascadeType.ALL)
 //    @JoinTable(name = "TB_PACIENTE_EXAME", joinColumns = @JoinColumn(name = "ID_PACIENTE", referencedColumnName = "id"),
 //            inverseJoinColumns = @JoinColumn(name = "ID_EXAME", referencedColumnName = "id"))
     private List<ExameED> exames;
 
-    @ElementCollection
-    @CollectionTable(name = "TB_LOCAL_ATENDIMENTO", joinColumns = @JoinColumn(name = "ID_PACIENTE"))
-    @Column(name = "ID_LOCAL_ATENDIMENTO")
-    private List<String> local;
+//    @ElementCollection
+//    @CollectionTable(name = "TB_LOCAL_ATENDIMENTO", joinColumns = @JoinColumn(name = "ID_PACIENTE"))
+//    @Column(name = "ID_LOCAL_ATENDIMENTO")
+//    private List<String> local;
 
 
     @Column(name = "INDICACAO", nullable = true, length = 100)
