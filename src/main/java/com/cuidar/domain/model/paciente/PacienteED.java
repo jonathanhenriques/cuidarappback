@@ -5,6 +5,8 @@ import com.cuidar.domain.model.enuns.EstadoCivil;
 import com.cuidar.domain.model.contato.ContatoED;
 import com.cuidar.domain.model.endereco.EnderecoED;
 import com.cuidar.domain.model.exame.ExameED;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import org.hibernate.annotations.Cascade;
@@ -34,7 +36,7 @@ public class PacienteED {
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "PACIENTE_ID")
+    @Column(name = "ID")
     private Long id;
 
 
@@ -44,8 +46,9 @@ public class PacienteED {
     private String nome;
 
 
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+//    @DateTimeFormat(pattern = "dd-MM-yyyy")
 //    @CreationTimestamp
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "DATA_NASC", nullable = true, columnDefinition = "TIMESTAMP")
     private LocalDate dataNasc;
 
@@ -63,7 +66,7 @@ public class PacienteED {
     @Column(name = "RG", nullable = true, length = 9)
     private String RG;
 
-
+    @Enumerated(EnumType.STRING)
     @Column(name = "ESTADO_CIVIL", nullable = true, length = 10)
     private EstadoCivil estadoCivil;
 
@@ -114,10 +117,21 @@ public class PacienteED {
 //    @ElementCollection
 //    @CollectionTable(name = "TB_EXAME", joinColumns = @JoinColumn(name = "ID_PACIENTE"))
     @Column(name = "ID_EXAME")
-    @OneToMany()
-    @Cascade(CascadeType.ALL)
+    @OneToMany(mappedBy = "paciente")
+    @Cascade(CascadeType.MERGE)
 //    @JoinTable(name = "TB_PACIENTE_EXAME", joinColumns = @JoinColumn(name = "ID_PACIENTE", referencedColumnName = "id"),
 //            inverseJoinColumns = @JoinColumn(name = "ID_EXAME", referencedColumnName = "id"))
+//    @JsonIgnoreProperties(value = {
+////            "id",
+//            "paciente",
+////            "nomeExame",
+//            "medico",
+//            "local",
+//            "dataExame",
+//            "valor",
+//            "atendente",
+//            "observacao"
+//    })
     private List<ExameED> exames;
 
 //    @ElementCollection
@@ -132,6 +146,7 @@ public class PacienteED {
     @Column(name = "IS_ATIVO", nullable = true, columnDefinition = "BIT")
     private Boolean isAtivo;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @CreationTimestamp
 //    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "DATA_CADASTRO", nullable = true, columnDefinition = "TIMESTAMP")

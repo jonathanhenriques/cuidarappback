@@ -1,5 +1,6 @@
-package com.cuidar.domain.model.usuario;
+package com.cuidar.domain.repository;
 
+import com.cuidar.domain.model.usuario.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 

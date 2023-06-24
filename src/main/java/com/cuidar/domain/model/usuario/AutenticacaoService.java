@@ -1,6 +1,7 @@
 package com.cuidar.domain.model.usuario;
 
 
+import com.cuidar.domain.repository.UsuarioRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;

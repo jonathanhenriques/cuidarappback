@@ -2,7 +2,7 @@ package com.cuidar.domain.service;
 
 import com.cuidar.domain.Exceptions.PacienteNotFoundException;
 import com.cuidar.domain.model.exame.ExameED;
-import com.cuidar.domain.repository.PacienteDB;
+import com.cuidar.domain.repository.PacienteRepository;
 import com.cuidar.domain.model.paciente.PacienteED;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,35 +14,35 @@ import java.util.Optional;
 public class PacienteRN {
 
     @Autowired
-    private PacienteDB pacienteDB;
+    private PacienteRepository pacienteRepository;
 
-    public PacienteRN(PacienteDB pacienteDB) {
-        this.pacienteDB = pacienteDB;
+    public PacienteRN(PacienteRepository pacienteRepository) {
+        this.pacienteRepository = pacienteRepository;
     }
 
     public Optional<PacienteED> obterPacientePorId(Long id) {
-        return pacienteDB.findPacienteById(id);
+        return pacienteRepository.findPacienteById(id);
     }
 
     public List<PacienteED> obterTodosPacientes() {
-        return pacienteDB.findAll();
+        return pacienteRepository.findAll();
     }
 
     public List<PacienteED> obterTodosPacientesAtivos(Boolean isAtivo) {
-        return pacienteDB.findAllPacientesByIsAtivo(isAtivo);
+        return pacienteRepository.findAllPacientesByIsAtivo(isAtivo);
     }
 
     public List<PacienteED> obterTodosPacientesPorNome(String nome) {
-        return pacienteDB.findAllPacientesByNomeContainingIgnoreCase(nome);
+        return pacienteRepository.findAllPacientesByNomeContainingIgnoreCase(nome);
     }
 
     public List<PacienteED> obterTodosPacientesPorExame(String nomeExame) {
-        return pacienteDB.findAllPacientesBynomeExameContainingIgnoreCase(nomeExame);
+        return pacienteRepository.findAllPacientesBynomeExameContainingIgnoreCase(nomeExame);
 
     }
 
     public List<PacienteED> obterTodosPacientesPorEndereco(String endRua) {
-        return pacienteDB.findAllPacientesByEnderecoEndRuaContainingIgnoreCase(endRua);
+        return pacienteRepository.findAllPacientesByEnderecoEndRuaContainingIgnoreCase(endRua);
 
     }
 
@@ -50,27 +50,27 @@ public class PacienteRN {
         List<ExameED> exames = pacienteED.getExames();
         pacienteED.setExames(null);
 
-        PacienteED pacienteSalvo = pacienteDB.save(pacienteED);
+        PacienteED pacienteSalvo = pacienteRepository.save(pacienteED);
         exames.forEach(exame -> exame.setPaciente(pacienteSalvo));
         pacienteSalvo.setExames(exames);
 
-        pacienteDB.save(pacienteSalvo);
+        pacienteRepository.save(pacienteSalvo);
         return pacienteSalvo;
     }
 
 
     public PacienteED atualizarPaciente(PacienteED pacienteED) {
 
-        return pacienteDB.save(pacienteED);
+        return pacienteRepository.save(pacienteED);
     }
 
 
 
 
     public void deletarLogicoPaciente(Long id){
-        PacienteED pacienteParaDesativar = pacienteDB.findPacienteById(id).orElseThrow(() -> new PacienteNotFoundException("Paciente", id));
+        PacienteED pacienteParaDesativar = pacienteRepository.findPacienteById(id).orElseThrow(() -> new PacienteNotFoundException("Paciente", id));
         pacienteParaDesativar.setIsAtivo(false);
-        pacienteDB.save(pacienteParaDesativar);
+        pacienteRepository.save(pacienteParaDesativar);
     }
 
 }

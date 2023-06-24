@@ -16,6 +16,7 @@ public class LocalED {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private Long id;
 
     @Column(name = "NOME_LOCAL", nullable = false)

@@ -15,9 +15,15 @@ public class AtendenteED {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private Long id;
 
     @Column(name = "NOME", nullable = false)
     private String nome;
+
+    @Column(name = "IS_ATIVO", nullable = false, columnDefinition = "boolean default true")
+    private Boolean isAtivo;
+
+
 
 }

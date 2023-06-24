@@ -4,8 +4,10 @@ package com.cuidar.api.controller;
 
 import com.cuidar.domain.Exceptions.PacienteNotFoundException;
 import com.cuidar.domain.model.paciente.PacienteED;
+import com.cuidar.domain.model.paciente.PacienteRequest;
 import com.cuidar.domain.service.PacienteRN;
 import io.swagger.v3.oas.annotations.Operation;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -22,6 +24,10 @@ public class PacienteREST {
 
     @Autowired
     private PacienteRN pacienteRN;
+
+    @Autowired
+    private ModelMapper modelMapper;
+
     public PacienteREST(PacienteRN pacienteRN) {
         this.pacienteRN = pacienteRN;
     }
@@ -87,14 +93,14 @@ public class PacienteREST {
     @Operation(summary = "atualiza um paciente")
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = "application/json;charset=UTF-8")
-    public ResponseEntity<PacienteED> atualizarPaciente(/*@Valid*/ @RequestBody PacienteED pacienteED) {
+    public ResponseEntity<PacienteED> atualizarPaciente(/*@Valid*/ @RequestBody PacienteRequest pacienteED) {
         PacienteED pacienteBanco = pacienteRN.obterPacientePorId(pacienteED.getId())
                 .orElseThrow(() -> new PacienteNotFoundException("", pacienteED.getId()));
 
 //        BeanUtils.copyProperties(pacienteBanco, pacienteED,
 //                "id", "idade", "endereco","atendente","medicoAtendente","exames","local", "dataCadastro");
 
-        return ResponseEntity.ok(pacienteRN.atualizarPaciente(pacienteED));
+        return ResponseEntity.ok(pacienteRN.atualizarPaciente(modelMapper.map(pacienteED, PacienteED.class)));
     }
 
 

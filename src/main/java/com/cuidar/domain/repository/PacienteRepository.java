@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface PacienteDB extends JpaRepository<PacienteED, Long> {
+public interface PacienteRepository extends JpaRepository<PacienteED, Long> {
 
     Optional<PacienteED> findPacienteById(Long id);
 

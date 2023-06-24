@@ -4,6 +4,8 @@ import com.cuidar.domain.model.atendente.AtendenteED;
 import com.cuidar.domain.model.local.LocalED;
 import com.cuidar.domain.model.medico.MedicoED;
 import com.cuidar.domain.model.paciente.PacienteED;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -24,19 +26,54 @@ public class ExameED {
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
-    @Column(name = "ID_EXAME")
+    @Column(name = "ID")
     private Long id;
+
+//    @NotBlank(message = " nomePaciente {campo.texto.notBlank.obrigatorio}")
+//    @Column(name = "NOME_PACIENTE", nullable = false, length = 100)
+//    private String nomePaciente;
+
+//    @Column(name = "PACIENTE_ID")
+    @ManyToOne
+    @JoinColumn(nullable = false)
+//    @JsonIgnore
+//    @JsonIgnoreProperties(value = {
+//            "id",
+////            "nome",
+//            "dataNasc",
+//            "idade",
+//            "RG",
+//            "estadoCivil",
+//            "filhos",
+//            "nomeResponsavelPaciente",
+//            "contato",
+//            "profissao",
+//            "endereco",
+//            "deficiente",
+//            "deficiencia",
+//            "deficienciaFamilia",
+//            "convenio",
+//            "observacao",
+//            "aceite",
+//            "exames",
+//            "indicacao",
+//            "isAtivo",
+//            "dataCadastro"
+//    })
+    private PacienteED paciente;
 
     @NotBlank(message = " nomeExame {campo.texto.notBlank.obrigatorio}")
     @Column(name = "NOME_EXAME", nullable = false, length = 100)
     private String nomeExame;
 
 //    @NotBlank(message = "medico {campo.texto.notBlank.obrigatorio}")
-    @Column(name = "MEDICO", nullable = true)
+//    @Column(name = "MEDICO_ID", nullable = true)
+    @OneToOne
     private MedicoED medico;
 
 //    @NotBlank(message = "local {campo.texto.notBlank.obrigatorio}")
-    @Column(name = "LOCAL", nullable = true)
+//    @Column(name = "LOCAL_ID", nullable = true)
+    @OneToOne
     private LocalED local;
 
 //    @JsonIgnoreProperties(value = {"nome", "dataNasc", "observacao", "valor", "dataExame","rg", "dataCadastro","isAtivo","indicacao", "local","medicoAtendente",
@@ -48,6 +85,7 @@ public class ExameED {
 //    @JoinColumn(name = "ID_PACIENTE")
 //    private PacienteED paciente;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @CreationTimestamp
 //    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "DATA_EXAME", nullable = false, columnDefinition = "TIMESTAMP")
@@ -61,7 +99,8 @@ public class ExameED {
     private BigDecimal valor;
 
 //    @NotBlank(message = "atendente {campo.texto.notBlank.obrigatorio}")
-    @Column(name = "ATENDENTE", nullable = true)
+//    @Column(name = "ATENDENTE_ID")
+    @OneToOne
     private AtendenteED atendente;
 
     //    @ElementCollection
