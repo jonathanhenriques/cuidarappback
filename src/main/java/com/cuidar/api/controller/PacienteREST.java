@@ -93,14 +93,14 @@ public class PacienteREST {
     @Operation(summary = "atualiza um paciente")
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = "application/json;charset=UTF-8")
-    public ResponseEntity<PacienteED> atualizarPaciente(/*@Valid*/ @RequestBody PacienteRequest pacienteED) {
+    public ResponseEntity<PacienteED> atualizarPaciente(/*@Valid*/ @RequestBody PacienteED pacienteED) {
         PacienteED pacienteBanco = pacienteRN.obterPacientePorId(pacienteED.getId())
                 .orElseThrow(() -> new PacienteNotFoundException("", pacienteED.getId()));
 
 //        BeanUtils.copyProperties(pacienteBanco, pacienteED,
 //                "id", "idade", "endereco","atendente","medicoAtendente","exames","local", "dataCadastro");
 
-        return ResponseEntity.ok(pacienteRN.atualizarPaciente(modelMapper.map(pacienteED, PacienteED.class)));
+        return ResponseEntity.ok(pacienteRN.atualizarPaciente(pacienteED));
     }
 
 

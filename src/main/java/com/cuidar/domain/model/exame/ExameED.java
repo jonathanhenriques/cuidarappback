@@ -37,29 +37,28 @@ public class ExameED {
     @ManyToOne
     @JoinColumn(nullable = false)
 //    @JsonIgnore
-//    @JsonIgnoreProperties(value = {
-//            "id",
-////            "nome",
-//            "dataNasc",
-//            "idade",
-//            "RG",
-//            "estadoCivil",
-//            "filhos",
-//            "nomeResponsavelPaciente",
-//            "contato",
-//            "profissao",
-//            "endereco",
-//            "deficiente",
-//            "deficiencia",
-//            "deficienciaFamilia",
-//            "convenio",
-//            "observacao",
-//            "aceite",
-//            "exames",
-//            "indicacao",
-//            "isAtivo",
-//            "dataCadastro"
-//    })
+    @JsonIgnoreProperties(value = {
+            "dataNasc",
+            "idade",
+            "rg",
+            "estadoCivil",
+            "filhos",
+            "nomeResponsavelPaciente",
+            "contato",
+            "profissao",
+            "endereco",
+            "deficiente",
+            "deficiencia",
+            "deficienciaFamilia",
+            "convenio",
+            "observacao",
+            "aceite",
+            "exames",
+            "indicacao",
+            "isAtivo",
+            "dataCadastro"
+    })
+//    @JsonIgnoreProperties(value = {"paciente"})
     private PacienteED paciente;
 
     @NotBlank(message = " nomeExame {campo.texto.notBlank.obrigatorio}")
@@ -69,11 +68,13 @@ public class ExameED {
 //    @NotBlank(message = "medico {campo.texto.notBlank.obrigatorio}")
 //    @Column(name = "MEDICO_ID", nullable = true)
     @OneToOne
+    @JsonIgnoreProperties({"isAtivo"})
     private MedicoED medico;
 
 //    @NotBlank(message = "local {campo.texto.notBlank.obrigatorio}")
 //    @Column(name = "LOCAL_ID", nullable = true)
     @OneToOne
+    @JsonIgnoreProperties({"endereco"})
     private LocalED local;
 
 //    @JsonIgnoreProperties(value = {"nome", "dataNasc", "observacao", "valor", "dataExame","rg", "dataCadastro","isAtivo","indicacao", "local","medicoAtendente",
@@ -86,8 +87,10 @@ public class ExameED {
 //    private PacienteED paciente;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
+//    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     @CreationTimestamp
 //    @Temporal(TemporalType.TIMESTAMP)
+//    @Column(nullable = false, columnDefinition = "datetime")
     @Column(name = "DATA_EXAME", nullable = false, columnDefinition = "TIMESTAMP")
     private LocalDateTime dataExame;
 
@@ -101,6 +104,7 @@ public class ExameED {
 //    @NotBlank(message = "atendente {campo.texto.notBlank.obrigatorio}")
 //    @Column(name = "ATENDENTE_ID")
     @OneToOne
+    @JsonIgnoreProperties({"isAtivo"})
     private AtendenteED atendente;
 
     //    @ElementCollection

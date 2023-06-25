@@ -132,6 +132,7 @@ public class PacienteED {
 //            "atendente",
 //            "observacao"
 //    })
+//    @JsonIgnoreProperties(value = {"paciente"})
     private List<ExameED> exames;
 
 //    @ElementCollection
