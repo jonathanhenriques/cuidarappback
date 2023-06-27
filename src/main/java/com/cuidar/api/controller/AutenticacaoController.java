@@ -4,7 +4,7 @@ package com.cuidar.api.controller;
 
 
 import com.cuidar.domain.model.dto.DadosAutenticacao;
-import com.cuidar.domain.model.usuario.Usuario;
+import com.cuidar.domain.model.usuario.UsuarioED;
 import com.cuidar.infra.security.token.DadosTokenJWT;
 import com.cuidar.domain.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,7 @@ public class AutenticacaoController {
         //usando o AuthenticationManager para autenticar o token (ele chama AutenticacaoService
         var autenticaction = manager.authenticate(authenticationToken);
 
-        var tokenJWT = tokenService.gerarToken((Usuario) autenticaction.getPrincipal());
+        var tokenJWT = tokenService.gerarToken((UsuarioED) autenticaction.getPrincipal());
         //retorna o token dentro do dto DadosTokenJWT
         return ResponseEntity.ok(new DadosTokenJWT(tokenJWT));
     }
