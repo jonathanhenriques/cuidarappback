@@ -4,8 +4,7 @@ package com.cuidar.api.controller;
 
 import com.cuidar.domain.Exceptions.PacienteNotFoundException;
 import com.cuidar.domain.model.paciente.PacienteED;
-import com.cuidar.domain.model.paciente.PacienteRequest;
-import com.cuidar.domain.service.PacienteRN;
+import com.cuidar.domain.service.PacienteService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,21 +22,21 @@ public class PacienteREST {
 
 
     @Autowired
-    private PacienteRN pacienteRN;
+    private PacienteService pacienteService;
 
     @Autowired
     private ModelMapper modelMapper;
 
-    public PacienteREST(PacienteRN pacienteRN) {
-        this.pacienteRN = pacienteRN;
+    public PacienteREST(PacienteService pacienteService) {
+        this.pacienteService = pacienteService;
     }
 
     @Operation(summary = "Obtem paciente por id")
     @GetMapping(path = "/{pacienteId}",
 //            consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = "application/json;charset=UTF-8")
-    public ResponseEntity<PacienteED> obterPacientePorId(@PathVariable("pacienteId") Long id) {
-        return ResponseEntity.ok(pacienteRN.obterPacientePorId(id).get());
+    public ResponseEntity<PacienteED> obterPacientePorId(@PathVariable("pacienteId") Long pacienteId) {
+        return ResponseEntity.ok(pacienteService.buscarOuFalhar(pacienteId));
     }
 
     @Operation(summary = "Obtem todos os pacientes")
@@ -45,7 +44,7 @@ public class PacienteREST {
 //            consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = "application/json;charset=UTF-8")
     public ResponseEntity<List<PacienteED>> obterTodosPacientes() {
-        return ResponseEntity.ok(pacienteRN.obterTodosPacientes());
+        return ResponseEntity.ok(pacienteService.obterTodosPacientes());
     }
 
 
@@ -55,7 +54,7 @@ public class PacienteREST {
 //            consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = "application/json;charset=UTF-8")
     public ResponseEntity<List<PacienteED>> obterTodosPacientesAtivos(@PathVariable("isAtivo") Boolean isAtivo) {
-        return ResponseEntity.ok(pacienteRN.obterTodosPacientesAtivos(isAtivo));
+        return ResponseEntity.ok(pacienteService.obterTodosPacientesAtivos(isAtivo));
     }
 
     @Operation(summary = "Obtem todos os pacientes, por nome")
@@ -63,7 +62,7 @@ public class PacienteREST {
 //            consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = "application/json;charset=UTF-8")
     public ResponseEntity<List<PacienteED>> obterTodosPacientesPorNome(@PathVariable("nome") String nome) {
-        return ResponseEntity.ok(pacienteRN.obterTodosPacientesPorNome(nome));
+        return ResponseEntity.ok(pacienteService.obterTodosPacientesPorNome(nome));
     }
 
     @Operation(summary = "Obtem todos os pacientes, por nome do exame")
@@ -71,7 +70,7 @@ public class PacienteREST {
     //            consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = "application/json;charset=UTF-8")
     public ResponseEntity<List<PacienteED>> obterTodosPacientesPorExame(@PathVariable("nomeExame") String nomeExame) {
-        return ResponseEntity.ok(pacienteRN.obterTodosPacientesPorExame(nomeExame));
+        return ResponseEntity.ok(pacienteService.obterTodosPacientesPorExame(nomeExame));
     }
 
     @Operation(summary = "Obtem todos os pacientes, por nome da rua")
@@ -79,7 +78,7 @@ public class PacienteREST {
     //            consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = "application/json;charset=UTF-8")
     public ResponseEntity<List<PacienteED>> obterTodosPacientesPorEndereco(@PathVariable("nomeRua") String nomeRua) {
-        return ResponseEntity.ok(pacienteRN.obterTodosPacientesPorEndereco(nomeRua));
+        return ResponseEntity.ok(pacienteService.obterTodosPacientesPorEndereco(nomeRua));
     }
 
 
@@ -87,20 +86,19 @@ public class PacienteREST {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = "application/json;charset=UTF-8")
     public ResponseEntity<PacienteED> cadastrarPaciente(/*@Valid*/ @RequestBody PacienteED pacienteED) {
-        return ResponseEntity.ok(pacienteRN.salvarPaciente(pacienteED));
+        return ResponseEntity.ok(pacienteService.salvarPaciente(pacienteED));
     }
 
     @Operation(summary = "atualiza um paciente")
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = "application/json;charset=UTF-8")
     public ResponseEntity<PacienteED> atualizarPaciente(/*@Valid*/ @RequestBody PacienteED pacienteED) {
-        PacienteED pacienteBanco = pacienteRN.obterPacientePorId(pacienteED.getId())
-                .orElseThrow(() -> new PacienteNotFoundException("", pacienteED.getId()));
+        PacienteED pacienteBanco = pacienteService.buscarOuFalhar(pacienteED.getId());
 
 //        BeanUtils.copyProperties(pacienteBanco, pacienteED,
 //                "id", "idade", "endereco","atendente","medicoAtendente","exames","local", "dataCadastro");
 
-        return ResponseEntity.ok(pacienteRN.atualizarPaciente(pacienteED));
+        return ResponseEntity.ok(pacienteService.atualizarPaciente(pacienteED));
     }
 
 
@@ -113,7 +111,7 @@ public class PacienteREST {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = "application/json;charset=UTF-8")
     public ResponseEntity<?> deletePaciente(@PathVariable Long id) {
-        pacienteRN.deletarLogicoPaciente(id);
+        pacienteService.deletarLogicoPaciente(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 

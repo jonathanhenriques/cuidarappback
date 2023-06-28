@@ -9,13 +9,14 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
+//import org.hibernate.annotations.Cascade;
+//import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+
 
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
@@ -116,9 +117,9 @@ public class PacienteED {
 
 //    @ElementCollection
 //    @CollectionTable(name = "TB_EXAME", joinColumns = @JoinColumn(name = "ID_PACIENTE"))
-    @Column(name = "ID_EXAME")
-    @OneToMany(mappedBy = "paciente")
-    @Cascade(CascadeType.MERGE)
+//    @Column(name = "ID_EXAME")
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    @Cascade(CascadeType.MERGE)
 //    @JoinTable(name = "TB_PACIENTE_EXAME", joinColumns = @JoinColumn(name = "ID_PACIENTE", referencedColumnName = "id"),
 //            inverseJoinColumns = @JoinColumn(name = "ID_EXAME", referencedColumnName = "id"))
 //    @JsonIgnoreProperties(value = {
@@ -132,8 +133,9 @@ public class PacienteED {
 //            "atendente",
 //            "observacao"
 //    })
-//    @JsonIgnoreProperties(value = {"paciente"})
+    @JsonIgnoreProperties(value = {"paciente"}, allowSetters = true)
     private List<ExameED> exames;
+
 
 //    @ElementCollection
 //    @CollectionTable(name = "TB_LOCAL_ATENDIMENTO", joinColumns = @JoinColumn(name = "ID_PACIENTE"))

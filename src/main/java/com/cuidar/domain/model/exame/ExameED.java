@@ -35,30 +35,30 @@ public class ExameED {
 
 //    @Column(name = "PACIENTE_ID")
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn( name = "PACIENTE_ID",nullable = false)
 //    @JsonIgnore
-    @JsonIgnoreProperties(value = {
-            "dataNasc",
-            "idade",
-            "rg",
-            "estadoCivil",
-            "filhos",
-            "nomeResponsavelPaciente",
-            "contato",
-            "profissao",
-            "endereco",
-            "deficiente",
-            "deficiencia",
-            "deficienciaFamilia",
-            "convenio",
-            "observacao",
-            "aceite",
-            "exames",
-            "indicacao",
-            "isAtivo",
-            "dataCadastro"
-    })
-//    @JsonIgnoreProperties(value = {"paciente"})
+//    @JsonIgnoreProperties(value = {
+//            "dataNasc",
+//            "idade",
+//            "rg",
+//            "estadoCivil",
+//            "filhos",
+//            "nomeResponsavelPaciente",
+//            "contato",
+//            "profissao",
+//            "endereco",
+//            "deficiente",
+//            "deficiencia",
+//            "deficienciaFamilia",
+//            "convenio",
+//            "observacao",
+//            "aceite",
+//            "exames",
+//            "indicacao",
+//            "isAtivo",
+//            "dataCadastro"
+//    },  allowSetters = true, allowGetters = true)
+    @JsonIgnoreProperties(value = {"exames"}, allowSetters = true, allowGetters = true)
     private PacienteED paciente;
 
     @NotBlank(message = " nomeExame {campo.texto.notBlank.obrigatorio}")
