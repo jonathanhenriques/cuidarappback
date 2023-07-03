@@ -1,4 +1,4 @@
-package com.cuidar.domain.model.usuario;
+package com.cuidar.domain.service;
 
 
 import com.cuidar.domain.repository.UsuarioRepository;

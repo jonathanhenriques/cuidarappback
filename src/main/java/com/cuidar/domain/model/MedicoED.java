@@ -1,6 +1,5 @@
-package com.cuidar.domain.model.medico;
+package com.cuidar.domain.model;
 
-import com.cuidar.domain.model.endereco.EnderecoED;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,6 +23,14 @@ public class MedicoED {
 
     @Column(name = "IS_ATIVO", nullable = false, columnDefinition = "boolean default true")
     private Boolean isAtivo;
+
+    public void ativar(){
+        this.setIsAtivo(true);
+    }
+
+    public void inativar(){
+        this.setIsAtivo(false);
+    }
 
 
 }

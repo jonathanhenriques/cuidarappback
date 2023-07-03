@@ -1,9 +1,7 @@
 package com.cuidar.domain.service;
 
-import com.cuidar.domain.Exceptions.AtendenteNaoEncontradoException;
 import com.cuidar.domain.Exceptions.LocalNaoEncontradoException;
-import com.cuidar.domain.model.atendente.AtendenteED;
-import com.cuidar.domain.model.local.LocalED;
+import com.cuidar.domain.model.LocalED;
 import com.cuidar.domain.repository.LocalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,5 +1,6 @@
 package com.cuidar.api.exceptionhandler;
 
+
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -208,6 +209,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
         return handleExceptionInternal(ex, problem, headers, status, request);
     }
+
 
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity<?> handleEntidadeNaoEncontrada(AccessDeniedException ex, WebRequest request) {

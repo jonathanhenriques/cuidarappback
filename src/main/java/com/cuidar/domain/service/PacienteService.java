@@ -1,11 +1,8 @@
 package com.cuidar.domain.service;
 
 import com.cuidar.domain.Exceptions.PacienteNotFoundException;
-import com.cuidar.domain.model.exame.ExameED;
 import com.cuidar.domain.repository.PacienteRepository;
-import com.cuidar.domain.model.paciente.PacienteED;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import com.cuidar.domain.model.PacienteED;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +21,10 @@ public class PacienteService {
 
     public PacienteService(PacienteRepository pacienteRepository) {
         this.pacienteRepository = pacienteRepository;
+    }
+
+    public Optional<PacienteED> buscarPacienteByCodigo(String codigoPaciente){
+        return pacienteRepository.findPacienteByCodigo(codigoPaciente);
     }
 
     public List<PacienteED> obterTodosPacientes() {
@@ -66,15 +67,22 @@ public class PacienteService {
         return pacienteRepository.save(pacienteED);
     }
 
-    public void deletarLogicoPaciente(Long pacienteId){
-        PacienteED pacienteParaDesativar = buscarOuFalhar(pacienteId);
-        pacienteParaDesativar.setIsAtivo(false);
-        pacienteRepository.save(pacienteParaDesativar);
+
+    @Transactional
+    public void ativar(String pacienteCodigo) {
+        buscarOuFalhar(pacienteCodigo).ativar();
+//        pacienteRepository.save(paciente);
     }
 
-    public PacienteED buscarOuFalhar(Long pacienteId){
-        return pacienteRepository.findById(pacienteId).
-                orElseThrow(() -> new PacienteNotFoundException(pacienteId));
+    @Transactional
+    public void desativar(String pacienteCodigo) {
+        buscarOuFalhar(pacienteCodigo).desativar();
+//        pacienteRepository.save(paciente);
+    }
+
+    public PacienteED buscarOuFalhar(String pacienteCodigo){
+        return pacienteRepository.findPacienteByCodigo(pacienteCodigo).
+                orElseThrow(() -> new PacienteNotFoundException(pacienteCodigo));
     }
 
 }

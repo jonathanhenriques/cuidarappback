@@ -1,19 +1,17 @@
-package com.cuidar.domain.model.exame;
+package com.cuidar.domain.model;
 
-import com.cuidar.domain.model.atendente.AtendenteED;
-import com.cuidar.domain.model.local.LocalED;
-import com.cuidar.domain.model.medico.MedicoED;
-import com.cuidar.domain.model.paciente.PacienteED;
+import com.cuidar.api.core.validation.ValorExame;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,6 +19,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "TB_EXAME")
+//@ValorZeroIncluiDescricao(valorField = "valor", descricaoField = "nomeExame", descricaoObrigatoria = "Frete Gratis")
 public class ExameED {
 
     @EqualsAndHashCode.Include
@@ -34,6 +33,7 @@ public class ExameED {
 //    private String nomePaciente;
 
 //    @Column(name = "PACIENTE_ID")
+
     @ManyToOne
     @JoinColumn( name = "PACIENTE_ID",nullable = false)
 //    @JsonIgnore
@@ -58,19 +58,21 @@ public class ExameED {
 //            "isAtivo",
 //            "dataCadastro"
 //    },  allowSetters = true, allowGetters = true)
-    @JsonIgnoreProperties(value = {"exames"}, allowSetters = true, allowGetters = true)
+    @JsonIgnoreProperties(value = {"exames"})
     private PacienteED paciente;
 
-    @NotBlank(message = " nomeExame {campo.texto.notBlank.obrigatorio}")
+    @NotBlank
     @Column(name = "NOME_EXAME", nullable = false, length = 100)
     private String nomeExame;
 
+    @Valid
 //    @NotBlank(message = "medico {campo.texto.notBlank.obrigatorio}")
 //    @Column(name = "MEDICO_ID", nullable = true)
     @OneToOne
     @JsonIgnoreProperties({"isAtivo"})
     private MedicoED medico;
 
+    @Valid
 //    @NotBlank(message = "local {campo.texto.notBlank.obrigatorio}")
 //    @Column(name = "LOCAL_ID", nullable = true)
     @OneToOne
@@ -92,15 +94,18 @@ public class ExameED {
 //    @Temporal(TemporalType.TIMESTAMP)
 //    @Column(nullable = false, columnDefinition = "datetime")
     @Column(name = "DATA_EXAME", nullable = false, columnDefinition = "TIMESTAMP")
-    private LocalDateTime dataExame;
+    private OffsetDateTime dataExame;
 
-    @NotNull(message = "valor é obrigatório")
-    @PositiveOrZero(message = "valor não pode ser negativo")
+    @NotNull
+    @ValorExame
+//    @PositiveOrZero
+//    @Multiplo(numero = 1)
     @DecimalMin("0.00")
     @Digits(integer=10, fraction=2)
     @Column(name = "VALOR", nullable = false, precision = 10, scale = 2)
     private BigDecimal valor;
 
+    @Valid
 //    @NotBlank(message = "atendente {campo.texto.notBlank.obrigatorio}")
 //    @Column(name = "ATENDENTE_ID")
     @OneToOne
@@ -117,7 +122,16 @@ public class ExameED {
 //    @Column(name = "ID_MEDICO_ATENDENTE")
 //    private List<String> medicoAtendente;
 
-    @Column(name = "OBSERVACAO", nullable = true, length = 500)
+    @Column(name = "OBSERVACAO", length = 500)
     private String observacao;
+
+
+    @Column(name = "Situacao", nullable = false, length = 9, columnDefinition = "tinyint(1) DEFAULT 1 not null")
+    private Boolean situacao = Boolean.TRUE;
+
+
+    public void cancelar(){
+        this.setSituacao(false);
+    }
 
 }

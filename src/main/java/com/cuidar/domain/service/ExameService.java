@@ -1,16 +1,17 @@
 package com.cuidar.domain.service;
 
 import com.cuidar.domain.Exceptions.*;
-import com.cuidar.domain.model.atendente.AtendenteED;
-import com.cuidar.domain.model.exame.ExameED;
-import com.cuidar.domain.model.local.LocalED;
-import com.cuidar.domain.model.medico.MedicoED;
-import com.cuidar.domain.model.paciente.PacienteED;
+import com.cuidar.domain.model.AtendenteED;
+import com.cuidar.domain.model.ExameED;
+import com.cuidar.domain.model.LocalED;
+import com.cuidar.domain.model.MedicoED;
+import com.cuidar.domain.model.PacienteED;
 import com.cuidar.domain.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Objects;
 
 @Service
 public class ExameService {
@@ -61,6 +62,13 @@ public class ExameService {
 
     public ExameED atualizarExame(ExameED exame){
         return exameRepository.save(exame);
+    }
+
+    @Transactional
+    public Boolean cancelarExame(Long exameId){
+        buscarOuFalhar(exameId).cancelar();
+//        exameRepository.save(exame);
+        return true;
     }
 
     public ExameED buscarOuFalhar(Long exameId){

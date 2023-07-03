@@ -2,8 +2,7 @@ package com.cuidar.api.controller;
 
 
 
-import com.cuidar.domain.Exceptions.PacienteNotFoundException;
-import com.cuidar.domain.model.paciente.PacienteED;
+import com.cuidar.domain.model.PacienteED;
 import com.cuidar.domain.service.PacienteService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.modelmapper.ModelMapper;
@@ -13,7 +12,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/pacientes")
@@ -31,12 +32,12 @@ public class PacienteREST {
         this.pacienteService = pacienteService;
     }
 
-    @Operation(summary = "Obtem paciente por id")
+    @Operation(summary = "Obtem paciente por codigo")
     @GetMapping(path = "/{pacienteId}",
 //            consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = "application/json;charset=UTF-8")
-    public ResponseEntity<PacienteED> obterPacientePorId(@PathVariable("pacienteId") Long pacienteId) {
-        return ResponseEntity.ok(pacienteService.buscarOuFalhar(pacienteId));
+    public PacienteED obterPacientePorCodigo(@PathVariable("codigoPaciente") String codigoPaciente) {
+        return pacienteService.buscarOuFalhar(codigoPaciente);
     }
 
     @Operation(summary = "Obtem todos os pacientes")
@@ -85,15 +86,15 @@ public class PacienteREST {
     @Operation(summary = "Cadastra um novo paciente")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = "application/json;charset=UTF-8")
-    public ResponseEntity<PacienteED> cadastrarPaciente(/*@Valid*/ @RequestBody PacienteED pacienteED) {
+    public ResponseEntity<PacienteED> cadastrarPaciente(@Valid @RequestBody PacienteED pacienteED) {
         return ResponseEntity.ok(pacienteService.salvarPaciente(pacienteED));
     }
 
     @Operation(summary = "atualiza um paciente")
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = "application/json;charset=UTF-8")
-    public ResponseEntity<PacienteED> atualizarPaciente(/*@Valid*/ @RequestBody PacienteED pacienteED) {
-        PacienteED pacienteBanco = pacienteService.buscarOuFalhar(pacienteED.getId());
+    public ResponseEntity<PacienteED> atualizarPaciente(@Valid @RequestBody PacienteED pacienteED) {
+        PacienteED pacienteBanco = pacienteService.buscarOuFalhar(pacienteED.getCodigo());
 
 //        BeanUtils.copyProperties(pacienteBanco, pacienteED,
 //                "id", "idade", "endereco","atendente","medicoAtendente","exames","local", "dataCadastro");
@@ -102,17 +103,27 @@ public class PacienteREST {
     }
 
 
+    @Operation(summary = "Ativar um paciente")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    @PutMapping(
+            path = "/{pacienteCodigo}/ativar"
+//            ,consumes = MediaType.APPLICATION_JSON_VALUE,
+//            produces = "application/json;charset=UTF-8"
+    )
+    public void ativarPaciente(@PathVariable String pacienteCodigo) {
+        pacienteService.ativar(pacienteCodigo);
+    }
 
 
     @Operation(summary = "Desativa um paciente, delete lógico")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @DeleteMapping(
-            path = "/{id}",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = "application/json;charset=UTF-8")
-    public ResponseEntity<?> deletePaciente(@PathVariable Long id) {
-        pacienteService.deletarLogicoPaciente(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+            path = "/{pacienteCodigo}/ativar"
+//            ,consumes = MediaType.APPLICATION_JSON_VALUE,
+//            produces = "application/json;charset=UTF-8"
+            )
+    public void deletePaciente(@PathVariable String pacienteCodigo) {
+        pacienteService.desativar(pacienteCodigo);
     }
 
 }

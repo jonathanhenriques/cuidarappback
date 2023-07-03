@@ -3,8 +3,8 @@ package com.cuidar.api.controller;
 
 
 
-import com.cuidar.domain.model.dto.DadosAutenticacao;
-import com.cuidar.domain.model.usuario.UsuarioED;
+import com.cuidar.api.model.DadosAutenticacao;
+import com.cuidar.domain.model.UsuarioED;
 import com.cuidar.infra.security.token.DadosTokenJWT;
 import com.cuidar.domain.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;

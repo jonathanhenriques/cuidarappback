@@ -1,6 +1,5 @@
-package com.cuidar.domain.model.local;
+package com.cuidar.domain.model;
 
-import com.cuidar.domain.model.endereco.EnderecoED;
 import lombok.*;
 
 import javax.persistence.*;

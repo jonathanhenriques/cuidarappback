@@ -36,6 +36,7 @@ public class Problem {
     @Schema(description = "Lista de objetos ou campos que geraram o erro")
     private List<Object> objects;
 
+    //Qualuer propriedade ou classe que estiver com excessoes
     @Builder
     @Getter
     @Schema(name = "ObjetoProblema")

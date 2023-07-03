@@ -1,4 +1,4 @@
-package com.cuidar.domain.permissao;
+package com.cuidar.domain.model;
 
 import javax.persistence.*;
 

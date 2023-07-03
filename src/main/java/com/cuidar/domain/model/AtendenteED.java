@@ -1,4 +1,4 @@
-package com.cuidar.domain.model.atendente;
+package com.cuidar.domain.model;
 
 import lombok.*;
 
@@ -23,6 +23,14 @@ public class AtendenteED {
 
     @Column(name = "IS_ATIVO", nullable = false, columnDefinition = "boolean default true")
     private Boolean isAtivo;
+
+    public void ativar(){
+        this.setIsAtivo(true);
+    }
+
+    public void inativar(){
+        this.setIsAtivo(false);
+    }
 
 
 

@@ -1,10 +1,9 @@
-package com.cuidar.domain.model.paciente;
+package com.cuidar.domain.model;
 
 
+import com.cuidar.api.core.validation.Groups;
 import com.cuidar.domain.model.enuns.EstadoCivil;
-import com.cuidar.domain.model.contato.ContatoED;
-import com.cuidar.domain.model.endereco.EnderecoED;
-import com.cuidar.domain.model.exame.ExameED;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
@@ -12,18 +11,16 @@ import lombok.*;
 //import org.hibernate.annotations.Cascade;
 //import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.format.annotation.DateTimeFormat;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.*;
 
 
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.PositiveOrZero;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -34,16 +31,20 @@ import java.util.List;
 @Table(name = "TB_PACIENTE")
 public class PacienteED {
 
+    @NotNull(groups = Groups.PacienteId.class)
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
 
+    private String codigo;
 
-//    @NotBlank(message = "nome {campo.texto.notBlank.obrigatorio}")
-    @Size(max = 100, min = 3, message = "nome {campo.texto.sizeMax} 100")
+
+    @NotBlank
+    @Size(max = 100, min = 3)
     @Column(name = "NOME", nullable = true, length = 100)
+    @JsonAlias({"nome", "nomePaciente", "nome_Paciente"})
     private String nome;
 
 
@@ -54,7 +55,7 @@ public class PacienteED {
     private LocalDate dataNasc;
 
 //    @NotBlank(message = "idade {campo.texto.notBlank.obrigatorio}")
-    @Positive(message = "idade não pode ser negativa")
+    @Positive
     @Column(name = "IDADE", nullable = true)
 //    //formula para calcular a idade com base na dataNasc
 //    @Formula("YEAR(CURRENT_DATE) - YEAR(data_nascimento)" +
@@ -71,7 +72,7 @@ public class PacienteED {
     @Column(name = "ESTADO_CIVIL", nullable = true, length = 10)
     private EstadoCivil estadoCivil;
 
-    @PositiveOrZero(message = "Qtd filhos não pode ser negativo")
+    @PositiveOrZero
     @Column(name = "FILHOS", nullable = true)
     private Integer filhos;
 
@@ -152,8 +153,26 @@ public class PacienteED {
     @JsonFormat(pattern = "yyyy-MM-dd")
     @CreationTimestamp
 //    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "DATA_CADASTRO", nullable = true, columnDefinition = "TIMESTAMP")
-    private LocalDate dataCadastro;
+    @Column(name = "DATA_CADASTRO", nullable = true, columnDefinition = "datetime")
+    private OffsetDateTime dataCadastro;
+
+    @UpdateTimestamp
+    @Column(nullable = false, columnDefinition = "datetime")
+    private OffsetDateTime dataAtualizacao;
+
+    @PrePersist /*antes de criar o registro este metodo e executado*/
+    private void gerarUUID(){
+        setCodigo(UUID.randomUUID().toString());
+    }
+
+
+    public void ativar(){
+        this.setIsAtivo(true);
+    }
+
+    public void desativar(){
+        this.setIsAtivo(false);
+    }
 
 
 }

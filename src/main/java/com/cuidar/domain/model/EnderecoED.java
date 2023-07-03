@@ -1,4 +1,4 @@
-package com.cuidar.domain.model.endereco;
+package com.cuidar.domain.model;
 
 import com.cuidar.domain.model.enuns.TipoResidencia;
 import lombok.Data;

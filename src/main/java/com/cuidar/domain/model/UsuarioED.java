@@ -1,6 +1,5 @@
-package com.cuidar.domain.model.usuario;
+package com.cuidar.domain.model;
 
-import com.cuidar.domain.model.grupo.GrupoED;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

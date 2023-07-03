@@ -1,4 +1,4 @@
-package com.cuidar.domain.model.contato;
+package com.cuidar.domain.model;
 
 import lombok.Data;
 

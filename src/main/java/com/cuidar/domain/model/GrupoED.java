@@ -1,11 +1,11 @@
-package com.cuidar.domain.model.grupo;
+package com.cuidar.domain.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
 
-import com.cuidar.domain.permissao.PermissaoED;
+import com.cuidar.domain.model.PermissaoED;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
