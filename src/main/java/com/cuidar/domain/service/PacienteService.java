@@ -4,6 +4,8 @@ import com.cuidar.domain.Exceptions.PacienteNotFoundException;
 import com.cuidar.domain.repository.PacienteRepository;
 import com.cuidar.domain.model.PacienteED;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -27,12 +29,12 @@ public class PacienteService {
         return pacienteRepository.findPacienteByCodigo(codigoPaciente);
     }
 
-    public List<PacienteED> obterTodosPacientes() {
-        return pacienteRepository.findAll();
+    public Page<PacienteED> obterTodosPacientes(Pageable pageable) {
+        return pacienteRepository.findAll(pageable);
     }
 
-    public List<PacienteED> obterTodosPacientesAtivos(Boolean isAtivo) {
-        return pacienteRepository.findAllPacientesByIsAtivo(isAtivo);
+    public Page<PacienteED> obterTodosPacientesAtivos(Boolean isAtivo, Pageable pageable) {
+        return pacienteRepository.findAllPacientesByIsAtivo(isAtivo, pageable);
     }
 
     public List<PacienteED> obterTodosPacientesPorNome(String nome) {

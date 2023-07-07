@@ -1,4 +1,4 @@
-package com.cuidar.api.core;
+package com.cuidar.api.core.modelmapper;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

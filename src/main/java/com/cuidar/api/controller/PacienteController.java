@@ -7,6 +7,9 @@ import com.cuidar.domain.service.PacienteService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,12 +17,11 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/pacientes")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class PacienteREST {
+public class PacienteController {
 
 
     @Autowired
@@ -28,24 +30,33 @@ public class PacienteREST {
     @Autowired
     private ModelMapper modelMapper;
 
-    public PacienteREST(PacienteService pacienteService) {
+    public PacienteController(PacienteService pacienteService) {
         this.pacienteService = pacienteService;
     }
 
     @Operation(summary = "Obtem paciente por codigo")
-    @GetMapping(path = "/{pacienteId}",
+    @GetMapping(path = "/{codigoPaciente}",
 //            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = "application/json;charset=UTF-8")
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public PacienteED obterPacientePorCodigo(@PathVariable("codigoPaciente") String codigoPaciente) {
         return pacienteService.buscarOuFalhar(codigoPaciente);
+    }
+
+    @Operation(summary = "Obtem paciente por codigo")
+    @GetMapping(path = "/{codigoPaciente}",
+//            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<byte[]> obterPacientePorCodigoPDF(@PathVariable("codigoPaciente") String codigoPaciente) {
+        return null;
     }
 
     @Operation(summary = "Obtem todos os pacientes")
     @GetMapping(
 //            consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = "application/json;charset=UTF-8")
-    public ResponseEntity<List<PacienteED>> obterTodosPacientes() {
-        return ResponseEntity.ok(pacienteService.obterTodosPacientes());
+    public Page<PacienteED> obterTodosPacientes(@PageableDefault(size = 5) Pageable pageable) {
+//        pageable = traduzirPageable(pageable);
+        return pacienteService.obterTodosPacientes(pageable);
     }
 
 
@@ -54,8 +65,8 @@ public class PacienteREST {
     @GetMapping(path ="/isAtivo/{isAtivo}",
 //            consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = "application/json;charset=UTF-8")
-    public ResponseEntity<List<PacienteED>> obterTodosPacientesAtivos(@PathVariable("isAtivo") Boolean isAtivo) {
-        return ResponseEntity.ok(pacienteService.obterTodosPacientesAtivos(isAtivo));
+    public Page<PacienteED> obterTodosPacientesAtivos(@PathVariable("isAtivo") Boolean isAtivo, Pageable pageable) {
+        return pacienteService.obterTodosPacientesAtivos(isAtivo, pageable);
     }
 
     @Operation(summary = "Obtem todos os pacientes, por nome")
@@ -125,5 +136,23 @@ public class PacienteREST {
     public void deletePaciente(@PathVariable String pacienteCodigo) {
         pacienteService.desativar(pacienteCodigo);
     }
+
+
+//    private Pageable traduzirPageable(Pageable apiPageable) {
+//        var mapeamento = Map.of(
+//                "codigo", "codigo",
+//                "id", "id"
+////                "subtotal", "subtotal",
+////                "taxaFrete", "taxaFrete",
+////                "valorTotal", "valorTotal",
+////                "dataCriacao", "dataCriacao",
+////                "restaurante.nome", "restaurante.nome",
+////                "restaurante.id", "restaurante.id",
+////                "cliente.id", "cliente.id",
+////                "cliente.nome", "cliente.nome"
+//        );
+//
+//        return PageableTranslator.translate(apiPageable, mapeamento);
+//    }
 
 }

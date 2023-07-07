@@ -43,7 +43,7 @@ public class ExameService {
     @Transactional
     public ExameED cadastrarExame(ExameED exame){
 
-        PacienteED paciente = pacienteService.buscarOuFalhar(exame.getPaciente().getId());
+        PacienteED paciente = pacienteService.buscarOuFalhar(exame.getPaciente().getCodigo());
 
         AtendenteED atendente = atendenteService.buscarOuFalhar(exame.getAtendente().getId());
 

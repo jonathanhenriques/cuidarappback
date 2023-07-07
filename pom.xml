@@ -16,6 +16,8 @@
     <properties>
         <java.version>17</java.version>
         <modelmapper.version>3.0.0</modelmapper.version>
+        <squiggly.version>1.3.18</squiggly.version>
+        <jasperreports.version>6.19.1</jasperreports.version>
     </properties>
     <dependencies>
         <dependency>
@@ -119,6 +121,38 @@
             <artifactId>modelmapper</artifactId>
             <version>${modelmapper.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>${jasperreports.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports-functions</artifactId>
+            <version>${jasperreports.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.bohnman</groupId>
+            <artifactId>squiggly-filter-jackson</artifactId>
+            <version>${squiggly.version}</version>
+        </dependency>
+
+<!--        Resolve Possivel problema com springfox 2.8.0-->
+<!--        <dependency>-->
+<!--            <groupId>com.github.bohnman</groupId>-->
+<!--            <artifactId>squiggly-filter-jackson</artifactId>-->
+<!--            <version>${squiggly.version}</version>-->
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>com.google.guava</groupId>-->
+<!--                    <artifactId>guava</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
+<!--        </dependency>-->
+
     </dependencies>
 
     <build>

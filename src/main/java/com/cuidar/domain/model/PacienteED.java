@@ -157,7 +157,7 @@ public class PacienteED {
     private OffsetDateTime dataCadastro;
 
     @UpdateTimestamp
-    @Column(nullable = false, columnDefinition = "datetime")
+    @Column(name = "DATA_ATUALIZACAO",nullable = false, columnDefinition = "datetime")
     private OffsetDateTime dataAtualizacao;
 
     @PrePersist /*antes de criar o registro este metodo e executado*/
