@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(path = "/estatisticas")
-public class EsatisticaController {
+public class EstatisticaController {
 
     @Autowired
     private EstatisticasQueryService estatisticasQueryService;

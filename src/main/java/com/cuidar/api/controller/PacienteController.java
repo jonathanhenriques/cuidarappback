@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -58,6 +59,19 @@ public class PacienteController {
 //        pageable = traduzirPageable(pageable);
         return pacienteService.obterTodosPacientes(pageable);
     }
+
+
+//    @Operation(summary = "Obtem todos os pacientes")
+//    @GetMapping(
+////            consumes = MediaType.APPLICATION_JSON_VALUE,
+//            produces = "application/json;charset=UTF-8")
+//    public ResponseEntity<Page<PacienteED>> obterTodosPacientes(@PageableDefault(size = 5) Pageable pageable) {
+////        pageable = traduzirPageable(pageable);
+//        return ResponseEntity.ok()
+//                //ADICIONANDO CORS MANUALMENTE SOMENTE NESTE ENDPOINT
+//                .header(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "http://localhost:8000")
+//                .body(pacienteService.obterTodosPacientes(pageable));
+//    }
 
 
 
