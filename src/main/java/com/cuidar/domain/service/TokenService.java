@@ -16,39 +16,39 @@ import java.time.ZoneOffset;
 @Slf4j
 @Service
 public class TokenService {
-
-    @Value("${api.security.token.secret}")
-    private String secret;
-
-    public String gerarToken(UsuarioED usuario) {
-        try {
-            var algoritmo = Algorithm.HMAC256(secret);
-            return JWT.create()
-                    .withIssuer("API Instituto Criar")
-                    .withSubject(usuario.getLogin())
-                    .withExpiresAt(dataExpiracao())
-                    .sign(algoritmo);
-        } catch (JWTCreationException exception){
-            throw new RuntimeException("erro ao gerar token jwt", exception);
-        }
-    }
-
-    public String getSubject(String tokenJWT) {
-        try {
-            var algoritmo = Algorithm.HMAC256(secret);
-            return JWT.require(algoritmo)
-                    .withIssuer("API Instituto Criar")
-                    .build()
-                    .verify(tokenJWT)
-                    .getSubject();
-        } catch (JWTVerificationException exception) {
-            throw new RuntimeException("Token JWT inválido ou expirado!");
-        }
-    }
-
-    private Instant dataExpiracao() {
-        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
-    }
+//
+//    @Value("${api.security.token.secret}")
+//    private String secret;
+//
+//    public String gerarToken(UsuarioED usuario) {
+//        try {
+//            var algoritmo = Algorithm.HMAC256(secret);
+//            return JWT.create()
+//                    .withIssuer("API Instituto Criar")
+//                    .withSubject(usuario.getLogin())
+//                    .withExpiresAt(dataExpiracao())
+//                    .sign(algoritmo);
+//        } catch (JWTCreationException exception){
+//            throw new RuntimeException("erro ao gerar token jwt", exception);
+//        }
+//    }
+//
+//    public String getSubject(String tokenJWT) {
+//        try {
+//            var algoritmo = Algorithm.HMAC256(secret);
+//            return JWT.require(algoritmo)
+//                    .withIssuer("API Instituto Criar")
+//                    .build()
+//                    .verify(tokenJWT)
+//                    .getSubject();
+//        } catch (JWTVerificationException exception) {
+//            throw new RuntimeException("Token JWT inválido ou expirado!");
+//        }
+//    }
+//
+//    private Instant dataExpiracao() {
+//        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
+//    }
 
 }
 //}

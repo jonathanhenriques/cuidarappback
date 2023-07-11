@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+<!--    inclue o log padrao do spring-->
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+<!--    <springProfile name="producao00000000000">-->
+        <!-- source="logging.loggly.token" - Pegando a propriedade do application.properties contendo valor do token-->
+        <!-- name=logglyToken - apelido para uso nesse xml-->
+        <springProperty name="logglyToken" source="logging.loggly.token" />
+
+        <appender name="loggly" class="ch.qos.logback.ext.loggly.LogglyAppender">
+            <!-- ${logglyToken} acessa a propriedade com o valor ca3adb63-90ce-4597-be15-ecae7ff8ace0 -->
+            <endpointUrl>https://logs-01.loggly.com/inputs/ca3adb63-90ce-4597-be15-ecae7ff8ace0/tag/logback</endpointUrl>
+            <pattern>%d{"ISO8601", UTC} %p %t %c %M - %m%n</pattern>
+        </appender>
+
+        <appender name="logglyAsync" class="ch.qos.logback.classic.AsyncAppender">
+            <appender-ref ref="loggly" />
+        </appender>
+
+
+
+        <root level="info">
+            <appender-ref ref="logglyAsync" />
+        </root>
+<!--    </springProfile>-->
+
+
+
+</configuration>
