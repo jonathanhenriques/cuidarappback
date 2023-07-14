@@ -2,6 +2,10 @@
  -- Desabilitando verificação de chave estrangeira
  SET FOREIGN_KEY_CHECKS = 0;
 
+-- lock tables = trava as tabelas ate o fim da operacao (evita que outro container faca solicitacoes e quebre o fluxo)
+lock tables tb_atendente write, tb_exame write, tb_local write, tb_medico write, tb_paciente write, tb_usuario write,
+tb_usuario_grupo write, tb_permissao write, tb_grupo write, tb_grupo_permissao write;
+
  -- Realizando as operações de exclusão
  DELETE FROM tb_atendente;
  DELETE FROM tb_exame;
@@ -155,3 +159,6 @@ insert into tb_usuario (id, login, senha) values (null, 'frodo@email.com','$2a$1
 insert into tb_usuario_grupo (usuario_id, grupo_id) values (1, 1);
 
 -- #################################################
+
+-- libera as tabelas para outras solicitacoes (como outros containeres)
+unlock tables;

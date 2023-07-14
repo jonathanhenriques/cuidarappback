@@ -208,7 +208,8 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <repository>cuidarapp-api</repository>
+                            <repository>jonathanhenriques/cuidarapp-api</repository>
+<!--                            <repository>cuidarapp-api</repository>-->
                             <buildArgs>
                                 <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
                             </buildArgs>
