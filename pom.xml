@@ -189,36 +189,36 @@
         </plugins>
     </build>
 
-    <profiles>
-        <profile>
-            <id>docker</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.spotify</groupId>
-                        <artifactId>dockerfile-maven-plugin</artifactId>
-                        <version>${dockerfile-maven-version}</version>
-                        <executions>
-                            <execution>
-                                <id>default</id>
-                                <goals>
-                                    <goal>build</goal>
-                                    <goal>push</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <repository>jonathanhenriques/cuidarapp-api</repository>
-<!--                            <repository>cuidarapp-api</repository>-->
-                            <buildArgs>
-                                <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
-                            </buildArgs>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
+<!--    <profiles>-->
+<!--        <profile>-->
+<!--            <id>docker</id>-->
+<!--            <build>-->
+<!--                <plugins>-->
+<!--                    <plugin>-->
+<!--                        <groupId>com.spotify</groupId>-->
+<!--                        <artifactId>dockerfile-maven-plugin</artifactId>-->
+<!--                        <version>${dockerfile-maven-version}</version>-->
+<!--                        <executions>-->
+<!--                            <execution>-->
+<!--                                <id>default</id>-->
+<!--                                <goals>-->
+<!--                                    <goal>build</goal>-->
+<!--                                    <goal>push</goal>-->
+<!--                                </goals>-->
+<!--                            </execution>-->
+<!--                        </executions>-->
+<!--                        <configuration>-->
+<!--                            <repository>jonathanhenriques/cuidarapp-api</repository>-->
+<!--&lt;!&ndash;                            <repository>cuidarapp-api</repository>&ndash;&gt;-->
+<!--                            <buildArgs>-->
+<!--                                <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>-->
+<!--                            </buildArgs>-->
+<!--                        </configuration>-->
+<!--                    </plugin>-->
+<!--                </plugins>-->
+<!--            </build>-->
+<!--        </profile>-->
+<!--    </profiles>-->
 
 
 </project>
