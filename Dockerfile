@@ -14,7 +14,7 @@ ARG JAR_FILE
 # arquivos a serem copiados para dentro da imagem
 # COPY target/*.jar /app/api.jar
 # COPY target/${JAR_FILE} /app/api.jar
-COPY ./*.jar *.jar
+COPY ./${JAR_FILE} /api.jar
 COPY wait-for-it.sh /wait-for-it.sh
 
 # executar wait-for-it.sh
