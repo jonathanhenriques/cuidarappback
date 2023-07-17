@@ -1,10 +1,8 @@
 
- -- Desabilitando verificação de chave estrangeira
 SET CONSTRAINTS ALL DEFERRED
 
 
 
- -- Realizando as operações de exclusão
  DELETE FROM tb_atendente;
  DELETE FROM tb_exame;
  DELETE FROM tb_local;
@@ -16,10 +14,9 @@ SET CONSTRAINTS ALL DEFERRED
  DELETE FROM tb_grupo;
  DELETE FROM tb_grupo_permissao;
 
- -- Habilitando verificação de chave estrangeira
+
 SET CONSTRAINTS ALL IMMEDIATE;
 
- -- Voltando a contagem dos IDs para 1
  ALTER TABLE tb_atendente AUTO_INCREMENT = 1;
  ALTER TABLE tb_exame AUTO_INCREMENT = 1;
  ALTER TABLE tb_local AUTO_INCREMENT = 1;
@@ -31,13 +28,6 @@ SET CONSTRAINTS ALL IMMEDIATE;
  ALTER TABLE tb_grupo auto_increment = 1;
  ALTER TABLE tb_grupo_permissao auto_increment = 1;
 
--- set foreign_key_checks = 0;
--- -- TRUNCATE funciona como DELETE mas ignora restricao de delete e reseta os ids
--- truncate table cidade;
--- truncate table cozinha;
--- truncate table estado;...
---
--- set foreign_key_checks = 1;
 
 insert into tb_medico (id, nome, is_ativo) values (1, 'Dr.Ricardo Yoshio', true);
 insert into tb_medico (id, nome, is_ativo) values (2, 'Dr.Drauzio Varela', true);
@@ -121,18 +111,15 @@ insert into tb_permissao (id, nome, descricao) values (9, 'GERAR_RELATORIOS', 'P
 insert into tb_grupo (id, nome) values (1, 'Gerente'), (2, 'Medico'), (3, 'Atendente'), (4, 'Cadastrador');
 
 
--- # Adiciona todas as permissoes no grupo do gerente
 insert into tb_grupo_permissao (grupo_id, permissao_id)
 select 1, id from tb_permissao;
 
--- # Adiciona permissoes no grupo do medico
 insert into tb_grupo_permissao (grupo_id, permissao_id)
 select 2, id from tb_permissao where nome like 'CONSULTAR_%';
 
 insert into tb_grupo_permissao (grupo_id, permissao_id)
 select 2, id from tb_permissao where nome = 'GERENCIAR_EXAMES';
 
--- # Adiciona permissoes no grupo do atendente
 insert into tb_grupo_permissao (grupo_id, permissao_id)
 select 3, id from tb_permissao where nome like 'CONSULTAR_%';
 
@@ -140,23 +127,8 @@ insert into tb_grupo_permissao (grupo_id, permissao_id)
 select 3, id from tb_permissao where nome = 'GERENCIAR_EXAMES';
 
 
--- inserindo dados para testes
 insert into tb_usuario (id, login, senha) values (null, 'frodo@email.com','$2a$12$5zEvFcRzlN0kgDYAOdOehuG5qdfKgnWPYZnPhWRej91FKrMka9EJa');
 
--- ##################################################
--- insert into usuario (id, nome, email, senha, data_cadastro) values
--- (1, 'Jonathan Henrique', 'jonathan@cuidar.com.br', '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', utc_timestamp),
--- (2, 'Andreia Silva', 'andreia@cuidar.com.br', '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', utc_timestamp),
--- (3, 'Eliete', 'eliete@cuidar.com.br', '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', utc_timestamp),
--- (4, 'Nilson', 'nilson@cuidar.com.br', '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', utc_timestamp),
--- (5, 'Ricardo Yoshio', 'ricardo@cuidar.com.br', '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', utc_timestamp),
--- (6, 'Cida', 'cida@cuidar.com.br', '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', utc_timestamp),
--- (7, 'Carlos Lima', 'email.teste.aw+carlos@gmail.com', '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', utc_timestamp);
-
--- insert into tb_usuario_grupo (usuario_id, grupo_id) values (1, 1), (1, 2), (1, 3), (2, 3), (3, 3),(3, 3), (4, 2), (5, 2);
 insert into tb_usuario_grupo (usuario_id, grupo_id) values (1, 1);
 
--- #################################################
 
--- libera as tabelas para outras solicitacoes (como outros containeres)
-unlock tables;
