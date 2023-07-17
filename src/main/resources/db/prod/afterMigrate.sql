@@ -1,10 +1,8 @@
 
  -- Desabilitando verificação de chave estrangeira
- SET FOREIGN_KEY_CHECKS = 0;
+SET CONSTRAINTS ALL DEFERRED
 
--- lock tables = trava as tabelas ate o fim da operacao (evita que outro container faca solicitacoes e quebre o fluxo)
-lock tables tb_atendente write, tb_exame write, tb_local write, tb_medico write, tb_paciente write, tb_usuario write,
-tb_usuario_grupo write, tb_permissao write, tb_grupo write, tb_grupo_permissao write;
+
 
  -- Realizando as operações de exclusão
  DELETE FROM tb_atendente;
@@ -19,7 +17,7 @@ tb_usuario_grupo write, tb_permissao write, tb_grupo write, tb_grupo_permissao w
  DELETE FROM tb_grupo_permissao;
 
  -- Habilitando verificação de chave estrangeira
- SET FOREIGN_KEY_CHECKS = 1;
+SET CONSTRAINTS ALL IMMEDIATE;
 
  -- Voltando a contagem dos IDs para 1
  ALTER TABLE tb_atendente AUTO_INCREMENT = 1;
