@@ -4,21 +4,6 @@ create table tb_atendente (
     nome varchar(255) not null
 );
 
-create table tb_exame (
-    id bigserial primary key,
-    data_exame timestamp not null,
-    nome_exame varchar(100) not null,
-    observacao varchar(500),
-    valor numeric(12, 2) not null,
-    atendente_id bigint,
-    local_id bigint,
-    medico_id bigint,
-    paciente_id bigint,
-    foreign key (atendente_id) references tb_atendente (id),
-    foreign key (local_id) references tb_local (id),
-    foreign key (medico_id) references tb_medico (id),
-    foreign key (paciente_id) references tb_paciente (id)
-);
 
 create table tb_local (
     id bigserial primary key,
@@ -71,10 +56,32 @@ create table tb_paciente (
     end_tipo_residencia varchar(11)
 );
 
+create table tb_exame (
+    id bigserial primary key,
+    data_exame timestamp not null,
+    nome_exame varchar(100) not null,
+    observacao varchar(500),
+    valor numeric(12, 2) not null,
+    atendente_id bigint,
+    local_id bigint,
+    medico_id bigint,
+    paciente_id bigint,
+    foreign key (atendente_id) references tb_atendente (id),
+    foreign key (local_id) references tb_local (id),
+    foreign key (medico_id) references tb_medico (id),
+    foreign key (paciente_id) references tb_paciente (id)
+);
+
 create table tb_usuario (
     id bigserial primary key,
     login varchar(255),
     senha varchar(255)
+);
+
+
+create table tb_grupo (
+    id bigserial primary key,
+    nome varchar(60) not null
 );
 
 create table tb_usuario_grupo (
@@ -85,9 +92,10 @@ create table tb_usuario_grupo (
     foreign key (grupo_id) references tb_grupo (id)
 );
 
-create table tb_grupo (
+create table tb_permissao (
     id bigserial primary key,
-    nome varchar(60) not null
+    descricao varchar(60) not null,
+    nome varchar(100) not null
 );
 
 create table tb_grupo_permissao (
@@ -98,11 +106,6 @@ create table tb_grupo_permissao (
     foreign key (permissao_id) references tb_permissao (id)
 );
 
-create table tb_permissao (
-    id bigserial primary key,
-    descricao varchar(60) not null,
-    nome varchar(100) not null
-);
 
 
 
