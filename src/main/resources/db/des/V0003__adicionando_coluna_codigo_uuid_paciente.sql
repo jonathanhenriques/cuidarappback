@@ -1,3 +1,4 @@
-ALTER TABLE tb_paciente add codigo VARCHAR(36) not null after id;
-UPDATE tb_paciente set codigo = uuid();
-alter table tb_paciente add constraint uk_pedido_codigo unique (codigo);
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+ALTER TABLE tb_paciente ADD COLUMN codigo VARCHAR(36) NOT NULL DEFAULT uuid_generate_v4();
+ALTER TABLE tb_paciente ADD CONSTRAINT uk_paciente_codigo UNIQUE (codigo);
+

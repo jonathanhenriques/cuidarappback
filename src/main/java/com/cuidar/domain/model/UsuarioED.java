@@ -23,7 +23,7 @@ public class UsuarioED {
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "USUARIO_ID")
+    @Column(name = "ID")
     private Long id;
 
     @Column(name = "LOGIN")

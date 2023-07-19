@@ -1,25 +1,15 @@
-create table tb_atendente (
-    id bigint not null auto_increment,
-    is_ativo boolean default true not null,
-    nome varchar(255) not null,
-    primary key (id)
- );
+CREATE SCHEMA IF NOT EXISTS cuidarapp;
 
-create table tb_exame (
-    id bigint not null auto_increment,
-    data_exame TIMESTAMP not null,
-    nome_exame varchar(100) not null,
-    observacao varchar(500),
-    valor decimal(12,2) not null,
-    atendente_id bigint,
-    local_id bigint,
-    medico_id bigint,
-    paciente_id bigint,
-    primary key (id)
- );
+
+create table tb_atendente (
+    id bigserial primary key,
+    is_ativo boolean default true not null,
+    nome varchar(255) not null
+);
+
 
 create table tb_local (
-    id bigint not null auto_increment,
+    id bigserial primary key,
     nome_local varchar(255) not null,
     end_bairro varchar(50),
     end_cep varchar(11),
@@ -27,36 +17,34 @@ create table tb_local (
     end_numero varchar(20),
     end_observacao varchar(100),
     end_rua varchar(75),
-    end_tipo_residencia varchar(11),
-    primary key (id)
- );
+    end_tipo_residencia varchar(11)
+);
 
 create table tb_medico (
-    id bigint not null auto_increment,
+    id bigserial primary key,
     nome varchar(255) not null,
-    is_ativo boolean default true not null,
-    primary key (id)
- );
+    is_ativo boolean default true not null
+);
 
 create table tb_paciente (
-    id bigint not null auto_increment,
+    id bigserial primary key,
     nome varchar(100),
     rg varchar(9),
     estado_civil varchar(10),
     filhos integer,
     idade integer,
     indicacao varchar(100),
-    is_ativo BIT,
+    is_ativo boolean,
     nome_responsavel_paciente varchar(100),
     observacao varchar(500),
     profissao varchar(30),
-    is_aceite BIT,
-    is_convenio BIT,
-    data_cadastro TIMESTAMP,
-    data_nasc TIMESTAMP,
+    is_aceite boolean,
+    is_convenio boolean,
+    data_cadastro timestamp,
+    data_nasc timestamp,
     deficiencia varchar(50),
     deficiencia_familia varchar(255),
-    is_deficiente BIT,
+    is_deficiente boolean,
     cont_celular varchar(15),
     cont_facebook varchar(50),
     cont_instagram varchar(50),
@@ -68,56 +56,60 @@ create table tb_paciente (
     end_numero varchar(20),
     end_observacao varchar(100),
     end_rua varchar(75),
-    end_tipo_residencia varchar(11),
+    end_tipo_residencia varchar(11)
+);
 
-    primary key (id)
+create table tb_exame (
+    id bigserial primary key,
+    data_exame timestamp not null,
+    nome_exame varchar(100) not null,
+    observacao varchar(500),
+    valor numeric(12, 2) not null,
+    atendente_id bigint,
+    local_id bigint,
+    medico_id bigint,
+    paciente_id bigint,
+    foreign key (atendente_id) references tb_atendente (id),
+    foreign key (local_id) references tb_local (id),
+    foreign key (medico_id) references tb_medico (id),
+    foreign key (paciente_id) references tb_paciente (id)
 );
 
 create table tb_usuario (
-    id bigint not null auto_increment,
+    id bigserial primary key,
     login varchar(255),
-    senha varchar(255),
-    primary key (id)
- );
+    senha varchar(255)
+);
 
--- create table tb_usuario (
--- 	id bigint not null auto_increment,
--- 	nome varchar(80) not null,
--- 	email varchar(255) not null,
--- 	senha varchar(255) not null,
--- 	data_cadastro datetime not null,
---
--- 	primary key (id)
--- );
---
- create table tb_usuario_grupo (
- 	usuario_id bigint not null,
- 	grupo_id bigint not null,
 
- 	primary key (usuario_id, grupo_id)
- );
+create table tb_grupo (
+    id bigserial primary key,
+    nome varchar(60) not null
+);
 
- create table tb_grupo (
- 	id bigint not null auto_increment,
- 	nome varchar(60) not null,
+create table tb_usuario_grupo (
+    usuario_id bigint not null,
+    grupo_id bigint not null,
+    primary key (usuario_id, grupo_id),
+    foreign key (usuario_id) references tb_usuario (id),
+    foreign key (grupo_id) references tb_grupo (id)
+);
 
- 	primary key (id)
- );
+create table tb_permissao (
+    id bigserial primary key,
+    descricao varchar(60) not null,
+    nome varchar(100) not null
+);
 
- create table tb_grupo_permissao (
- 	grupo_id bigint not null,
- 	permissao_id bigint not null,
+create table tb_grupo_permissao (
+    grupo_id bigint not null,
+    permissao_id bigint not null,
+    primary key (grupo_id, permissao_id),
+    foreign key (grupo_id) references tb_grupo (id),
+    foreign key (permissao_id) references tb_permissao (id)
+);
 
- 	primary key (grupo_id, permissao_id)
- );
 
- create table tb_permissao (
- 	id bigint not null auto_increment,
- 	descricao varchar(60) not null,
- 	nome varchar(100) not null,
-
- 	primary key (id)
- );
 
 
 
