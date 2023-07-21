@@ -1,3 +1,7 @@
+
+-- Define o schema padrão para cuidarapp_schema
+SET SCHEMA 'cuidarapp_schema';
+
 create table tb_atendente (
     id bigserial primary key,
     is_ativo boolean default true not null,

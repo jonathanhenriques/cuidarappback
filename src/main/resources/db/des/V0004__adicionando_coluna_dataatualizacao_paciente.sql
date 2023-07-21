@@ -1,1 +1,1 @@
-ALTER TABLE tb_paciente ADD COLUMN data_atualizacao TIMESTAMP;
+ALTER TABLE cuidarapp_schema.tb_paciente ADD COLUMN data_atualizacao TIMESTAMP;

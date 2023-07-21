@@ -1,2 +1,2 @@
-ALTER TABLE tb_exame ADD COLUMN situacao boolean DEFAULT true NOT NULL;
-UPDATE tb_exame SET situacao = true;
+ALTER TABLE cuidarapp_schema.tb_exame ADD COLUMN situacao boolean DEFAULT true NOT NULL;
+UPDATE cuidarapp_schema.tb_exame SET situacao = true;

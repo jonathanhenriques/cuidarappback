@@ -1,14 +1,17 @@
-CREATE SCHEMA IF NOT EXISTS cuidarapp;
 
+--CREATE SCHEMA cuidarapp_schema;
 
-create table tb_atendente (
+-- Define o schema padrão para cuidarapp_schema
+SET SCHEMA 'cuidarapp_schema';
+
+CREATE TABLE tb_atendente (
     id bigserial primary key,
     is_ativo boolean default true not null,
     nome varchar(255) not null
 );
 
 
-create table tb_local (
+CREATE TABLE tb_local (
     id bigserial primary key,
     nome_local varchar(255) not null,
     end_bairro varchar(50),
@@ -20,13 +23,13 @@ create table tb_local (
     end_tipo_residencia varchar(11)
 );
 
-create table tb_medico (
+CREATE TABLE tb_medico (
     id bigserial primary key,
     nome varchar(255) not null,
     is_ativo boolean default true not null
 );
 
-create table tb_paciente (
+CREATE TABLE tb_paciente (
     id bigserial primary key,
     nome varchar(100),
     rg varchar(9),
@@ -59,7 +62,7 @@ create table tb_paciente (
     end_tipo_residencia varchar(11)
 );
 
-create table tb_exame (
+CREATE TABLE tb_exame (
     id bigserial primary key,
     data_exame timestamp not null,
     nome_exame varchar(100) not null,
@@ -75,19 +78,19 @@ create table tb_exame (
     foreign key (paciente_id) references tb_paciente (id)
 );
 
-create table tb_usuario (
+CREATE TABLE tb_usuario (
     id bigserial primary key,
     login varchar(255),
     senha varchar(255)
 );
 
 
-create table tb_grupo (
+CREATE TABLE tb_grupo (
     id bigserial primary key,
     nome varchar(60) not null
 );
 
-create table tb_usuario_grupo (
+CREATE TABLE tb_usuario_grupo (
     usuario_id bigint not null,
     grupo_id bigint not null,
     primary key (usuario_id, grupo_id),
@@ -95,13 +98,13 @@ create table tb_usuario_grupo (
     foreign key (grupo_id) references tb_grupo (id)
 );
 
-create table tb_permissao (
+CREATE TABLE tb_permissao (
     id bigserial primary key,
     descricao varchar(60) not null,
     nome varchar(100) not null
 );
 
-create table tb_grupo_permissao (
+CREATE TABLE tb_grupo_permissao (
     grupo_id bigint not null,
     permissao_id bigint not null,
     primary key (grupo_id, permissao_id),
@@ -113,27 +116,27 @@ create table tb_grupo_permissao (
 
 
 
-alter table tb_exame add constraint fk_exame_atendente
-foreign key (atendente_id) references tb_atendente (id);
+alter table cuidarapp_schema.tb_exame add constraint fk_exame_atendente
+foreign key (atendente_id) references cuidarapp_schema.tb_atendente (id);
 
-alter table tb_exame add constraint fk_exame_local
-foreign key (local_id) references tb_local (id);
+alter table cuidarapp_schema.tb_exame add constraint fk_exame_local
+foreign key (local_id) references cuidarapp_schema.tb_local (id);
 
-alter table tb_exame add constraint fk_exame_medico
-foreign key (medico_id) references tb_medico (id);
+alter table cuidarapp_schema.tb_exame add constraint fk_exame_medico
+foreign key (medico_id) references cuidarapp_schema.tb_medico (id);
 
-alter table tb_exame add constraint fk_exame_paciente
-foreign key (paciente_id) references tb_paciente (id);
+alter table cuidarapp_schema.tb_exame add constraint fk_exame_paciente
+foreign key (paciente_id) references cuidarapp_schema.tb_paciente (id);
 
 
-alter table tb_grupo_permissao add constraint fk_grupo_permissao_permissao
-foreign key (permissao_id) references tb_permissao (id);
+alter table cuidarapp_schema.tb_grupo_permissao add constraint fk_grupo_permissao_permissao
+foreign key (permissao_id) references cuidarapp_schema.tb_permissao (id);
 
-alter table tb_grupo_permissao add constraint fk_grupo_permissao_grupo
-foreign key (grupo_id) references tb_grupo (id);
+alter table cuidarapp_schema.tb_grupo_permissao add constraint fk_grupo_permissao_grupo
+foreign key (grupo_id) references cuidarapp_schema.tb_grupo (id);
 
-alter table tb_usuario_grupo add constraint fk_usuario_grupo_grupo
-foreign key (grupo_id) references tb_grupo (id);
+alter table cuidarapp_schema.tb_usuario_grupo add constraint fk_usuario_grupo_grupo
+foreign key (grupo_id) references cuidarapp_schema.tb_grupo (id);
 
-alter table tb_usuario_grupo add constraint fk_usuario_grupo_usuario
-foreign key (usuario_id) references tb_usuario (id);
+alter table cuidarapp_schema.tb_usuario_grupo add constraint fk_usuario_grupo_usuario
+foreign key (usuario_id) references cuidarapp_schema.tb_usuario (id);
