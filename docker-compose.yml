@@ -1,53 +1,100 @@
-#versao do arquivo docker compose
+
+
 version: "3.9"
 
-#cria as redes que serao usadas usando quais drivers
 networks:
   cuidarapp-network:
-#    rede bridge permite que os contêineres se comuniquem entre si e com o host, com  IP atribuídos pelo próprio Docker.
     driver: bridge
 
-#os containers que devem ser levantados
 services:
-#  nome container
-  cuidarapp-mysql:
-    #  imagem container (mysql)
-    image: mysql:8.0
+  cuidarapp-postgres:  # Alterei o nome do serviço para cuidarapp-postgres
+    image: postgres:latest  # Utiliza a versão mais recente da imagem do PostgreSQL
 
-#variaveis de ambiente passado em linha de comando
     environment:
-      MYSQL_ROOT_PASSWORD: 159951
+      POSTGRES_USER: postgres  # Substitua pelo nome de usuário desejado para o PostgreSQL
+      POSTGRES_PASSWORD: 159951  # Substitua pela senha desejada para o PostgreSQL
+      POSTGRES_DB: cuidarapp  # Substitua pelo nome desejado do banco de dados PostgreSQL
+
     ports:
-      - "3306:3306"
+      - "5432:5432"  # Mapeia a porta 5432 do contêiner para a porta 5432 do host para o PostgreSQL
+
     networks:
       - cuidarapp-network
 
   cuidarapp-api:
-#    comentado pois build sendo feito pelo maven
-#    faz o build na pasta atual ("ponto")
-#    build: .
-
-
     image: jonathanhenriques/cuidarapp-api
 
-#    substitui o CMD ["java", "-jar", "api.jar"] do dockerfile
-#    executa script, servico a ser observado iniciar , tempo de espera por sucesso, 30 seg, --, args
-    command: ["/wait-for-it.sh", "cuidarapp-mysql:3306", "-t", "30", "--", "java", "-jar", "api.jar"]
-    environment:
-#      DB_HOST criado como variavel para o docker pegar o ip do mysql automaticamente
-#      pois passando cuidarapp-mysql(nome do container mysql criado) ele pega automaticamente o ip
-      DB_HOST: cuidarapp-mysql
+    command: ["/wait-for-it.sh", "cuidarapp-postgres:5432", "-t", "30", "--", "java", "-jar", "api.jar"]
 
-#      comentado pois portas geradas automaticamente por conta do load balance
-#    descomentado ate que nginx volte a funcionar
+
+    environment:
+      DB_HOST: cuidarapp-postgres  # Conecta ao contêiner do PostgreSQL
+      SPRING_PROFILES_ACTIVE: ${PROFILE}
+
     ports:
       - "8082:8082"
+
     networks:
       - cuidarapp-network
-#    indica para so iniciar apos subir o container cuidarapp-mysql
-    depends_on:
-      - cuidarapp-mysql
 
+    depends_on:
+      - cuidarapp-postgres  # Garante que o cuidarapp-postgres inicie antes do cuidarapp-api
+
+
+
+
+
+###########################################################################################################################
+##versao do arquivo docker compose
+#version: "3.9"
+#
+##cria as redes que serao usadas usando quais drivers
+#networks:
+#  cuidarapp-network:
+##    rede bridge permite que os contêineres se comuniquem entre si e com o host, com  IP atribuídos pelo próprio Docker.
+#    driver: bridge
+#
+##os containers que devem ser levantados
+#services:
+##  nome container
+#  cuidarapp-mysql:
+#    #  imagem container (mysql)
+#    image: mysql:8.0
+#
+##variaveis de ambiente passado em linha de comando
+#    environment:
+#      MYSQL_ROOT_PASSWORD: 159951
+#    ports:
+#      - "3306:3306"
+#    networks:
+#      - cuidarapp-network
+#
+#  cuidarapp-api:
+##    comentado pois build sendo feito pelo maven
+##    faz o build na pasta atual ("ponto")
+##    build: .
+#
+#
+#    image: jonathanhenriques/cuidarapp-api
+#
+##    substitui o CMD ["java", "-jar", "api.jar"] do dockerfile
+##    executa script, servico a ser observado iniciar , tempo de espera por sucesso, 30 seg, --, args
+#    command: ["/wait-for-it.sh", "cuidarapp-mysql:3306", "-t", "30", "--", "java", "-jar", "api.jar"]
+#    environment:
+##      DB_HOST criado como variavel para o docker pegar o ip do mysql automaticamente
+##      pois passando cuidarapp-mysql(nome do container mysql criado) ele pega automaticamente o ip
+#      DB_HOST: cuidarapp-mysql
+#
+##      comentado pois portas geradas automaticamente por conta do load balance
+##    descomentado ate que nginx volte a funcionar
+#    ports:
+#      - "8082:8082"
+#    networks:
+#      - cuidarapp-network
+##    indica para so iniciar apos subir o container cuidarapp-mysql
+#    depends_on:
+#      - cuidarapp-mysql
+##################################### arrumar daqui para baixo um dia ###################################
 #    sobe dois containeres (para balanceamento de carta)
 #  comentado pois esta sendo passado via linha de comando
 #    deploy:

@@ -150,4 +150,3 @@ insert into tb_usuario_grupo (usuario_id, grupo_id) values (1, 1);
 
 --#################################################
 
-
