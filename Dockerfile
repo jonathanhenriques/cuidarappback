@@ -20,7 +20,7 @@ COPY wait-for-it.sh /wait-for-it.sh
 RUN chmod +x /wait-for-it.sh
 
 # porta para usar o container
-EXPOSE 8082
+EXPOSE 8080
 
 # comando para rodar esse container
 CMD ["java", "-jar", "api.jar"]

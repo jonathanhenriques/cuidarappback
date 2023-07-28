@@ -30,9 +30,9 @@ services:
     environment:
       DB_HOST: cuidarapp-postgres  # Conecta ao contêiner do PostgreSQL
       JAVA_TOOL_OPTIONS: "-Dspring.profiles.active=${PROFILE}"
-
-    ports:
-      - "8082:8082"
+# Removido para evitar conflitos de mesma porta quando gerados mais de 1 container
+#    ports:
+#      - "8082:8082"
 
     networks:
       - cuidarapp-network
@@ -42,26 +42,40 @@ services:
 
 
 
+## comentado ate que volte a funcionar
+##  servico destinado ao servidor nginx para fazer load balance da api
+  cuidarapp-proxy:
+##    faz o build usando a imagem indicada no nginx/Dockerfile
+    build: ./nginx
+##    nome da imagem no nginx/Dockerfile
+    image: cuidarapp-proxy
+    ports:
+      - "80:80"
+    networks:
+      - cuidarapp-network
+##    espera o container da api subir primeiro
+    depends_on:
+      - cuidarapp-api
 
 
 ###########################################################################################################################
-##versao do arquivo docker compose
+## versao do arquivo docker compose
 #version: "3.9"
 #
-##cria as redes que serao usadas usando quais drivers
+## cria as redes que serao usadas usando quais drivers
 #networks:
 #  cuidarapp-network:
 ##    rede bridge permite que os contêineres se comuniquem entre si e com o host, com  IP atribuídos pelo próprio Docker.
 #    driver: bridge
 #
-##os containers que devem ser levantados
+## os containers que devem ser levantados
 #services:
 ##  nome container
 #  cuidarapp-mysql:
 #    #  imagem container (mysql)
 #    image: mysql:8.0
 #
-##variaveis de ambiente passado em linha de comando
+## variaveis de ambiente passado em linha de comando
 #    environment:
 #      MYSQL_ROOT_PASSWORD: 159951
 #    ports:
@@ -100,7 +114,7 @@ services:
 #    deploy:
 #      replicas: 2
 
-#comentado ate que volte a funcionar
+## comentado ate que volte a funcionar
 #  servico destinado ao servidor nginx para fazer load balance da api
 #  cuidarapp-proxy:
 ##    faz o build usando a imagem indicada no nginx/Dockerfile
