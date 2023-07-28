@@ -17,21 +17,38 @@ public class DatabaseInitializer {
         //pega o valor da propriedade profile antes de subir o prjeto
         String activeProfile = System.getProperty("spring.profiles.active");
         log.debug("valor {}.",activeProfile );
+
         if (activeProfile != null && !activeProfile.equals("teste")) {
+
+            // Recuperar as informações de conexão do ambiente
+
+//            jdbc:postgresql://${DB_HOST:localhost}:${PGPORT:5432}/${POSTGRES_DB:cuidarapp}
+
+            String pgPort = System.getenv("PGPORT");
+            log.debug("pgPort {}.",pgPort );
+            String postegresDB = System.getenv("POSTGRES_DB");
+            log.debug("postegresDB {}.",postegresDB );
+            String dbUsername = System.getenv("DB_USERNAME");
+            log.debug("dbUsername {}.",dbUsername );
+            String dbPassword = System.getenv("DB_PASSWORD");
+            log.debug("dbPassword {}.",dbPassword );
+            String dbHost = System.getenv("DB_HOST");
+            log.debug("dbHost {}.",dbHost );
 
             Connection connection = null;
             Statement statement = null;
             try {
                 log.debug("Creating database if not exist...");
-                connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/", "postgres", "159951");
+//                connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/", "postgres", "159951");
+                connection = DriverManager.getConnection("jdbc:postgresql://localhost:"+ pgPort +"/"+postegresDB, dbUsername, dbPassword);
                 statement = connection.createStatement();
-                statement.executeQuery("SELECT count(*) FROM pg_database WHERE datname = 'cuidarapp'");
+                statement.executeQuery("SELECT count(*) FROM pg_database WHERE datname = '" + postegresDB + "'");
                 ResultSet resultSet = statement.getResultSet();
                 resultSet.next();
                 int count = resultSet.getInt(1);
 
                 if (count <= 0) {
-                    statement.executeUpdate("CREATE DATABASE cuidarapp");
+                    statement.executeUpdate("CREATE DATABASE " + postegresDB);
                     log.debug("Database created.");
                 } else {
                     log.debug("Database already exist.");

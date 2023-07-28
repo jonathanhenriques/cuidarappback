@@ -29,7 +29,7 @@ services:
 
     environment:
       DB_HOST: cuidarapp-postgres  # Conecta ao contêiner do PostgreSQL
-      SPRING_PROFILES_ACTIVE: ${PROFILE}
+      JAVA_TOOL_OPTIONS: "-Dspring.profiles.active=${PROFILE}"
 
     ports:
       - "8082:8082"
