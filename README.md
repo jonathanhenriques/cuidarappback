@@ -60,6 +60,16 @@ Container POSTGRES: ```docker container run -d -p 5432:5432 -e POSTGRES_PASSWORD
 
 *IMPORTANTE
 As variáveis de conexão entre Banco e aplicação foram criadas como ```variáveis de ambiente``` no windows e no Railway(Deploy)<br>
+São elas:
+```
+export DB_URL=jdbc:postgresql://localhost:5432/
+export DB_USERNAME=postgres
+export DB_PASSWORD=159951
+export PGPORT=5432
+export POSTGRES_DB=cuidarapp
+
+```
+
 a falta delas pode acarretar em erros de conexão:
 ![image](https://github.com/jonathanhenriques/cuidarAppBack/assets/65731881/813957e1-9669-4467-957a-5be58cc15015)
 
