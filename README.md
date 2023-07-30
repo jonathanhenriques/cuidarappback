@@ -20,6 +20,24 @@ localmente, é necessário fazer um insert do Dump do Banco do Deploy</p>
 
 <h4>Rodando em container Docker</h4>
 
+******************
+Resumo dos passos:
+
+1. Criar as variáveis de ambiente no terminal:<br>
+   (windows usar `export` e no linux usar `set`)
+   ```set DB_URL=jdbc:postgresql://localhost:5432/```<br>
+   ```set DB_USERNAME=postgres```<br>
+   ```set DB_PASSWORD=159951```<br>
+   ```set PGPORT=5432```<br>
+   ```set POSTGRES_DB=cuidarapp```<br>
+
+
+2. ``` mvn clean package -Pdocker```
+3. ```docker-compose up --scale cuidarapp-api=2 ```
+
+
+**********************
+
 Caso encontre erros ao executar Docker no windows 11 com wsl:
 1. Criação de variável de ambiente no Windows: `DOCKER_HOST=tcp://127.0.0.1:2375`
 2. Habilitando *Expose daemon on tcp://localhost:2375 without TLS* no Docker Desktop<br><br>
