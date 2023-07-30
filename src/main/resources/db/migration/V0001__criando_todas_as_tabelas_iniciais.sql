@@ -1,122 +1,130 @@
-create table tb_atendente (
-    id bigint not null auto_increment,
-    is_ativo boolean default true not null,
-    nome varchar(255) not null,
-    primary key (id)
+create table tb_atendente 
+  (
+    id bigint         NOT NULL AUTO_INCREMENT,
+    is_ativo boolean  DEFAULT TRUE NOT NULL,
+    nome              VARCHAR(255) NOT NULL,
+    
+    PRIMARY KEY (id)
  );
 
-create table tb_exame (
-    id bigint not null auto_increment,
-    data_exame TIMESTAMP not null,
-    nome_exame varchar(100) not null,
-    observacao varchar(500),
-    valor decimal(12,2) not null,
+create table tb_exame 
+  (
+    id bigint         NOT NULL AUTO_INCREMENT,
+    data_exame        TIMESTAMP NOT NULL,
+    nome_exame        VARCHAR(100) NOT NULL,
+    observacao        VARCHAR(500),
+    valor             DECIMAL(12,2) NOT NULL,
     atendente_id bigint,
     local_id bigint,
     medico_id bigint,
     paciente_id bigint,
-    primary key (id)
+    
+    PRIMARY KEY (id)
  );
 
 create table tb_local (
-    id bigint not null auto_increment,
-    nome_local varchar(255) not null,
-    end_bairro varchar(50),
-    end_cep varchar(11),
-    end_cidade varchar(50),
-    end_numero varchar(20),
-    end_observacao varchar(100),
-    end_rua varchar(75),
-    end_tipo_residencia varchar(11),
-    primary key (id)
+    id bigint         NOT NULL AUTO_INCREMENT,
+    nome_local        VARCHAR(255) NOT NULL,
+    end_bairro        VARCHAR(50),
+    end_cep           VARCHAR(11),
+    end_cidade        VARCHAR(50),
+    end_numero        VARCHAR(20),
+    end_observacao    VARCHAR(100),
+    end_rua           VARCHAR(75),
+    end_tipo_residencia VARCHAR(11),
+    
+    PRIMARY KEY (id)
  );
 
 create table tb_medico (
-    id bigint not null auto_increment,
-    nome varchar(255) not null,
-    is_ativo boolean default true not null,
-    primary key (id)
+    id bigint         NOT NULL AUTO_INCREMENT,
+    nome varchar(255) NOT NULL,
+    is_ativo boolean  DEFAULT TRUE NOT NULL,
+    
+    PRIMARY KEY (id)
  );
 
 create table tb_paciente (
-    id bigint not null auto_increment,
-    nome varchar(100),
-    rg varchar(9),
-    estado_civil varchar(10),
-    filhos integer,
-    idade integer,
-    indicacao varchar(100),
-    is_ativo BIT,
-    nome_responsavel_paciente varchar(100),
-    observacao varchar(500),
-    profissao varchar(30),
-    is_aceite BIT,
-    is_convenio BIT,
-    data_cadastro TIMESTAMP,
-    data_nasc TIMESTAMP,
-    deficiencia varchar(50),
-    deficiencia_familia varchar(255),
-    is_deficiente BIT,
-    cont_celular varchar(15),
-    cont_facebook varchar(50),
-    cont_instagram varchar(50),
-    cont_email varchar(50),
-    cont_telefone varchar(14),
-    end_bairro varchar(50),
-    end_cep varchar(11),
-    end_cidade varchar(50),
-    end_numero varchar(20),
-    end_observacao varchar(100),
-    end_rua varchar(75),
-    end_tipo_residencia varchar(11),
+    id bigint         NOT NULL AUTO_INCREMENT,
+    nome              VARCHAR(100),
+    rg                VARCHAR(9),
+    estado_civil      VARCHAR(10),
+    filhos            INTEGER,
+    idade             INTEGER,
+    indicacao         VARCHAR(100),
+    is_ativo          BIT,
+    nome_responsavel_paciente VARCHAR(100),
+    observacao        VARCHAR(500),
+    profissao         VARCHAR(30),
+    is_aceite         BIT,
+    is_convenio       BIT,
+    data_cadastro     TIMESTAMP,
+    data_nasc         TIMESTAMP,
+    deficiencia       VARCHAR(50),
+    deficiencia_familia VARCHAR(255),
+    is_deficiente     BIT,
+    cont_celular      VARCHAR(15),
+    cont_facebook     VARCHAR(50),
+    cont_instagram    VARCHAR(50),
+    cont_email        VARCHAR(50),
+    cont_telefone     VARCHAR(14),
+    end_bairro        VARCHAR(50),
+    end_cep           VARCHAR(11),
+    end_cidade        VARCHAR(50),
+    end_numero        VARCHAR(20),
+    end_observacao    VARCHAR(100),
+    end_rua           VARCHAR(75),
+    end_tipo_residencia VARCHAR(11),
 
-    primary key (id)
+    PRIMARY KEY (id)
 );
 
 create table tb_usuario (
-    id bigint not null auto_increment,
-    login varchar(255),
-    senha varchar(255),
-    primary key (id)
+    id bigint         NOT NULL AUTO_INCREMENT,
+    login             VARCHAR(255),
+    senha             VARCHAR(255),
+    
+    PRIMARY KEY (id)
  );
 
--- create table tb_usuario (
--- 	id bigint not null auto_increment,
--- 	nome varchar(80) not null,
--- 	email varchar(255) not null,
--- 	senha varchar(255) not null,
--- 	data_cadastro datetime not null,
+-- create table tb_usuario 
+-- (
+-- 	id bigint           NOT NULL AUTO_INCREMENT,
+-- 	nome varchar(80)    NOT NULL,
+-- 	email varchar(255)  NOT NULL,
+-- 	senha varchar(255)  NOT NULL,
+-- 	data_cadastro       datetime NOT NULL,
 --
--- 	primary key (id)
+-- 	PRIMARY KEY (id)
 -- );
 --
  create table tb_usuario_grupo (
- 	usuario_id bigint not null,
- 	grupo_id bigint not null,
+ 	usuario_id bigint NOT NULL,
+ 	grupo_id bigint   NOT NULL,
 
- 	primary key (usuario_id, grupo_id)
+ 	PRIMARY KEY (usuario_id, grupo_id)
  );
 
  create table tb_grupo (
- 	id bigint not null auto_increment,
- 	nome varchar(60) not null,
+ 	id bigint         NOT NULL AUTO_INCREMENT,
+ 	nome varchar(60)  NOT NULL,
 
- 	primary key (id)
+ 	PRIMARY KEY (id)
  );
 
  create table tb_grupo_permissao (
- 	grupo_id bigint not null,
- 	permissao_id bigint not null,
+ 	grupo_id bigint   NOT NULL,
+ 	permissao_id bigint NOT NULL,
 
- 	primary key (grupo_id, permissao_id)
+ 	PRIMARY KEY (grupo_id, permissao_id)
  );
 
  create table tb_permissao (
- 	id bigint not null auto_increment,
- 	descricao varchar(60) not null,
- 	nome varchar(100) not null,
+ 	id bigint         NOT NULL AUTO_INCREMENT,
+ 	descricao         VARCHAR(60) NOT NULL,
+ 	nome              VARCHAR(100) NOT NULL,
 
- 	primary key (id)
+ 	PRIMARY KEY (id)
  );
 
 

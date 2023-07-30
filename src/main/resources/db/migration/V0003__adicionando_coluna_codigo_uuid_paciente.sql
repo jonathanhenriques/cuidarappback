@@ -1,3 +1,3 @@
-ALTER TABLE tb_paciente add codigo VARCHAR(36) not null after id;
-UPDATE tb_paciente set codigo = uuid();
-alter table tb_paciente add constraint uk_pedido_codigo unique (codigo);
+ALTER TABLE tb_paciente ADD codigo VARCHAR(36) NOT NULL after id;
+UPDATE tb_paciente SET codigo = uuid();
+ALTER TABLE tb_paciente ADD CONSTRAINT uk_pedido_codigo UNIQUE (codigo);
