@@ -26,9 +26,9 @@ temos acesso ao terminal postgres com o utilitário ```psql```
 docker exec -it postgres-A psql -U postgres -W cuidarapp
 ```
 
-Para listar os bancos usar ```\l``` *aequivalente a SHOW DATABASES;*
-Para selecionar o schema para consultas ```SET search_path TO cuidarapp_schema;```
-Para listar as tabelas usar  ```SELECT * FROM tb_paciente;```  ou  ```SELECT * FROM cuidarapp_schema.tb_paciente;```
+Para listar os bancos usar ```\l``` *equivalente a SHOW DATABASES;*<br>
+Para selecionar o schema para consultas ```SET search_path TO cuidarapp_schema;```<br>
+Para listar as tabelas usar  ```SELECT * FROM tb_paciente;```  ou  ```SELECT * FROM cuidarapp_schema.tb_paciente;```<br>
 
 *Esse ambiente foi pensado para replicar o Banco de produção usado no Deploy, por isso quando rodando
 localmente, é necessário fazer um insert do Dump do Banco do Deploy*
@@ -92,14 +92,14 @@ docker container run -d -p 5432:5432 -e POSTGRES_PASSWORD=senha_desejada --netwo
 ```
 
 *IMPORTANTE
-As variáveis de conexão entre Banco e aplicação foram criadas como ```variáveis de ambiente``` no windows e no Railway(Deploy)<br>
+As variáveis de conexão entre Banco e aplicação foram criadas como ```variáveis de ambiente``` no windows(export) no linux(set) e no Railway(Deploy)<br>
 São elas:
 ```
-export DB_URL=jdbc:postgresql://localhost:5432/
-export DB_USERNAME=postgres
-export DB_PASSWORD=159951
-export PGPORT=5432
-export POSTGRES_DB=cuidarapp
+set DB_URL=jdbc:postgresql://localhost:5432/
+set DB_USERNAME=postgres
+set DB_PASSWORD=159951
+set PGPORT=5432
+set POSTGRES_DB=cuidarapp
 ```
 
 a falta delas pode acarretar em erros de conexão:
