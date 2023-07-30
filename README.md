@@ -96,9 +96,9 @@ As variáveis de conexão entre Banco e aplicação foram criadas como ```variá
 São elas:
 ```
 set DB_URL=jdbc:postgresql://localhost:5432/
-set DB_USERNAME=postgres
-set DB_PASSWORD=159951
-set PGPORT=5432
+set POSTGRES_USER=postgres
+set POSTGRES_PASSWORD=159951
+set POSTGRES_PORT=5432
 set POSTGRES_DB=cuidarapp
 ```
 
