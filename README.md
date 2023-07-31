@@ -91,6 +91,54 @@ Container POSTGRES:<br>
 docker container run -d -p 5432:5432 -e POSTGRES_PASSWORD=senha_desejada --network algafood-network --name algafood-postgres postgres:latest
 ```
 
+Implantando dados no banco:<br>
+
+Caso container > host
+
+Fazendo dump do container postgres:<br>
+```
+docker exec -t pgdev pg_dump -U postgres -d cuidarapp > dump1.sql
+
+```
+*estando dentro do conitainer, utilizar a partir de psql...*
+
+Executando o restore do dump na máquina local:<br>
+```
+psql -U postgres -d cuidarapp < dump1.sql
+
+```
+
+Caso host > container
+
+Fazendo dump do banco postgres local:<br>
+```
+pg_dump -U postgres -d cuidarapp > dump.sql
+```
+
+Copiando o dump1.sql para dentro do container recém-criado:<br>
+```
+docker cp dump1.sql pgdev:/var/lib/postgresql/data 
+```
+*ou pgdev:/ raiz*
+
+*******************************************************
+
+Acessando postgres do railway pela cli<br>
+*usando terminal linux do wsl2 no windows*
+
+1.railway login --browserless
+2.railway link (selecione o projeto)
+3. railway connect Postgres
+4.instalando psql
+  1.sudo apt-get update
+  2.sudo apt-get install postgresql-client
+
+5.pg_dump -U <username> -h <host> -p <port> -W -F t <db_name> > <output_filename>
+
+*************************************************
+
+
+
 *IMPORTANTE
 As variáveis de conexão entre Banco e aplicação foram criadas como ```variáveis de ambiente``` no windows(export) no linux(set) e no Railway(Deploy)<br>
 São elas:
