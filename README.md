@@ -138,8 +138,8 @@ Acessando postgres do railway pela cli<br>
 2. railway link (selecione o projeto)<br>
 3. railway connect Postgres<br>
 4. instalando psql<br>
-  1. sudo apt-get update<br>
-  2. sudo apt-get install postgresql-client<br>
+  4.1. sudo apt-get update<br>
+  4.2. sudo apt-get install postgresql-client<br>
 <br>
 5. pg_dump -U <username> -h <host> -p <port> -W -F t <db_name> > <output_filename>.dump (pegar valores no railway)<br>
 
