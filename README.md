@@ -84,14 +84,20 @@ docker container run --rm -p 8080:8080 -e DB_HOST=cuidarapp-postgres --network c
 Para criar o container do Banco manualmente(ALTERAR PARA POSTGRES)<br>
 Container MYSQL:>br>
 ```
-docker container run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=suaSenha --network algafood-network --name algafood-mysql mysql:8.0
+docker container run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=suaSenha --network cuidarapp-network --name mysqldev mysql:8.0
 ```
 Container POSTGRES:<br>
 ```
-docker container run -d -p 5432:5432 -e POSTGRES_PASSWORD=senha_desejada --network algafood-network --name algafood-postgres postgres:latest
+docker container run -d -p 5432:5432 -e POSTGRES_PASSWORD=senha_desejada --network cuidarapp-network --name pgdev postgres:latest
 ```
 
 Implantando dados no banco:<br>
+
+Para container local individual usar:<br>
+```
+docker run --name pgdev -e POSTGRES_PASSWORD=senha -d -p 5432:5432 -v /c:/docker-volumes/postgres-data:/var/lib/postgresql/data postgres
+```
+*-v /c:/docker-volumes/postgres-data:/var/lib/postgresql/data = pasta local / pasta do postgres dentro do container*
 
 Caso container > host
 
@@ -126,14 +132,14 @@ docker cp dump1.sql pgdev:/var/lib/postgresql/data
 Acessando postgres do railway pela cli<br>
 *usando terminal linux do wsl2 no windows*
 
-1.railway login --browserless
-2.railway link (selecione o projeto)
-3. railway connect Postgres
-4.instalando psql
-  1.sudo apt-get update
-  2.sudo apt-get install postgresql-client
-
-5.pg_dump -U <username> -h <host> -p <port> -W -F t <db_name> > <output_filename>
+1.railway login --browserless<br>
+2.railway link (selecione o projeto)<br>
+3. railway connect Postgres<br>
+4.instalando psql<br>
+  1.sudo apt-get update<br>
+  2.sudo apt-get install postgresql-client<br>
+<br>
+5.pg_dump -U <username> -h <host> -p <port> -W -F t <db_name> > <output_filename>.dump (pegar valores no railway)<br>
 
 *************************************************
 
