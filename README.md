@@ -76,10 +76,12 @@ Criando uma network
 docker network create —driver bridge cuidarapp-network
 ```
 
-Para criar o container manualmente:
+Para criar o container manualmente usando dockerfile:
 ```
 docker container run --rm -p 8080:8080 -e DB_HOST=cuidarapp-postgres --network cuidarapp-network cuidarapp-api
 ```
+
+*************************************
 
 Para criar o container do Banco manualmente(ALTERAR PARA POSTGRES)<br>
 Container MYSQL:>br>
