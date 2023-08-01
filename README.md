@@ -30,9 +30,7 @@ De acordo com os 3 ambientes ```teste```, ```desenvolvimento``` e ```producao```
 
 ![image](https://github.com/jonathanhenriques/cuidarAppBack/assets/65731881/87d306cb-2906-4bcd-b1d8-6162947a4143)
 
-
   ************************************
-  ***********************************
 
 # Rodando local:<br>
 *Usando Ide e container postgres*<br>
