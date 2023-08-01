@@ -26,6 +26,10 @@ De acordo com os 3 ambientes ```teste```, ```desenvolvimento``` e ```producao```
 - Model Mapper 
 - Railway
 
+
+  ************************************
+  ***********************************
+
 # Rodando local:<br>
 *Usando Ide e container postgres*<br>
 1. criando o container postgres:<br>
