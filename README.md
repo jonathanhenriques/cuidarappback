@@ -28,7 +28,9 @@ De acordo com os 3 ambientes ```teste```, ```desenvolvimento``` e ```producao```
 
 # Diagrama:
 
-![image](https://github.com/jonathanhenriques/cuidarAppBack/assets/65731881/87d306cb-2906-4bcd-b1d8-6162947a4143)
+<img src="https://github.com/jonathanhenriques/cuidarAppBack/assets/65731881/87d306cb-2906-4bcd-b1d8-6162947a4143" alt="Descrição da imagem" width="400" height="300" />
+
+
 
   ************************************
 
