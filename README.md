@@ -99,7 +99,7 @@ Para container local individual usar:<br>
 ```
 docker run --name pgdev -e POSTGRES_PASSWORD=senha -d -p 5432:5432 -v /c/docker-volumes/postgres-data:/var/lib/postgresql/data postgres
 ```
-*-v /c:/docker-volumes/postgres-data:/var/lib/postgresql/data = pasta local / pasta do postgres dentro do container*
+*-v /c/docker-volumes/postgres-data:/var/lib/postgresql/data = cria uma ponte entre pasta local : pasta do postgres dentro do container*
 
 Caso container > host
 
