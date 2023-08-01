@@ -24,16 +24,16 @@ public class DatabaseInitializer {
 
 //            jdbc:postgresql://${DB_HOST:localhost}:${PGPORT:5432}/${POSTGRES_DB:cuidarapp}
 
-            String pgPort = System.getenv("PGPORT");
-            log.debug("pgPort {}.",pgPort );
-            String postegresDB = System.getenv("POSTGRES_DB");
-            log.debug("postegresDB {}.",postegresDB );
-            String dbUsername = System.getenv("DB_USERNAME");
-            log.debug("dbUsername {}.",dbUsername );
-            String dbPassword = System.getenv("DB_PASSWORD");
-            log.debug("dbPassword {}.",dbPassword );
-            String dbHost = System.getenv("DB_HOST");
-            log.debug("dbHost {}.",dbHost );
+            String POSTGRES_PORT = System.getenv("PGPORT");
+            log.debug("POSTGRES_PORT {}.",POSTGRES_PORT );
+            String POSTGRES_DB = System.getenv("POSTGRES_DB");
+            log.debug("POSTGRES_DB {}.",POSTGRES_DB );
+            String POSTGRES_USER = System.getenv("DB_USERNAME");
+            log.debug("POSTGRES_USER {}.",POSTGRES_USER );
+            String POSTGRES_PASSWORD = System.getenv("DB_PASSWORD");
+            log.debug("POSTGRES_PASSWORD {}.",POSTGRES_PASSWORD );
+
+
 
             Connection connection = null;
             Statement statement = null;
@@ -42,18 +42,18 @@ public class DatabaseInitializer {
 //                connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/", "postgres", "159951");
 //                spring.datasource.url=jdbc:postgresql://${DB_HOST:localhost}:${PGPORT:5432}/${POSTGRES_DB:cuidarapp}
 //                connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/cuidarapp");
-//                connection = DriverManager.getConnection("jdbc:postgresql://localhost:" + pgPort + "/", postegresDB, "159951");
+//                connection = DriverManager.getConnection("jdbc:postgresql://localhost:" + POSTGRES_PORT + "/", POSTGRES_DB, "159951");
                 String dbUrl = "jdbc:postgresql://localhost:5432/";
 
                 connection = DriverManager.getConnection(dbUrl,"postgres","159951");
                 statement = connection.createStatement();
-                statement.executeQuery("SELECT count(*) FROM pg_database WHERE datname = '" + postegresDB + "'");
+                statement.executeQuery("SELECT count(*) FROM pg_database WHERE datname = '" + POSTGRES_DB + "'");
                 ResultSet resultSet = statement.getResultSet();
                 resultSet.next();
                 int count = resultSet.getInt(1);
 
                 if (count <= 0) {
-                    statement.executeUpdate("CREATE DATABASE " + postegresDB);
+                    statement.executeUpdate("CREATE DATABASE " + POSTGRES_DB);
                     log.debug("Database created.");
                 } else {
                     log.debug("Database already exist.");

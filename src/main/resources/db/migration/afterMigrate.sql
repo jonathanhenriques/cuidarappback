@@ -99,89 +99,89 @@ VALUES
 INSERT
 INTO
 tb_paciente
-(   codigo,   nome,   data_nasc,   idade,   rg,   estado_civil,   filhos,   nome_responsavel_paciente,   cont_celular,   cont_telefone,   cont_facebook,   cont_instagram,   cont_email,   profissao,   end_rua,   end_numero,   end_bairro,   end_cidade,   end_cep,   end_tipo_residencia,   end_observacao,   is_deficiente,   deficiencia,   deficiencia_familia,   is_convenio,   observacao,   is_aceite,   indicacao,   is_ativo,   data_cadastro,   data_atualizacao )
+(   id,codigo,   nome,   data_nasc,   idade,   rg,   estado_civil,   filhos,   nome_responsavel_paciente,   cont_celular,   cont_telefone,   cont_facebook,   cont_instagram,   cont_email,   profissao,   end_rua,   end_numero,   end_bairro,   end_cidade,   end_cep,   end_tipo_residencia,   end_observacao,   is_deficiente,   deficiencia,   deficiencia_familia,   is_convenio,   observacao,   is_aceite,   indicacao,   is_ativo,   data_cadastro,   data_atualizacao )
 VALUES
-(   'b84fda4c-e3e8-4e34-92ab-f2ce8c72a15d',   'Maria',   '1990-10-20',   32,   '702345128',   'CASADO',   2,   'João responsável',   '11987654321',   '98765432',   'facebook_maria',   'instagram_maria',   'maria@email.com',   'Advogada',   'Avenida das Flores',   '123',   'Centro',   'São Paulo',   '01234567',   'CASA',   'Próximo à praça',   false,   'n/a',   'n/a',   true,   'Observações sobre Maria',   true,   'Amiga da família',   true,   CURRENT_DATE(),   CURRENT_DATE() );
+(   6,'b84fda4c-e3e8-4e34-92ab-f2ce8c72a15d',   'Maria',   '1990-10-20',   32,   '702345128',   'CASADO',   2,   'João responsável',   '11987654321',   '98765432',   'facebook_maria',   'instagram_maria',   'maria@email.com',   'Advogada',   'Avenida das Flores',   '123',   'Centro',   'São Paulo',   '01234567',   'CASA',   'Próximo à praça',   false,   'n/a',   'n/a',   true,   'Observações sobre Maria',   true,   'Amiga da família',   true,   CURRENT_DATE(),   CURRENT_DATE() );
 
 
 INSERT
 INTO
 tb_paciente
-(   codigo,   nome,   data_nasc,   idade,   rg,   estado_civil,   filhos,   nome_responsavel_paciente,   cont_celular,   cont_telefone,   cont_facebook,   cont_instagram,   cont_email,   profissao,   end_rua,   end_numero,   end_bairro,   end_cidade,   end_cep,   end_tipo_residencia,   end_observacao,   is_deficiente,   deficiencia,   deficiencia_familia,   is_convenio,   observacao,   is_aceite,   indicacao,   is_ativo,   data_cadastro,   data_atualizacao )
+(   id,codigo,   nome,   data_nasc,   idade,   rg,   estado_civil,   filhos,   nome_responsavel_paciente,   cont_celular,   cont_telefone,   cont_facebook,   cont_instagram,   cont_email,   profissao,   end_rua,   end_numero,   end_bairro,   end_cidade,   end_cep,   end_tipo_residencia,   end_observacao,   is_deficiente,   deficiencia,   deficiencia_familia,   is_convenio,   observacao,   is_aceite,   indicacao,   is_ativo,   data_cadastro,   data_atualizacao )
 VALUES
-(   'c84c3a20-86f6-4a2d-9c95-ec3f7aaff4e1',   'João',   '1985-06-12',   38,   '801234567',   'SOLTEIRO',   0,   NULL,   '11999998888',   '99998888',   'facebook_joao',   'instagram_joao',   'joao@email.com',   'Engenheiro',   'Rua dos Carros',   '456',   'Bairro Novo',   'Porto Alegre',   '12345678',   'APARTAMENTO',   'Próximo à estação de metrô',   false,   'n/a',   'n/a',   false,   'Observações sobre João',   true,   NULL,   true,   CURRENT_DATE(),   CURRENT_DATE() );
+(   7,'c84c3a20-86f6-4a2d-9c95-ec3f7aaff4e1',   'João',   '1985-06-12',   38,   '801234567',   'SOLTEIRO',   0,   NULL,   '11999998888',   '99998888',   'facebook_joao',   'instagram_joao',   'joao@email.com',   'Engenheiro',   'Rua dos Carros',   '456',   'Bairro Novo',   'Porto Alegre',   '12345678',   'APARTAMENTO',   'Próximo à estação de metrô',   false,   'n/a',   'n/a',   false,   'Observações sobre João',   true,   NULL,   true,   CURRENT_DATE(),   CURRENT_DATE() );
 
 
 INSERT
 INTO
 tb_paciente
-(   codigo,   nome,   data_nasc,   idade,   rg,   estado_civil,   filhos,   nome_responsavel_paciente,   cont_celular,   cont_telefone,   cont_facebook,   cont_instagram,   cont_email,   profissao,   end_rua,   end_numero,   end_bairro,   end_cidade,   end_cep,   end_tipo_residencia,   end_observacao,   is_deficiente,   deficiencia,   deficiencia_familia,   is_convenio,   observacao,   is_aceite,   indicacao,   is_ativo,   data_cadastro,   data_atualizacao )
+(   id,codigo,   nome,   data_nasc,   idade,   rg,   estado_civil,   filhos,   nome_responsavel_paciente,   cont_celular,   cont_telefone,   cont_facebook,   cont_instagram,   cont_email,   profissao,   end_rua,   end_numero,   end_bairro,   end_cidade,   end_cep,   end_tipo_residencia,   end_observacao,   is_deficiente,   deficiencia,   deficiencia_familia,   is_convenio,   observacao,   is_aceite,   indicacao,   is_ativo,   data_cadastro,   data_atualizacao )
 VALUES
-(   'f45303b7-efc5-4c77-a256-b8be956c3f10',   'Ana',   '1992-09-25',   31,   '904567123',   'CASADO',   1,   'Pedro responsável',   '11987655432',   '98765543',   'facebook_ana',   'instagram_ana',   'ana@email.com',   'Médica',   'Avenida das Palmeiras',   '789',   'Jardins',   'Rio de Janeiro',   '54321098',   'CASA',   'Próximo ao parque',   false,   'n/a',   'n/a',   true,   'Observações sobre Ana',   true,   'Indicação de um colega',   true,   CURRENT_DATE(),   CURRENT_DATE() );
+(   8,'f45303b7-efc5-4c77-a256-b8be956c3f10',   'Ana',   '1992-09-25',   31,   '904567123',   'CASADO',   1,   'Pedro responsável',   '11987655432',   '98765543',   'facebook_ana',   'instagram_ana',   'ana@email.com',   'Médica',   'Avenida das Palmeiras',   '789',   'Jardins',   'Rio de Janeiro',   '54321098',   'CASA',   'Próximo ao parque',   false,   'n/a',   'n/a',   true,   'Observações sobre Ana',   true,   'Indicação de um colega',   true,   CURRENT_DATE(),   CURRENT_DATE() );
 
 
 INSERT
 INTO
     tb_paciente
-    (   codigo,   nome,   data_nasc,   idade,   rg,   estado_civil,   filhos,   nome_responsavel_paciente,   cont_celular,   cont_telefone,   cont_facebook,   cont_instagram,   cont_email,   profissao,   end_rua,   end_numero,   end_bairro,   end_cidade,   end_cep,   end_tipo_residencia,   end_observacao,   is_deficiente,   deficiencia,   deficiencia_familia,   is_convenio,   observacao,   is_aceite,   indicacao,   is_ativo,   data_cadastro,   data_atualizacao )
+    (   id,codigo,   nome,   data_nasc,   idade,   rg,   estado_civil,   filhos,   nome_responsavel_paciente,   cont_celular,   cont_telefone,   cont_facebook,   cont_instagram,   cont_email,   profissao,   end_rua,   end_numero,   end_bairro,   end_cidade,   end_cep,   end_tipo_residencia,   end_observacao,   is_deficiente,   deficiencia,   deficiencia_familia,   is_convenio,   observacao,   is_aceite,   indicacao,   is_ativo,   data_cadastro,   data_atualizacao )
 VALUES
-    (   'b1f3a618-42a1-4c06-8c6c-df38739edfa3',   'Carlos',   '1988-03-08',   35,   '702345234',   'CASADO',   2,   'Julia responsável',   '11993456789',   '34567890',   'facebook_carlos',   'instagram_carlos',   'carlos@email.com',   'Engenheiro Civil',   'Rua dos Coqueiros',   '32',   'Centro',   'Curitiba',   '98765432',   'APARTAMENTO',   'Próximo ao shopping',   false,   'n/a',   'n/a',   true,   'Observações sobre Carlos',   true,   'Indicação de um amigo',   true,   CURRENT_DATE(),   CURRENT_DATE() );
+    (   9,'b1f3a618-42a1-4c06-8c6c-df38739edfa3',   'Carlos',   '1988-03-08',   35,   '702345234',   'CASADO',   2,   'Julia responsável',   '11993456789',   '34567890',   'facebook_carlos',   'instagram_carlos',   'carlos@email.com',   'Engenheiro Civil',   'Rua dos Coqueiros',   '32',   'Centro',   'Curitiba',   '98765432',   'APARTAMENTO',   'Próximo ao shopping',   false,   'n/a',   'n/a',   true,   'Observações sobre Carlos',   true,   'Indicação de um amigo',   true,   CURRENT_DATE(),   CURRENT_DATE() );
 
 
 INSERT
 INTO
 tb_paciente
-(   codigo,   nome,   data_nasc,   idade,   rg,   estado_civil,   filhos,   nome_responsavel_paciente,   cont_celular,   cont_telefone,   cont_facebook,   cont_instagram,   cont_email,   profissao,   end_rua,   end_numero,   end_bairro,   end_cidade,   end_cep,   end_tipo_residencia,   end_observacao,   is_deficiente,   deficiencia,   deficiencia_familia,   is_convenio,   observacao,   is_aceite,   indicacao,   is_ativo,   data_cadastro,   data_atualizacao )
+(  id, codigo,   nome,   data_nasc,   idade,   rg,   estado_civil,   filhos,   nome_responsavel_paciente,   cont_celular,   cont_telefone,   cont_facebook,   cont_instagram,   cont_email,   profissao,   end_rua,   end_numero,   end_bairro,   end_cidade,   end_cep,   end_tipo_residencia,   end_observacao,   is_deficiente,   deficiencia,   deficiencia_familia,   is_convenio,   observacao,   is_aceite,   indicacao,   is_ativo,   data_cadastro,   data_atualizacao )
 VALUES
-(   'be19ed22-4b4a-478f-a28d-098d8ca91245',   'Laura',   '1995-11-02',   28,   '103254987',   'SOLTEIRO',   0,   NULL,   '11966665555',   '66665555',   'facebook_laura',   'instagram_laura',   'laura@email.com',   'Arquiteta',   'Rua das Montanhas',   '764',   'Alvorada',   'Porto Alegre',   '76543210',   'CASA',   'Próximo à praia',   false,   'n/a',   'n/a',   false,   'Observações sobre Laura',   true,   NULL,   true,   CURRENT_DATE(),   CURRENT_DATE() );
+(   10,'be19ed22-4b4a-478f-a28d-098d8ca91245',   'Laura',   '1995-11-02',   28,   '103254987',   'SOLTEIRO',   0,   NULL,   '11966665555',   '66665555',   'facebook_laura',   'instagram_laura',   'laura@email.com',   'Arquiteta',   'Rua das Montanhas',   '764',   'Alvorada',   'Porto Alegre',   '76543210',   'CASA',   'Próximo à praia',   false,   'n/a',   'n/a',   false,   'Observações sobre Laura',   true,   NULL,   true,   CURRENT_DATE(),   CURRENT_DATE() );
 
 
 INSERT
 INTO
 tb_paciente
-(   codigo,   nome,   data_nasc,   idade,   rg,   estado_civil,   filhos,   nome_responsavel_paciente,   cont_celular,   cont_telefone,   cont_facebook,   cont_instagram,   cont_email,   profissao,   end_rua,   end_numero,   end_bairro,   end_cidade,   end_cep,   end_tipo_residencia,   end_observacao,   is_deficiente,   deficiencia,   deficiencia_familia,   is_convenio,   observacao,   is_aceite,   indicacao,   is_ativo,   data_cadastro,   data_atualizacao )
+(   id,codigo,   nome,   data_nasc,   idade,   rg,   estado_civil,   filhos,   nome_responsavel_paciente,   cont_celular,   cont_telefone,   cont_facebook,   cont_instagram,   cont_email,   profissao,   end_rua,   end_numero,   end_bairro,   end_cidade,   end_cep,   end_tipo_residencia,   end_observacao,   is_deficiente,   deficiencia,   deficiencia_familia,   is_convenio,   observacao,   is_aceite,   indicacao,   is_ativo,   data_cadastro,   data_atualizacao )
 VALUES
-(   'de85eac0-2e68-4d6e-bc89-e4d03577869e',   'Pedro',   '1980-07-18',   43,   '765432109',   'CASADO',   2,   'Luciana responsável',   '11999992222',   '99992222',   'facebook_pedro',   'instagram_pedro',   'pedro@email.com',   'Advogado',   'Avenida das Rosas',   '987',   'Jardim das Flores',   'São Paulo',   '12345678',   'APARTAMENTO',   'Próximo à estação de trem',   false,   'n/a',   'n/a',   true,   'Observações sobre Pedro',   true,   'Indicação de um cliente',   true,   CURRENT_DATE(),   CURRENT_DATE() );
+(   11,'de85eac0-2e68-4d6e-bc89-e4d03577869e',   'Pedro',   '1980-07-18',   43,   '765432109',   'CASADO',   2,   'Luciana responsável',   '11999992222',   '99992222',   'facebook_pedro',   'instagram_pedro',   'pedro@email.com',   'Advogado',   'Avenida das Rosas',   '987',   'Jardim das Flores',   'São Paulo',   '12345678',   'APARTAMENTO',   'Próximo à estação de trem',   false,   'n/a',   'n/a',   true,   'Observações sobre Pedro',   true,   'Indicação de um cliente',   true,   CURRENT_DATE(),   CURRENT_DATE() );
 
 
 INSERT
 INTO
 tb_paciente
-(   codigo,   nome,   data_nasc,   idade,   rg,   estado_civil,   filhos,   nome_responsavel_paciente,   cont_celular,   cont_telefone,   cont_facebook,   cont_instagram,   cont_email,   profissao,   end_rua,   end_numero,   end_bairro,   end_cidade,   end_cep,   end_tipo_residencia,   end_observacao,   is_deficiente,   deficiencia,   deficiencia_familia,   is_convenio,   observacao,   is_aceite,   indicacao,   is_ativo,   data_cadastro,   data_atualizacao )
+(   id,codigo,   nome,   data_nasc,   idade,   rg,   estado_civil,   filhos,   nome_responsavel_paciente,   cont_celular,   cont_telefone,   cont_facebook,   cont_instagram,   cont_email,   profissao,   end_rua,   end_numero,   end_bairro,   end_cidade,   end_cep,   end_tipo_residencia,   end_observacao,   is_deficiente,   deficiencia,   deficiencia_familia,   is_convenio,   observacao,   is_aceite,   indicacao,   is_ativo,   data_cadastro,   data_atualizacao )
 VALUES
-(   'a2f4a0d2-68d1-4751-89c6-986f3a547381',   'Sofia',   '1998-12-05',   25,   '887654321',   'CASADO',   1,   'Rafael responsável',   '11976543210',   '76543210',   'facebook_sofia',   'instagram_sofia',   'sofia@email.com',   'Professora',   'Rua das Orquídeas',   '753',   'Vila Nova',   'Porto Alegre',   '87654321',   'CASA',   'Próximo ao parque',   false,   'n/a',   'n/a',   false,   'Observações sobre Sofia',   true,   'Amiga da família',   true,   CURRENT_DATE(),   CURRENT_DATE() );
+(   12,'a2f4a0d2-68d1-4751-89c6-986f3a547381',   'Sofia',   '1998-12-05',   25,   '887654321',   'CASADO',   1,   'Rafael responsável',   '11976543210',   '76543210',   'facebook_sofia',   'instagram_sofia',   'sofia@email.com',   'Professora',   'Rua das Orquídeas',   '753',   'Vila Nova',   'Porto Alegre',   '87654321',   'CASA',   'Próximo ao parque',   false,   'n/a',   'n/a',   false,   'Observações sobre Sofia',   true,   'Amiga da família',   true,   CURRENT_DATE(),   CURRENT_DATE() );
 
 
 INSERT
 INTO
 tb_paciente
-(   codigo,   nome,   data_nasc,   idade,   rg,   estado_civil,   filhos,   nome_responsavel_paciente,   cont_celular,   cont_telefone,   cont_facebook,   cont_instagram,   cont_email,   profissao,   end_rua,   end_numero,   end_bairro,   end_cidade,   end_cep,   end_tipo_residencia,   end_observacao,   is_deficiente,   deficiencia,   deficiencia_familia,   is_convenio,   observacao,   is_aceite,   indicacao,   is_ativo,   data_cadastro,   data_atualizacao )
+(   id,codigo,   nome,   data_nasc,   idade,   rg,   estado_civil,   filhos,   nome_responsavel_paciente,   cont_celular,   cont_telefone,   cont_facebook,   cont_instagram,   cont_email,   profissao,   end_rua,   end_numero,   end_bairro,   end_cidade,   end_cep,   end_tipo_residencia,   end_observacao,   is_deficiente,   deficiencia,   deficiencia_familia,   is_convenio,   observacao,   is_aceite,   indicacao,   is_ativo,   data_cadastro,   data_atualizacao )
 VALUES
-(   'c80a941f-25df-43e5-b98e-8c0bf3d05e9c',   'Daniel',   '1999-04-30',   24,   '102938475',   'SOLTEIRO',   0,   NULL,   '11988776655',   '88776655',   'facebook_daniel',   'instagram_daniel',   'daniel@email.com',   'Estudante',   'Rua das Estrelas',   '148',   'Centro',   'Curitiba',   '87654321',   'APARTAMENTO',   'Próximo ao teatro',   false,   'n/a',   'n/a',   true,   'Observações sobre Daniel',   true,   NULL,   true,   CURRENT_DATE(),   CURRENT_DATE() );
+(   13,'c80a941f-25df-43e5-b98e-8c0bf3d05e9c',   'Daniel',   '1999-04-30',   24,   '102938475',   'SOLTEIRO',   0,   NULL,   '11988776655',   '88776655',   'facebook_daniel',   'instagram_daniel',   'daniel@email.com',   'Estudante',   'Rua das Estrelas',   '148',   'Centro',   'Curitiba',   '87654321',   'APARTAMENTO',   'Próximo ao teatro',   false,   'n/a',   'n/a',   true,   'Observações sobre Daniel',   true,   NULL,   true,   CURRENT_DATE(),   CURRENT_DATE() );
 
 
 INSERT
 INTO
 tb_paciente
-(   codigo,   nome,   data_nasc,   idade,   rg,   estado_civil,   filhos,   nome_responsavel_paciente,   cont_celular,   cont_telefone,   cont_facebook,   cont_instagram,   cont_email,   profissao,   end_rua,   end_numero,   end_bairro,   end_cidade,   end_cep,   end_tipo_residencia,   end_observacao,   is_deficiente,   deficiencia,   deficiencia_familia,   is_convenio,   observacao,   is_aceite,   indicacao,   is_ativo,   data_cadastro,   data_atualizacao )
+(   id,codigo,   nome,   data_nasc,   idade,   rg,   estado_civil,   filhos,   nome_responsavel_paciente,   cont_celular,   cont_telefone,   cont_facebook,   cont_instagram,   cont_email,   profissao,   end_rua,   end_numero,   end_bairro,   end_cidade,   end_cep,   end_tipo_residencia,   end_observacao,   is_deficiente,   deficiencia,   deficiencia_familia,   is_convenio,   observacao,   is_aceite,   indicacao,   is_ativo,   data_cadastro,   data_atualizacao )
 VALUES
-(   'fb4a9e29-87f1-4e49-b706-9e69a58b7845',   'Isabela',   '2000-11-15',   23,   '987654321',   'SOLTEIRO',   0,   NULL,   '11911112222',   '11112222',   'facebook_isabela',   'instagram_isabela',   'isabela@email.com',   'Estudante de Medicina',   'Avenida das Maravilhas',   '987',   'Jardim das Aves',   'São Paulo',   '87654321',   'CASA',   'Próximo ao hospital',   false,   'n/a',   'n/a',   false,   'Observações sobre Isabela',   true,   'Indicação de um colega',   true,   CURRENT_DATE(),   CURRENT_DATE() );
+(   14,'fb4a9e29-87f1-4e49-b706-9e69a58b7845',   'Isabela',   '2000-11-15',   23,   '987654321',   'SOLTEIRO',   0,   NULL,   '11911112222',   '11112222',   'facebook_isabela',   'instagram_isabela',   'isabela@email.com',   'Estudante de Medicina',   'Avenida das Maravilhas',   '987',   'Jardim das Aves',   'São Paulo',   '87654321',   'CASA',   'Próximo ao hospital',   false,   'n/a',   'n/a',   false,   'Observações sobre Isabela',   true,   'Indicação de um colega',   true,   CURRENT_DATE(),   CURRENT_DATE() );
 
 
 INSERT
 INTO
 tb_paciente
-(   codigo,   nome,   data_nasc,   idade,   rg,   estado_civil,   filhos,   nome_responsavel_paciente,   cont_celular,   cont_telefone,   cont_facebook,   cont_instagram,   cont_email,   profissao,   end_rua,   end_numero,   end_bairro,   end_cidade,   end_cep,   end_tipo_residencia,   end_observacao,   is_deficiente,   deficiencia,   deficiencia_familia,   is_convenio,   observacao,   is_aceite,   indicacao,   is_ativo,   data_cadastro,   data_atualizacao )
+(   id,codigo,   nome,   data_nasc,   idade,   rg,   estado_civil,   filhos,   nome_responsavel_paciente,   cont_celular,   cont_telefone,   cont_facebook,   cont_instagram,   cont_email,   profissao,   end_rua,   end_numero,   end_bairro,   end_cidade,   end_cep,   end_tipo_residencia,   end_observacao,   is_deficiente,   deficiencia,   deficiencia_familia,   is_convenio,   observacao,   is_aceite,   indicacao,   is_ativo,   data_cadastro,   data_atualizacao )
 VALUES
-(   'ab65a2a2-5c89-4025-b1e6-3f90a2db5a63',   'Guilherme',   '1994-08-07',   29,   '675849203',   'SOLTEIRO',   0,   NULL,   '11933334444',   '33334444',   'facebook_guilherme',   'instagram_guilherme',   'guilherme@email.com',   'Engenheiro de Software',   'Rua das Pedras',   '78',   'Centro',   'Belo Horizonte',   '76543210',   'APARTAMENTO',   'Próximo à universidade',   false,   'n/a',   'n/a',   false,   'Observações sobre Guilherme',   true,   'Indicação de um amigo',   true,   CURRENT_DATE(),   CURRENT_DATE() );
+(   15,'ab65a2a2-5c89-4025-b1e6-3f90a2db5a63',   'Guilherme',   '1994-08-07',   29,   '675849203',   'SOLTEIRO',   0,   NULL,   '11933334444',   '33334444',   'facebook_guilherme',   'instagram_guilherme',   'guilherme@email.com',   'Engenheiro de Software',   'Rua das Pedras',   '78',   'Centro',   'Belo Horizonte',   '76543210',   'APARTAMENTO',   'Próximo à universidade',   false,   'n/a',   'n/a',   false,   'Observações sobre Guilherme',   true,   'Indicação de um amigo',   true,   CURRENT_DATE(),   CURRENT_DATE() );
 
 
 INSERT
 INTO
 tb_paciente
-(   codigo,   nome,   data_nasc,   idade,   rg,   estado_civil,   filhos,   nome_responsavel_paciente,   cont_celular,   cont_telefone,   cont_facebook,   cont_instagram,   cont_email,   profissao,   end_rua,   end_numero,   end_bairro,   end_cidade,   end_cep,   end_tipo_residencia,   end_observacao,   is_deficiente,   deficiencia,   deficiencia_familia,   is_convenio,   observacao,   is_aceite,   indicacao,   is_ativo,   data_cadastro,   data_atualizacao )
+(   id,codigo,   nome,   data_nasc,   idade,   rg,   estado_civil,   filhos,   nome_responsavel_paciente,   cont_celular,   cont_telefone,   cont_facebook,   cont_instagram,   cont_email,   profissao,   end_rua,   end_numero,   end_bairro,   end_cidade,   end_cep,   end_tipo_residencia,   end_observacao,   is_deficiente,   deficiencia,   deficiencia_familia,   is_convenio,   observacao,   is_aceite,   indicacao,   is_ativo,   data_cadastro,   data_atualizacao )
 VALUES
-(   'fd3dd8aa-4314-4c08-94ef-b15e14b66f49',   'Rafaela',   '1997-02-25',   26,   '908172635',   'SOLTEIRO',   0,   NULL,   '11922223333',   '22223333',   'facebook_rafaela',   'instagram_rafaela',   'rafaela@email.com',   'Jornalista',   'Avenida das Águas',   '321',   'Vila Nova',   'Curitiba',   '09876543',   'CASA',   'Próximo ao parque',   false,   'n/a',   'n/a',   true,   'Observações sobre Rafaela',   true,   NULL,   true,   CURRENT_DATE(),   CURRENT_DATE() );
+(   16,'fd3dd8aa-4314-4c08-94ef-b15e14b66f49',   'Rafaela',   '1997-02-25',   26,   '908172635',   'SOLTEIRO',   0,   NULL,   '11922223333',   '22223333',   'facebook_rafaela',   'instagram_rafaela',   'rafaela@email.com',   'Jornalista',   'Avenida das Águas',   '321',   'Vila Nova',   'Curitiba',   '09876543',   'CASA',   'Próximo ao parque',   false,   'n/a',   'n/a',   true,   'Observações sobre Rafaela',   true,   NULL,   true,   CURRENT_DATE(),   CURRENT_DATE() );
 
 
 

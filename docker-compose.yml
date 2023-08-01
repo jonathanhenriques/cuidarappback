@@ -18,6 +18,9 @@ services:
     ports:
       - "5432:5432"  # Mapeia a porta 5432 do contêiner para a porta 5432 do host para o PostgreSQL
 
+    volumes:
+      - pvol:/var/lib/postgresql/data # source do host local : target dentro do container
+
     networks:
       - cuidarapp-network
 
