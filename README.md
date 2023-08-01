@@ -205,3 +205,19 @@ isso vai formatar o arquivo para sistemas linux (retirando \r usado em windows)
 Após isso refazer a imagem e os containers e irá funcionar.
 
 ******************
+
+Run
+Para rodar a api localmente na pasta do projeto:
+
+```
+java -jar cuidarApp0.0.1-inicial.jar --spring.profiles.active=teste
+```
+ou
+```
+mvn spring-boot:run -Dspring.profiles.active=teste
+```
+
+Por padrão, a API está disponível em http://localhost:80
+
+Documentation
+Swagger (development environment): http://localhost:80/swagger-ui/index.html
