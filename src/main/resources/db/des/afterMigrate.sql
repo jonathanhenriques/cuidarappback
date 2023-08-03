@@ -84,7 +84,7 @@ into
 values
     (4,'afe5b29e-35c8-40f6-b601-f8609c5fa080', 'Nireide',DATE('1974-01-01'), 68, '501818352', 'CASADO', 7, 'Batista resp', '11983181377', '83181377', 'facebook.com', 'instagram.com', 'email@email.com', 'Dona de Casa', 'Av São Bernardo', '189', 'Bairro inamar', 'Diadema', '09981011', 'OUTRO', 'do lado do bar', false, 'n/a', 'n/a', true, 'observado', true, 'Batista marido', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-########################################################################################################################################################
+-- ########################################################################################################################################################
 
 INSERT
 INTO
@@ -131,7 +131,7 @@ INTO
 VALUES
     (10, 'afe5b29e-35c8-40f6-b601-f8609c5fa086', 'Mariana', DATE('1995-07-25'), 28, '707070707', 'CASADO', 1, 'Ricardo resp', '11933333333', '44443333', 'ricardo_facebook', 'ricardo_instagram', 'ricardo@email.com', 'Enfermeira', 'Av das Águias', '456', 'Alphaville', 'Barueri', '06789012', 'APARTAMENTO', 'Próximo ao shopping', true, 'Nenhuma', 'Nenhuma', true, 'Observações importantes', true, 'Indicação do médico', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-########################################################################################################################################################
+-- ########################################################################################################################################################
 
 
 insert into tb_local (id, nome_local, end_rua, end_numero, end_bairro,end_cidade, end_cep, end_tipo_residencia, end_observacao) values (1, 'Clínica Movel', 'Rua das Árvores', '189', 'Bairro Lindo', 'Diadema', '09981011', 'OUTRO', 'do lado da granja');
@@ -151,6 +151,43 @@ VALUES (2,CURRENT_TIMESTAMP, 'Exame de exemplo', 'Observações sobre o exame', 
 
 INSERT INTO tb_exame (id,data_exame, nome_exame, observacao, valor, atendente_id, local_id, situacao, medico_id, paciente_id)
 VALUES (3,CURRENT_TIMESTAMP, 'Exame de exemplo', 'Observações sobre o exame', 100.00, 1, 1, true, 1, 1);
+
+INSERT INTO cuidarapp_schema.tb_exame (id,data_exame, nome_exame, observacao, valor, atendente_id, local_id, situacao, medico_id, paciente_id)
+VALUES (4,CURRENT_TIMESTAMP, 'Exame de exemplo', 'Observações sobre o exame', 100.00, 1, 1, true, 1, 1);
+
+-- Inserts 2
+INSERT INTO cuidarapp_schema.tb_exame (id, data_exame, nome_exame, observacao, valor, atendente_id, local_id, situacao, medico_id, paciente_id)
+VALUES (5, CURRENT_TIMESTAMP, 'Exame de exemplo 2', 'Outras observações sobre o exame', 150.00, 2, 2, true, 2, 2);
+
+INSERT INTO cuidarapp_schema.tb_exame (id, data_exame, nome_exame, observacao, valor, atendente_id, local_id, situacao, medico_id, paciente_id)
+VALUES (6, CURRENT_TIMESTAMP, 'Exame de terceiro', 'Observações adicionais sobre o terceiro exame', 80.00, 1, 3, true, 3, 3);
+
+INSERT  INTO cuidarapp_schema.tb_exame (id, data_exame, nome_exame, observacao, valor, atendente_id, local_id, situacao, medico_id, paciente_id)
+VALUES (7, CURRENT_TIMESTAMP, 'Exame de teste', 'Observações sobre o exame de teste', 120.00, 2, 1, false, 4, 4);
+
+INSERT  INTO cuidarapp_schema.tb_exame (id, data_exame, nome_exame, observacao, valor, atendente_id, local_id, situacao, medico_id, paciente_id)
+VALUES (8, CURRENT_TIMESTAMP, 'Exame 123', 'Mais informações sobre o exame 123', 90.00, 3, 2, true, 5, 5);
+
+INSERT  INTO cuidarapp_schema.tb_exame (id, data_exame, nome_exame, observacao, valor, atendente_id, local_id, situacao, medico_id, paciente_id)
+VALUES (9, CURRENT_TIMESTAMP, 'Exame A', 'Observações sobre o exame A', 130.00, 3, 3, false, 6, 4);
+
+INSERT INTO cuidarapp_schema.tb_exame (id, data_exame, nome_exame, observacao, valor, atendente_id, local_id, situacao, medico_id, paciente_id)
+VALUES (10, CURRENT_TIMESTAMP, 'Exame B', 'Observações sobre o exame B', 110.00, 2, 1, true, 4, 7);
+
+INSERT INTO cuidarapp_schema.tb_exame(id, data_exame, nome_exame, observacao, valor, atendente_id, local_id, situacao, medico_id, paciente_id)
+VALUES (11, CURRENT_TIMESTAMP, 'Exame XPTO', 'Observações sobre o exame XPTO', 75.00, 1, 2, false, 2, 8);
+
+INSERT INTO cuidarapp_schema.tb_exame (id, data_exame, nome_exame, observacao, valor, atendente_id, local_id, situacao, medico_id, paciente_id)
+VALUES (12, CURRENT_TIMESTAMP, 'Exame YZ', 'Observações sobre o exame YZ', 95.00, 3, 3, true, 3, 9);
+
+INSERT INTO cuidarapp_schema.tb_exame (id, data_exame, nome_exame, observacao, valor, atendente_id, local_id, situacao, medico_id, paciente_id)
+VALUES (13, CURRENT_TIMESTAMP, 'Exame Final', 'Observações finais sobre o exame', 200.00, 2, 1, false, 3, 10);
+
+INSERT INTO cuidarapp_schema.tb_exame (id, data_exame, nome_exame, observacao, valor, atendente_id, local_id, situacao, medico_id, paciente_id)
+VALUES (14, CURRENT_TIMESTAMP, 'Exame Último', 'Últimas observações sobre o exame', 85.00, 1, 2, true, 4, 11);
+
+INSERT INTO cuidarapp_schema.tb_exame (id, data_exame, nome_exame, observacao, valor, atendente_id, local_id, situacao, medico_id, paciente_id)
+VALUES (15, CURRENT_TIMESTAMP, 'Exame odontológico', 'Novas observações sobre o exame', 82.00, 1, 2, true, 5, 11);
 
 
 insert into tb_permissao (id, nome, descricao) values (1, 'EDITAR_PACIENTES', 'Permite criar, editar ou gerenciar exames');

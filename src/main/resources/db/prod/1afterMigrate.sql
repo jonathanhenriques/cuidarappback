@@ -154,7 +154,7 @@ select 3, id from tb_permissao where nome = 'GERENCIAR_EXAMES';
 --inserindo dados para testes
 insert into tb_usuario (id, login, senha) values (1, 'frodo@email.com','$2a$12$5zEvFcRzlN0kgDYAOdOehuG5qdfKgnWPYZnPhWRej91FKrMka9EJa');
 
---##################################################
+-- ##################################################
 --insert into usuario (id, nome, email, senha, data_cadastro) values
 --(1, 'Jonathan Henrique', 'jonathan@cuidar.com.br', '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', utc_timestamp),
 --(2, 'Andreia Silva', 'andreia@cuidar.com.br', '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', utc_timestamp),
@@ -167,9 +167,9 @@ insert into tb_usuario (id, login, senha) values (1, 'frodo@email.com','$2a$12$5
 --insert into tb_usuario_grupo (usuario_id, grupo_id) values (1, 1), (1, 2), (1, 3), (2, 3), (3, 3),(3, 3), (4, 2), (5, 2);
 insert into tb_usuario_grupo (usuario_id, grupo_id) values (1, 1);
 
---#################################################
+-- #################################################
 
---reativando todos os gatilhos
+-- reativando todos os gatilhos
 
 ALTER TABLE tb_atendente ENABLE TRIGGER ALL;
 ALTER TABLE tb_exame ENABLE TRIGGER ALL;
