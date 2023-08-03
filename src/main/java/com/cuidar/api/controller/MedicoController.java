@@ -1,9 +1,9 @@
 package com.cuidar.api.controller;
 
-import com.cuidar.domain.model.ExameED;
-import com.cuidar.domain.repository.ExameRepository;
+import com.cuidar.domain.model.MedicoED;
+import com.cuidar.domain.repository.MedicoRepository;
 import com.cuidar.domain.repository.filter.ExameFilter;
-import com.cuidar.domain.service.ExameService;
+import com.cuidar.domain.service.MedicoService;
 import com.cuidar.infra.repository.spec.ExameSpecifications;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,55 +15,54 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/exames")
+@RequestMapping(value = "/medicos")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class ExameController {
+public class MedicoController {
 
     @Autowired
-    private ExameService exameService;
+    private MedicoService medicoService;
 
     @Autowired
-    ExameRepository exameRepository;
+    MedicoRepository medicoRepository;
 
 
-    @Operation(summary = "Busca um exame por Id")
-    @GetMapping(value = "/{exameId}",
+    @Operation(summary = "Busca um medico por Id")
+    @GetMapping(value = "/{medicoId}",
 //            consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = "application/json;charset=UTF-8")
-    public ExameED buscarExameById(@PathVariable(name = "exameId") Long exameId){
-        return exameService.buscarOuFalhar(exameId);
+    public MedicoED buscarExameById(@PathVariable(name = "medicoId") Long medicoId){
+        return medicoService.buscarOuFalhar(medicoId);
     }
 
-    @Operation(summary = "Busca todos os exames filtrados por parametros")
+    @Operation(summary = "Busca todos os medicos")
     @GetMapping
-    public List<ExameED> pesquisar(ExameFilter filtro){
-        List<ExameED> todosExames = exameRepository.findAll(ExameSpecifications.usandoFiltro(filtro));
-        return todosExames;
+    public List<MedicoED> buscarMedicoPorId(){
+        return medicoService.buscarMedicos();
     }
 
-    @Operation(summary = "atualiza um exame")
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = "application/json;charset=UTF-8")
-    public ExameED atualizarExame(@Valid @RequestBody ExameED exameED){
-        return exameService.atualizarExame(exameED);
-    }
+//    @Operation(summary = "atualiza um medico")
+//    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
+//            produces = "application/json;charset=UTF-8")
+//    public MedicoED atualizarExame(@Valid @RequestBody MedicoED exameED){
+//        return medicoService.atualizarMedico(exameED);
+//    }
 
-    @Operation(summary = "Cadastra um exame")
+    @Operation(summary = "Cadastra um medico")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = "application/json;charset=UTF-8")
-    public ExameED cadastrarExame(@Valid @RequestBody ExameED exameED){
-        return exameService.cadastrarExame(exameED);
+    public MedicoED cadastrarExame(@Valid @RequestBody MedicoED medicoED){
+        return medicoService.cadastrarMedico(medicoED);
     }
 
-    @Operation(summary = "Cancelar um exame, delete lógico")
+    @Operation(summary = "Deletar um medico, delete lógico")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @DeleteMapping(
             path = "/{id}/ativar"
 //            ,consumes = MediaType.APPLICATION_JSON_VALUE,
 //            produces = "application/json;charset=UTF-8"
     )
-    public void cancelarExame(@PathVariable Long id) {
-        exameService.cancelarExame(id);
+    public void excluirMedico(@PathVariable Long id) {
+        medicoService.desativar(id);
     }
 
 
