@@ -119,7 +119,7 @@ public class PacienteController {
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = "application/json;charset=UTF-8")
     public ResponseEntity<PacienteED> atualizarPaciente(@Valid @RequestBody PacienteED pacienteED) {
-        PacienteED pacienteBanco = pacienteService.buscarOuFalhar(pacienteED.getCodigo());
+        PacienteED pacienteBanco = pacienteService.buscarOuFalhar(pacienteED.getCodigo().toString());
 
 //        BeanUtils.copyProperties(pacienteBanco, pacienteED,
 //                "id", "idade", "endereco","atendente","medicoAtendente","exames","local", "dataCadastro");

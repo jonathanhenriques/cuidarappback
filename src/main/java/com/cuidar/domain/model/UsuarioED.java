@@ -1,11 +1,13 @@
 package com.cuidar.domain.model;
 
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -25,6 +27,12 @@ public class UsuarioED {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USUARIO_ID")
     private Long id;
+
+//    @Id
+    @GeneratedValue(generator = "uuid4")
+    @GenericGenerator(name = "uuid4", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "UUID", columnDefinition = "VARCHAR(32)", updatable = false, nullable = false)
+    private UUID codigo;
 
     @Column(name = "LOGIN")
     private String login;

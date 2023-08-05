@@ -25,6 +25,7 @@ create table tb_exame
 create table tb_local (
     id bigint         NOT NULL AUTO_INCREMENT,
     nome_local        VARCHAR(255) NOT NULL,
+    is_ativo          DEFAULT TRUE NOT NULL,
     end_bairro        VARCHAR(50),
     end_cep           VARCHAR(11),
     end_cidade        VARCHAR(50),

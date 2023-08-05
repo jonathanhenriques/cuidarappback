@@ -78,7 +78,7 @@ public class PacienteService {
 
     @Transactional
     public void desativar(String pacienteCodigo) {
-        buscarOuFalhar(pacienteCodigo).desativar();
+        buscarOuFalhar(pacienteCodigo).inativar();
 //        pacienteRepository.save(paciente);
     }
 

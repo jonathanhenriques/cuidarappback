@@ -1,10 +1,8 @@
 package com.cuidar.api.controller;
 
-import com.cuidar.domain.model.ExameED;
-import com.cuidar.domain.repository.ExameRepository;
-import com.cuidar.domain.repository.filter.ExameFilter;
-import com.cuidar.domain.service.ExameService;
-import com.cuidar.infra.repository.spec.ExameSpecifications;
+import com.cuidar.domain.model.LocalED;
+import com.cuidar.domain.repository.LocalRepository;
+import com.cuidar.domain.service.LocalService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,55 +13,65 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/exames")
+@RequestMapping(value = "/locais")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class ExameController {
+public class LocalController {
 
     @Autowired
-    private ExameService exameService;
+    private LocalService LocalService;
 
     @Autowired
-    ExameRepository exameRepository;
+    LocalRepository LocalRepository;
 
 
-    @Operation(summary = "Busca um exame por código")
-    @GetMapping(value = "/{exameCodigo}",
+    @Operation(summary = "Busca um Local por Id")
+    @GetMapping(value = "/{LocalId}",
 //            consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = "application/json;charset=UTF-8")
-    public ExameED buscarExameById(@PathVariable(name = "exameCodigo") Long exameCodigo){
-        return exameService.buscarOuFalhar(exameCodigo.toString());
+    public LocalED buscarLocalById(@PathVariable(name = "LocalId") Long LocalId){
+        return LocalService.buscarOuFalhar(LocalId);
     }
 
-    @Operation(summary = "Busca todos os exames filtrados por parametros")
+    @Operation(summary = "Busca todos os Locals")
     @GetMapping
-    public List<ExameED> pesquisar(ExameFilter filtro){
-        List<ExameED> todosExames = exameRepository.findAll(ExameSpecifications.usandoFiltro(filtro));
-        return todosExames;
+    public List<LocalED> buscarLocais(){
+        return LocalService.buscarLocais();
     }
 
-    @Operation(summary = "atualiza um exame")
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = "application/json;charset=UTF-8")
-    public ExameED atualizarExame(@Valid @RequestBody ExameED exameED){
-        return exameService.atualizarExame(exameED);
-    }
+//    @Operation(summary = "atualiza um Local")
+//    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
+//            produces = "application/json;charset=UTF-8")
+//    public LocalED atualizarLocal(@Valid @RequestBody LocalED LocalED){
+//        return LocalService.atualizarLocal(LocalED);
+//    }
 
-    @Operation(summary = "Cadastra um exame")
+    @Operation(summary = "Cadastra um Local")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = "application/json;charset=UTF-8")
-    public ExameED cadastrarExame(@Valid @RequestBody ExameED exameED){
-        return exameService.cadastrarExame(exameED);
+    public LocalED cadastrarLocal(@Valid @RequestBody LocalED LocalED){
+        return LocalService.cadastrarLocal(LocalED);
     }
 
-    @Operation(summary = "Cancelar um exame, delete lógico")
+    @Operation(summary = "Ativar um Local")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @DeleteMapping(
             path = "/{id}/ativar"
 //            ,consumes = MediaType.APPLICATION_JSON_VALUE,
 //            produces = "application/json;charset=UTF-8"
     )
-    public void cancelarExame(@PathVariable Long id) {
-        exameService.cancelarExame(id);
+    public void AtivarLocal(@PathVariable Long id) {
+        LocalService.ativarLocal(id);
+    }
+
+    @Operation(summary = "Desativar um Local, delete lógico")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    @DeleteMapping(
+            path = "/{id}/desativar"
+//            ,consumes = MediaType.APPLICATION_JSON_VALUE,
+//            produces = "application/json;charset=UTF-8"
+    )
+    public void desativarLocal(@PathVariable Long id) {
+        LocalService.desativarLocal(id);
     }
 
 

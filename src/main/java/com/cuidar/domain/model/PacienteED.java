@@ -11,6 +11,7 @@ import lombok.*;
 //import org.hibernate.annotations.Cascade;
 //import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -38,7 +39,11 @@ public class PacienteED {
     @Column(name = "ID")
     private Long id;
 
-    private String codigo;
+//    @Id
+    @GeneratedValue(generator = "uuid4")
+    @GenericGenerator(name = "uuid4", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "UUID", columnDefinition = "VARCHAR(32)", updatable = false, nullable = false)
+    private UUID codigo;
 
 
     @NotBlank
@@ -73,7 +78,7 @@ public class PacienteED {
     private EstadoCivil estadoCivil;
 
     @PositiveOrZero
-    @Column(name = "FILHOS", nullable = true)
+    @Column(name = "HAS_FILHOS", nullable = true)
     private Integer filhos;
 
     @Column(name = "NOME_RESPONSAVEL_PACIENTE", nullable = true, length = 100)
@@ -97,7 +102,7 @@ public class PacienteED {
     @Column(name = "DEFICIENCIA_FAMILIA", nullable = true)
     private String deficienciaFamilia;
 
-    @Column(name = "IS_CONVENIO", nullable = true, columnDefinition = "BIT")
+    @Column(name = "HAS_CONVENIO", nullable = true, columnDefinition = "BIT")
     private Boolean convenio;
 
     @Column(name = "OBSERVACAO", nullable = true, length = 500)
@@ -162,7 +167,8 @@ public class PacienteED {
 
     @PrePersist /*antes de criar o registro este metodo e executado*/
     private void gerarUUID(){
-        setCodigo(UUID.randomUUID().toString());
+//        setCodigo(UUID.randomUUID().toString());
+        setCodigo(UUID.randomUUID());
     }
 
 
@@ -170,9 +176,7 @@ public class PacienteED {
         this.setIsAtivo(true);
     }
 
-    public void desativar(){
+    public void inativar(){
         this.setIsAtivo(false);
     }
-
-
 }

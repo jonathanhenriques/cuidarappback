@@ -12,6 +12,7 @@ create table tb_atendente (
 create table tb_local (
     id BIGSERIAL      PRIMARY KEY,
     nome_local        VARCHAR(255) NOT NULL,
+    boolean           DEFAULT TRUE NOT NULL,
     end_bairro        VARCHAR(50),
     end_cep           VARCHAR(11),
     end_cidade        VARCHAR(50),

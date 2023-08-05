@@ -5,12 +5,14 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -27,6 +29,12 @@ public class ExameED {
     @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
+
+//    @Id
+    @GeneratedValue(generator = "uuid4")
+    @GenericGenerator(name = "uuid4", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "UUID", columnDefinition = "VARCHAR(32)", updatable = false, nullable = false)
+    private UUID codigo;
 
 //    @NotBlank(message = " nomePaciente {campo.texto.notBlank.obrigatorio}")
 //    @Column(name = "NOME_PACIENTE", nullable = false, length = 100)
@@ -126,12 +134,16 @@ public class ExameED {
     private String observacao;
 
 
-    @Column(name = "Situacao", nullable = false, length = 9, columnDefinition = "tinyint(1) DEFAULT 1 not null")
-    private Boolean situacao = Boolean.TRUE;
+    @Column(name = "IS_ATIVO", nullable = false, length = 9, columnDefinition = "tinyint(1) DEFAULT 1 not null")
+    private Boolean isAtivo = Boolean.TRUE;
 
 
-    public void cancelar(){
-        this.setSituacao(false);
+    public void ativar(){
+        this.setIsAtivo(true);
+    }
+
+    public void inativar(){
+        this.setIsAtivo(false);
     }
 
 }

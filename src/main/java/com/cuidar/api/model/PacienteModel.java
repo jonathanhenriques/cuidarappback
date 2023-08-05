@@ -13,6 +13,7 @@ import lombok.*;
 //import org.hibernate.annotations.Cascade;
 //import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -37,6 +39,9 @@ public class PacienteModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
+
+//    @Column(name = "UUID", nullable = false)
+//    private UUID codigo;
 
 
     @NotBlank
@@ -71,7 +76,7 @@ public class PacienteModel {
     private EstadoCivil estadoCivil;
 
     @PositiveOrZero
-    @Column(name = "FILHOS", nullable = true)
+    @Column(name = "HAS_FILHOS", nullable = true)
     private Integer filhos;
 
     @Column(name = "NOME_RESPONSAVEL_PACIENTE", nullable = true, length = 100)
@@ -85,14 +90,31 @@ public class PacienteModel {
 
     @Embedded
     private EnderecoED endereco;
+
+    @Column(name = "DEFICIENTE", nullable = true)
     private Boolean deficiente;
+
+    @Column(name = "DEFICIENCIA", nullable = true, length = 100)
     private String deficiencia;
+
+    @Column(name = "DEFICIENCIA_FAMILIA", nullable = true, length = 100)
     private String deficienciaFamilia;
+
+    @Column(name = "HAS_CONVENIO")
     private Boolean convenio;
+
+    @Column(name = "OBSERVACAO", length = 360)
     private String observacao;
+
+    @Column(name = "IS_ACEITE")
     private Boolean aceite; //substitui assinatura
+
     private List<ExameModel> exames;
+
+    @Column(name = "INDICACAO", length = 100)
     private String indicacao;
+
+    @Column(name = "IS_ATIVO")
     private Boolean isAtivo;
 
 

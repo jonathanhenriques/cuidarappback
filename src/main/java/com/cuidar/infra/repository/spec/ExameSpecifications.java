@@ -28,11 +28,11 @@ public class ExameSpecifications {
             if(filtro.getId() != null)
                 predicates.add(builder.equal(root.get("id"), filtro.getId()));
 
-            if(filtro.getPacienteId() != null)
-                predicates.add(builder.equal(root.get("paciente"), filtro.getPacienteId()));
-
             if(filtro.getNomeExame() != null)
                 predicates.add(builder.equal(root.get("nomeExame"), filtro.getNomeExame()));
+
+            if(filtro.getPacienteId() != null)
+                predicates.add(builder.equal(root.get("paciente"), filtro.getPacienteId()));
 
             if(filtro.getMedicoId() != null)
                 predicates.add(builder.equal(root.get("medico"), filtro.getMedicoId()));
@@ -40,14 +40,14 @@ public class ExameSpecifications {
             if(filtro.getLocalId() != null)
                 predicates.add(builder.equal(root.get("local"), filtro.getLocalId()));
 
+            if(filtro.getAtendenteId() != null)
+                predicates.add(builder.equal(root.get("atendente"), filtro.getAtendenteId()));
+
             if(filtro.getDataExame() != null)
                 predicates.add(builder.lessThanOrEqualTo(root.get("dataExame"), filtro.getDataExame()));
 
             if(filtro.getValor() != null)
                 predicates.add(builder.equal(root.get("valor"), filtro.getValor()));
-
-            if(filtro.getAtendenteId() != null)
-                predicates.add(builder.equal(root.get("atendente"), filtro.getAtendenteId()));
 
             if(filtro.getSituacao() != null)
                 predicates.add(builder.equal(root.get("situacao"), filtro.getSituacao()));

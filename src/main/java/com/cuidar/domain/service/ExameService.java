@@ -43,7 +43,7 @@ public class ExameService {
     @Transactional
     public ExameED cadastrarExame(ExameED exame){
 
-        PacienteED paciente = pacienteService.buscarOuFalhar(exame.getPaciente().getCodigo());
+        PacienteED paciente = pacienteService.buscarOuFalhar(exame.getPaciente().getCodigo().toString());
 
         AtendenteED atendente = atendenteService.buscarOuFalhar(exame.getAtendente().getId());
 
@@ -65,14 +65,19 @@ public class ExameService {
     }
 
     @Transactional
-    public Boolean cancelarExame(Long exameId){
-        buscarOuFalhar(exameId).cancelar();
+    public Boolean cancelarExame(Long exameCodigo){
+        buscarOuFalhar(exameCodigo.toString()).inativar();
 //        exameRepository.save(exame);
         return true;
     }
 
-    public ExameED buscarOuFalhar(Long exameId){
-        return exameRepository.findById(exameId).
-                orElseThrow(() -> new ExameNaoEncontradoException(exameId));
+//    public ExameED buscarOuFalhar(Long exameId){
+//        return exameRepository.findById(exameId).
+//                orElseThrow(() -> new ExameNaoEncontradoException(exameId));
+//    }
+
+    public ExameED buscarOuFalhar(String exameCodigo){
+        return exameRepository.findExameByCodigo(exameCodigo).
+                orElseThrow(() -> new PacienteNotFoundException(exameCodigo));
     }
 }
