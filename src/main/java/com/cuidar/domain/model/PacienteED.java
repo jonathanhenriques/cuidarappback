@@ -39,11 +39,14 @@ public class PacienteED {
     @Column(name = "ID")
     private Long id;
 
+    //corrigir NAO FUNCIONA
 //    @Id
-    @GeneratedValue(generator = "uuid4")
-    @GenericGenerator(name = "uuid4", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "UUID", columnDefinition = "VARCHAR(32)", updatable = false, nullable = false)
-    private UUID codigo;
+//    @GeneratedValue(generator = "uuid4")
+//    @GenericGenerator(name = "uuid4", strategy = "org.hibernate.id.UUIDGenerator")
+//    @Column(name = "UUID", columnDefinition = "VARCHAR(32)", updatable = false, nullable = false)
+//    private UUID codigo;
+
+    private String codigo;
 
 
     @NotBlank
@@ -167,8 +170,7 @@ public class PacienteED {
 
     @PrePersist /*antes de criar o registro este metodo e executado*/
     private void gerarUUID(){
-//        setCodigo(UUID.randomUUID().toString());
-        setCodigo(UUID.randomUUID());
+        setCodigo(UUID.randomUUID().toString());
     }
 
 

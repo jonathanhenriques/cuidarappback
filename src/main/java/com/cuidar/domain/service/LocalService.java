@@ -4,6 +4,8 @@ import com.cuidar.domain.Exceptions.LocalNaoEncontradoException;
 import com.cuidar.domain.model.LocalED;
 import com.cuidar.domain.repository.LocalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -15,8 +17,8 @@ public class LocalService {
     @Autowired
     private LocalRepository localRepository;
 
-    public List<LocalED> buscarLocais(){
-        return localRepository.findAll();
+    public Page<LocalED> buscarLocais(Pageable pageable){
+        return localRepository.findAll(pageable);
     }
 
     public LocalED cadastrarLocal(LocalED local){

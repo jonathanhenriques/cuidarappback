@@ -21,6 +21,8 @@ public interface PacienteRepository extends JpaRepository<PacienteED, Long> {
 //    @Query("fom PacienteED where codigo = :codigoPaciente")
     Optional<PacienteED> findPacienteByCodigo(String codigoPaciente);
 
+    Optional<PacienteED> findTop1PacienteByRG(String pacienteRG);
+
     Page<PacienteED> findAllPacientesByIsAtivo(Boolean isAtivo, Pageable pageable);
 
     List<PacienteED> findAllPacientesByNomeContainingIgnoreCase(@Param("nome") String nome);

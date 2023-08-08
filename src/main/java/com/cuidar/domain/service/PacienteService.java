@@ -29,6 +29,11 @@ public class PacienteService {
         return pacienteRepository.findPacienteByCodigo(codigoPaciente);
     }
 
+    public Optional<PacienteED> buscarPacientePorRG(String pacienteRG){
+        return pacienteRepository.findTop1PacienteByRG(pacienteRG);
+//                .orElseThrow(() -> new PacienteNotFoundException(pacienteRG.toString()));
+    }
+
     public Page<PacienteED> obterTodosPacientes(Pageable pageable) {
         return pacienteRepository.findAll(pageable);
     }

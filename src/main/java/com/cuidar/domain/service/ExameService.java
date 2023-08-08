@@ -78,6 +78,6 @@ public class ExameService {
 
     public ExameED buscarOuFalhar(String exameCodigo){
         return exameRepository.findExameByCodigo(exameCodigo).
-                orElseThrow(() -> new PacienteNotFoundException(exameCodigo));
+                orElseThrow(() -> new ExameNaoEncontradoException(exameCodigo));
     }
 }

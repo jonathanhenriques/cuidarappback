@@ -1,10 +1,8 @@
 package com.cuidar.api.controller;
 
-import com.cuidar.domain.model.ExameED;
-import com.cuidar.domain.repository.ExameRepository;
-import com.cuidar.domain.repository.filter.ExameFilter;
-import com.cuidar.domain.service.ExameService;
-import com.cuidar.infra.repository.spec.ExameSpecifications;
+import com.cuidar.domain.model.AtendenteED;
+import com.cuidar.domain.repository.AtendenteRepository;
+import com.cuidar.domain.service.AtendenteService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,56 +16,54 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/exames")
+@RequestMapping(value = "/atendentes")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class ExameController {
+public class AtendenteController {
 
     @Autowired
-    private ExameService exameService;
+    private AtendenteService atendenteService;
 
     @Autowired
-    ExameRepository exameRepository;
+    AtendenteRepository atendenteRepository;
 
 
-    @Operation(summary = "Busca um exame por código")
-    @GetMapping(value = "/{exameCodigo}",
+    @Operation(summary = "Busca um atendente por Id")
+    @GetMapping(value = "/{atendenteId}",
 //            consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = "application/json;charset=UTF-8")
-    public ExameED buscarExameById(@PathVariable(name = "exameCodigo") String exameCodigo){
-        return exameService.buscarOuFalhar(exameCodigo);
+    public AtendenteED buscarAtendenteById(@PathVariable(name = "atendenteId") Long atendenteId){
+        return atendenteService.buscarOuFalhar(atendenteId);
     }
 
-    @Operation(summary = "Busca todos os exames filtrados por parametros")
+    @Operation(summary = "Busca todos os atendentes")
     @GetMapping
-    public Page<ExameED> pesquisar(ExameFilter filtro,@PageableDefault(size = 5) Pageable pageable) {
-//        Page<ExameED> page = exameRepository.findAll(ExameSpecifications.usandoFiltro(filtro), pageable);
-        return exameRepository.findAll(ExameSpecifications.usandoFiltro(filtro), pageable);
+    public Page<AtendenteED> buscaratendentePorId(@PageableDefault(size = 5)Pageable pageable){
+        return atendenteService.buscarAtendentes(pageable);
     }
 
+//    @Operation(summary = "atualiza um atendente")
+//    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
+//            produces = "application/json;charset=UTF-8")
+//    public AtendenteED atualizarAtendente(@Valid @RequestBody AtendenteED atendente){
+//        return atendenteService.atualizarAtendente(atendente);
+//    }
 
-    @Operation(summary = "atualiza um exame")
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = "application/json;charset=UTF-8")
-    public ExameED atualizarExame(@Valid @RequestBody ExameED exameED){
-        return exameService.atualizarExame(exameED);
-    }
-
-    @Operation(summary = "Cadastra um exame")
+    @Operation(summary = "Cadastra um atendente")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = "application/json;charset=UTF-8")
-    public ExameED cadastrarExame(@Valid @RequestBody ExameED exameED){
-        return exameService.cadastrarExame(exameED);
+    public AtendenteED cadastrarAtendente(@Valid @RequestBody AtendenteED atendente){
+        return atendenteService.cadastrarAtendente(atendente);
     }
 
-    @Operation(summary = "Cancelar um exame, delete lógico")
+    @Operation(summary = "Deletar um atendente, delete lógico")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @DeleteMapping(
             path = "/{id}/ativar"
 //            ,consumes = MediaType.APPLICATION_JSON_VALUE,
 //            produces = "application/json;charset=UTF-8"
     )
-    public void cancelarExame(@PathVariable Long id) {
-        exameService.cancelarExame(id);
+    public void excluiratendente(@PathVariable Long id) {
+        atendenteService.desativar(id);
     }
 
 

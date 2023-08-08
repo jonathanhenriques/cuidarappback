@@ -2,6 +2,7 @@ package com.cuidar.api.controller;
 
 
 
+import com.cuidar.domain.Exceptions.PacienteNotFoundException;
 import com.cuidar.domain.model.PacienteED;
 import com.cuidar.domain.service.PacienteService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -41,6 +42,15 @@ public class PacienteController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public PacienteED obterPacientePorCodigo(@PathVariable("codigoPaciente") String codigoPaciente) {
         return pacienteService.buscarOuFalhar(codigoPaciente);
+    }
+
+    @Operation(summary = "Obtem paciente por RG")
+    @GetMapping(path = "/RG/{pacienteRG}",
+//            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public PacienteED obterPacientePorRG(@PathVariable("pacienteRG") String pacienteRG) {
+        return pacienteService.buscarPacientePorRG(pacienteRG)
+                .orElseThrow(() -> new PacienteNotFoundException(pacienteRG.toString()));
     }
 
     @Operation(summary = "Obtem paciente por codigo")
@@ -111,7 +121,7 @@ public class PacienteController {
     @Operation(summary = "Cadastra um novo paciente")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = "application/json;charset=UTF-8")
-    public ResponseEntity<PacienteED> cadastrarPaciente(@Valid @RequestBody PacienteED pacienteED) {
+    public ResponseEntity<PacienteED> cadastrarPaciente(/*@Valid*/ @RequestBody PacienteED pacienteED) {
         return ResponseEntity.ok(pacienteService.salvarPaciente(pacienteED));
     }
 

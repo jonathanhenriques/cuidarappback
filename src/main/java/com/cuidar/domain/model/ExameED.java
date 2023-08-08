@@ -30,11 +30,14 @@ public class ExameED {
     @Column(name = "ID")
     private Long id;
 
+    //CORRIGIR NAO FUNCIONA
 //    @Id
-    @GeneratedValue(generator = "uuid4")
-    @GenericGenerator(name = "uuid4", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "UUID", columnDefinition = "VARCHAR(32)", updatable = false, nullable = false)
-    private UUID codigo;
+//    @GeneratedValue(generator = "uuid4")
+//    @GenericGenerator(name = "uuid4", strategy = "org.hibernate.id.UUIDGenerator")
+//    @Column(name = "UUID", columnDefinition = "VARCHAR(32)", updatable = false, nullable = false)
+//    private UUID codigo;
+
+    private String codigo;
 
 //    @NotBlank(message = " nomePaciente {campo.texto.notBlank.obrigatorio}")
 //    @Column(name = "NOME_PACIENTE", nullable = false, length = 100)
@@ -144,6 +147,11 @@ public class ExameED {
 
     public void inativar(){
         this.setIsAtivo(false);
+    }
+
+    @PrePersist /*antes de criar o registro este metodo e executado*/
+    private void gerarUUID(){
+        setCodigo(UUID.randomUUID().toString());
     }
 
 }

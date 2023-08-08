@@ -5,6 +5,9 @@ import com.cuidar.domain.repository.LocalRepository;
 import com.cuidar.domain.service.LocalService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -34,8 +37,8 @@ public class LocalController {
 
     @Operation(summary = "Busca todos os Locals")
     @GetMapping
-    public List<LocalED> buscarLocais(){
-        return LocalService.buscarLocais();
+    public Page<LocalED> buscarLocais(@PageableDefault(size = 5)Pageable pageable){
+        return LocalService.buscarLocais(pageable);
     }
 
 //    @Operation(summary = "atualiza um Local")
