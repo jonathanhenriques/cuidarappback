@@ -3,6 +3,9 @@ package com.cuidar.domain.service;
 import com.cuidar.domain.Exceptions.PacienteNotFoundException;
 import com.cuidar.domain.repository.PacienteRepository;
 import com.cuidar.domain.model.PacienteED;
+import com.cuidar.domain.repository.filter.PacienteFilter;
+import com.cuidar.infra.repository.spec.ExameSpecifications;
+import com.cuidar.infra.repository.spec.PacienteSpecifications;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,6 +35,10 @@ public class PacienteService {
     public Optional<PacienteED> buscarPacientePorRG(String pacienteRG){
         return pacienteRepository.findTop1PacienteByRG(pacienteRG);
 //                .orElseThrow(() -> new PacienteNotFoundException(pacienteRG.toString()));
+    }
+
+    public Page<PacienteED> findAll(PacienteFilter filtro, Pageable pageable){
+        return pacienteRepository.findAll(PacienteSpecifications.usandoFiltro(filtro), pageable);
     }
 
     public Page<PacienteED> obterTodosPacientes(Pageable pageable) {

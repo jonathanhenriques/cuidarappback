@@ -5,4 +5,4 @@ ALTER TABLE tb_exame ADD CONSTRAINT uk_exame_codigo UNIQUE (codigo);
 ALTER TABLE tb_exame RENAME COLUMN situacao TO is_ativo;
 
 ALTER TABLE tb_paciente RENAME COLUMN is_convenio TO has_convenio;
-ALTER TABLE tb_paciente RENAME COLUMN filhos TO has_filhos;
+ALTER TABLE tb_paciente RENAME COLUMN filhos TO qtd_filhos;

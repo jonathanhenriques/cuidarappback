@@ -1,17 +1,20 @@
 package com.cuidar.domain.model;
-
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.time.OffsetDateTime;
 
 import com.cuidar.api.core.validation.Groups;
 import com.cuidar.domain.model.enuns.EstadoCivil;
+import com.cuidar.infra.LocalDateSerializer;
+import com.cuidar.infra.OffsetDateTimeSerializer;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.*;
 
 //import org.hibernate.annotations.Cascade;
 //import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -58,6 +61,7 @@ public class PacienteED {
 
 //    @DateTimeFormat(pattern = "dd-MM-yyyy")
 //    @CreationTimestamp
+    @JsonSerialize(using = LocalDateSerializer.class)
     @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "DATA_NASC", nullable = true, columnDefinition = "TIMESTAMP")
     private LocalDate dataNasc;
@@ -81,7 +85,7 @@ public class PacienteED {
     private EstadoCivil estadoCivil;
 
     @PositiveOrZero
-    @Column(name = "HAS_FILHOS", nullable = true)
+    @Column(name = "QTD_FILHOS", nullable = true)
     private Integer filhos;
 
     @Column(name = "NOME_RESPONSAVEL_PACIENTE", nullable = true, length = 100)
@@ -112,7 +116,7 @@ public class PacienteED {
     private String observacao;
 
     @Column(name = "IS_ACEITE", nullable = true, columnDefinition = "BIT")
-    private Boolean aceite; //substitui assinatura
+    private Boolean isAceite; //substitui assinatura
 
 //    @ElementCollection
 //    @CollectionTable(name = "TB_ATENDENTE", joinColumns = @JoinColumn(name = "ID_PACIENTE"))
@@ -160,6 +164,8 @@ public class PacienteED {
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     @CreationTimestamp
+    @JsonSerialize(using = OffsetDateTimeSerializer.class)
+    //NÃO ESTA RESOLVENDO PROBLEMA NO ENVIO DE JSON COM ESSA PRPRIEDADE DATACADASTRO, NECESSARIO REMOVE-LA
 //    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "DATA_CADASTRO", nullable = true, columnDefinition = "datetime")
     private OffsetDateTime dataCadastro;
