@@ -1,12 +1,20 @@
 package com.cuidar.api.controller;
 
+import com.cuidar.domain.model.LocalED;
 import com.cuidar.domain.model.MedicoED;
 import com.cuidar.domain.repository.MedicoRepository;
 import com.cuidar.domain.repository.filter.ExameFilter;
+import com.cuidar.domain.repository.filter.LocalFilter;
+import com.cuidar.domain.repository.filter.MedicoFilter;
 import com.cuidar.domain.service.MedicoService;
 import com.cuidar.infra.repository.spec.ExameSpecifications;
+import com.cuidar.infra.repository.spec.LocalSpecifications;
+import com.cuidar.infra.repository.spec.MedicoSpecifications;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -34,10 +42,12 @@ public class MedicoController {
         return medicoService.buscarOuFalhar(medicoId);
     }
 
-    @Operation(summary = "Busca todos os medicos")
+
+    @Operation(summary = "Busca todos os locais filtrados por parametros")
     @GetMapping
-    public List<MedicoED> buscarMedicoPorId(){
-        return medicoService.buscarMedicos();
+    public Page<MedicoED> pesquisar(MedicoFilter filtro, @PageableDefault(size = 5, page = 0) Pageable pageable) {
+//        Page<LocalED> page = atendenteRepository.findAll(ExameSpecifications.usandoFiltro(filtro), pageable);
+        return medicoRepository.findAll(MedicoSpecifications.usandoFiltro(filtro), pageable);
     }
 
 //    @Operation(summary = "atualiza um medico")
@@ -54,17 +64,28 @@ public class MedicoController {
         return medicoService.cadastrarMedico(medicoED);
     }
 
-    @Operation(summary = "Deletar um medico, delete lógico")
+    @Operation(summary = "Ativar um Medico, inverte o delete lógico")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @DeleteMapping(
             path = "/{id}/ativar"
 //            ,consumes = MediaType.APPLICATION_JSON_VALUE,
 //            produces = "application/json;charset=UTF-8"
     )
+    public void ativarMedico(@PathVariable Long id) {
+
+        medicoService.ativar(id);
+    }
+
+    @Operation(summary = "Deletar um Medico, delete lógico")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    @DeleteMapping(
+            path = "/{id}/desativar"
+//            ,consumes = MediaType.APPLICATION_JSON_VALUE,
+//            produces = "application/json;charset=UTF-8"
+    )
     public void excluirMedico(@PathVariable Long id) {
         medicoService.desativar(id);
     }
-
 
     /**
      * Metodo responsavel por filtrar os parametros  passados na requisicao

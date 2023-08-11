@@ -38,13 +38,12 @@ public class AtendenteService {
     }
 
     @Transactional
-    public void ativar(AtendenteED atendente) {
-        Objects
-                .requireNonNull(atendente, "Objeto atendente passado é null!");
-
-        //TODO: Verificar se o obj esta mudando para true
-        var atendenteBuscada = buscarOuFalhar(atendente.getId());
-        atendenteBuscada.ativar();
+    public void ativar(Long atendenteId) {
+//        Objects
+//                .requireNonNull(atendente, "Objeto atendente passado é null!");
+//
+//        //TODO: Verificar se o obj esta mudando para true
+        buscarOuFalhar(atendenteId).ativar();
 //        atendenteRepository.save(atendente);
     }
 

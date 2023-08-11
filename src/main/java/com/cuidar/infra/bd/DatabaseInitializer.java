@@ -24,7 +24,9 @@ public class DatabaseInitializer {
 
 //            jdbc:postgresql://${DB_HOST:localhost}:${PGPORT:5432}/${POSTGRES_DB:cuidarapp}
 
-            String POSTGRES_PORT = System.getenv("PGPORT");
+            String PGPORT = System.getenv("PGPORT");
+            log.debug("PGPORT {}.",PGPORT );
+            String POSTGRES_PORT = System.getenv("POSTGRES_PORT");
             log.debug("POSTGRES_PORT {}.",POSTGRES_PORT );
             String POSTGRES_DB = System.getenv("POSTGRES_DB");
             log.debug("POSTGRES_DB {}.",POSTGRES_DB );
@@ -43,7 +45,7 @@ public class DatabaseInitializer {
 //                spring.datasource.url=jdbc:postgresql://${DB_HOST:localhost}:${PGPORT:5432}/${POSTGRES_DB:cuidarapp}
 //                connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/cuidarapp");
 //                connection = DriverManager.getConnection("jdbc:postgresql://localhost:" + POSTGRES_PORT + "/", POSTGRES_DB, "159951");
-                String dbUrl = "jdbc:postgresql://localhost:5432/";
+                String dbUrl = "jdbc:postgresql://localhost:5433/";
 
                 connection = DriverManager.getConnection(dbUrl,"postgres","159951");
                 statement = connection.createStatement();

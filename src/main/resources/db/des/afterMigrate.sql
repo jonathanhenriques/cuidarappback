@@ -41,16 +41,16 @@ ALTER SEQUENCE tb_grupo_id_seq RESTART WITH 1;
 
 
 
-insert into tb_medico (id, nome, is_ativo) values (1, 'Dr.Ricardo Yoshio', true);
-insert into tb_medico (id, nome, is_ativo) values (2, 'Dr.Drauzio Varela', true);
-insert into tb_medico (id, nome, is_ativo) values (3, 'Dr.Veterinária', true);
-insert into tb_medico (id, nome, is_ativo) values (4, 'Dr.Saulo', true);
-insert into tb_medico (id, nome, is_ativo) values (5, 'Dr.Dorivaldo', true);
-insert into tb_medico (id, nome, is_ativo) values (6, 'Dra.Ana', true);
+insert into tb_medico ( nome, is_ativo) values ('Dr.Ricardo Yoshio', true);
+insert into tb_medico ( nome, is_ativo) values ('Dr.Drauzio Varela', true);
+insert into tb_medico ( nome, is_ativo) values ('Dr.Veterinária', true);
+insert into tb_medico ( nome, is_ativo) values ('Dr.Saulo', true);
+insert into tb_medico ( nome, is_ativo) values ('Dr.Dorivaldo', true);
+insert into tb_medico ( nome, is_ativo) values ('Dra.Ana', true);
 
-insert into tb_atendente (id, nome, is_ativo)  values (1, 'Andreia', true);
-insert into tb_atendente (id, nome, is_ativo)  values (2, 'Cida', true);
-insert into tb_atendente (id, nome, is_ativo)  values (3, 'Elizete', true);
+insert into tb_atendente ( nome, is_ativo)  values ('Andreia', true);
+insert into tb_atendente (nome, is_ativo)  values ('Cida', true);
+insert into tb_atendente (nome, is_ativo)  values ('Elizete', true);
 
 
 INSERT INTO tb_paciente ( codigo, nome, data_nasc, idade, rg, estado_civil, qtd_filhos, nome_responsavel_paciente, cont_celular, cont_telefone, cont_facebook, cont_instagram, cont_email, profissao, end_rua, end_numero, end_bairro, end_cidade, end_cep, end_tipo_residencia, end_observacao, is_deficiente, deficiencia, deficiencia_familia, has_convenio, observacao, is_aceite, indicacao, is_ativo, data_cadastro, data_atualizacao)
@@ -89,10 +89,10 @@ VALUES ( 'afe5b29e-35c8-40f6-b601-f8609c5fa086', 'Mariana', DATE('1995-07-25'), 
 -- ########################################################################################################################################################
 
 
-insert into tb_local (id, nome_local, is_ativo,  end_rua, end_numero, end_bairro,end_cidade, end_cep, end_tipo_residencia, end_observacao) values (1, 'Clínica Movel', true, 'Rua das Árvores', '189', 'Bairro Lindo', 'Diadema', '09981011', 'OUTRO', 'do lado da granja');
-insert into tb_local (id, nome_local,  is_ativo, end_rua, end_numero, end_bairro,end_cidade, end_cep, end_tipo_residencia, end_observacao) values (2, 'Clínica Campanário', true, 'Rua do Campanário', '189', 'Bairro Campanário', 'Diadema-Campanário', '09981010', 'CASA', 'do lado da granja');
-insert into tb_local (id, nome_local,  is_ativo, end_rua, end_numero, end_bairro,end_cidade, end_cep, end_tipo_residencia, end_observacao) values (3, 'Clínica Sítio Joaninha', true,'Rua do Sítio Joaninha', '189', 'Bairro Sítio Joaninha', 'Diadema-Sítio Joaninha', '09981011', 'APARTAMENTO', 'do lado da feira');
-insert into tb_local (id, nome_local,  is_ativo, end_rua, end_numero, end_bairro,end_cidade, end_cep, end_tipo_residencia, end_observacao) values (4, 'Clínica Inamar', true, 'Rua do Inamar', '189', 'Bairro Inamar', 'Diadema-Inamar', '09981012', 'OUTRO', 'do lado da escola');
+insert into tb_local (nome_local, is_ativo,  end_rua, end_numero, end_bairro,end_cidade, end_cep, end_tipo_residencia, end_observacao) values ('Clínica Movel', true, 'Rua das Árvores', '189', 'Bairro Lindo', 'Diadema', '09981011', 'OUTRO', 'do lado da granja');
+insert into tb_local (nome_local,  is_ativo, end_rua, end_numero, end_bairro,end_cidade, end_cep, end_tipo_residencia, end_observacao) values ('Clínica Campanário', true, 'Rua do Campanário', '189', 'Bairro Campanário', 'Diadema-Campanário', '09981010', 'CASA', 'do lado da granja');
+insert into tb_local (nome_local,  is_ativo, end_rua, end_numero, end_bairro,end_cidade, end_cep, end_tipo_residencia, end_observacao) values ('Clínica Sítio Joaninha', true,'Rua do Sítio Joaninha', '189', 'Bairro Sítio Joaninha', 'Diadema-Sítio Joaninha', '09981011', 'APARTAMENTO', 'do lado da feira');
+insert into tb_local (nome_local,  is_ativo, end_rua, end_numero, end_bairro,end_cidade, end_cep, end_tipo_residencia, end_observacao) values ('Clínica Inamar', true, 'Rua do Inamar', '189', 'Bairro Inamar', 'Diadema-Inamar', '09981012', 'OUTRO', 'do lado da escola');
 
 --
 --insert into tb_exame (id,paciente_id,nome_exame, medico_id,local_id, data_exame, valor,  atendente_id, observacao, is_ativo) values (1,1, 'Exame do pulmão', 1, 1, CURRENT_DATE(), 350, 1, 'observações', 1);

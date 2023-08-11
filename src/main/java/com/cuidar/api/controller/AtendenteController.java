@@ -1,8 +1,13 @@
 package com.cuidar.api.controller;
 
 import com.cuidar.domain.model.AtendenteED;
+import com.cuidar.domain.model.AtendenteED;
 import com.cuidar.domain.repository.AtendenteRepository;
+import com.cuidar.domain.repository.filter.AtendenteFilter;
+import com.cuidar.domain.repository.filter.ExameFilter;
 import com.cuidar.domain.service.AtendenteService;
+import com.cuidar.infra.repository.spec.AtendenteSpecifications;
+import com.cuidar.infra.repository.spec.ExameSpecifications;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -35,11 +40,6 @@ public class AtendenteController {
         return atendenteService.buscarOuFalhar(atendenteId);
     }
 
-    @Operation(summary = "Busca todos os atendentes")
-    @GetMapping
-    public Page<AtendenteED> buscaratendentePorId(@PageableDefault(size = 5)Pageable pageable){
-        return atendenteService.buscarAtendentes(pageable);
-    }
 
 //    @Operation(summary = "atualiza um atendente")
 //    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -48,6 +48,13 @@ public class AtendenteController {
 //        return atendenteService.atualizarAtendente(atendente);
 //    }
 
+    @Operation(summary = "Busca todos os atendentes filtrados por parametros")
+    @GetMapping
+    public Page<AtendenteED> pesquisar(AtendenteFilter filtro, @PageableDefault(size = 5) Pageable pageable) {
+//        Page<AtendenteED> page = atendenteRepository.findAll(ExameSpecifications.usandoFiltro(filtro), pageable);
+        return atendenteRepository.findAll(AtendenteSpecifications.usandoFiltro(filtro), pageable);
+    }
+
     @Operation(summary = "Cadastra um atendente")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = "application/json;charset=UTF-8")
@@ -55,14 +62,26 @@ public class AtendenteController {
         return atendenteService.cadastrarAtendente(atendente);
     }
 
-    @Operation(summary = "Deletar um atendente, delete lógico")
+    @Operation(summary = "Ativar um atendente, inverte o delete lógico")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @DeleteMapping(
             path = "/{id}/ativar"
 //            ,consumes = MediaType.APPLICATION_JSON_VALUE,
 //            produces = "application/json;charset=UTF-8"
     )
-    public void excluiratendente(@PathVariable Long id) {
+    public void ativarAtendente(@PathVariable Long id) {
+
+        atendenteService.ativar(id);
+    }
+
+    @Operation(summary = "Deletar um atendente, delete lógico")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    @DeleteMapping(
+            path = "/{id}/desativar"
+//            ,consumes = MediaType.APPLICATION_JSON_VALUE,
+//            produces = "application/json;charset=UTF-8"
+    )
+    public void excluirAtendente(@PathVariable Long id) {
         atendenteService.desativar(id);
     }
 

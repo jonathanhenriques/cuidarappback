@@ -28,12 +28,11 @@ public class LocalED {
     private Boolean isAtivo = Boolean.TRUE;
 
 
-    public void desativar(){
-        this.setIsAtivo(false);
-    }
-
     public void ativar(){
         this.setIsAtivo(true);
     }
 
+    public void inativar(){
+        this.setIsAtivo(false);
+    }
 }

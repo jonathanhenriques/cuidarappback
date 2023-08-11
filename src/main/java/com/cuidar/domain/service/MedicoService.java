@@ -33,8 +33,7 @@ public class MedicoService {
     }
     @Transactional
     public void desativar(Long medicoId) {
-        MedicoED medicoBuscado = buscarOuFalhar(medicoId);
-        medicoBuscado.inativar();
+        buscarOuFalhar(medicoId).inativar();
 //        medicoRepository.save(medico);
     }
 

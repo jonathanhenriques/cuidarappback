@@ -31,17 +31,19 @@ public class LocalService {
                 .orElseThrow(() -> new LocalNaoEncontradoException(localId));
     }
 
-    @Transactional
-    public Boolean desativarLocal(Long exameId){
-        buscarOuFalhar(exameId).desativar();
-//        exameRepository.save(exame);
-        return true;
+    @org.springframework.transaction.annotation.Transactional
+    public void ativar(Long localId) {
+//        Objects
+//                .requireNonNull(local, "Objeto local passado é null!");
+//
+//        //TODO: Verificar se o obj esta mudando para true
+        buscarOuFalhar(localId).ativar();
+//        localRepository.save(local);
     }
 
-    @Transactional
-    public Boolean ativarLocal(Long exameId){
-        buscarOuFalhar(exameId).ativar();
-//        exameRepository.save(exame);
+    @javax.transaction.Transactional
+    public Boolean desativar(Long localId){
+        buscarOuFalhar(localId).inativar();
         return true;
     }
 

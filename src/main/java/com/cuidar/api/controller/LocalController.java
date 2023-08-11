@@ -2,7 +2,10 @@ package com.cuidar.api.controller;
 
 import com.cuidar.domain.model.LocalED;
 import com.cuidar.domain.repository.LocalRepository;
+import com.cuidar.domain.repository.filter.LocalFilter;
 import com.cuidar.domain.service.LocalService;
+import com.cuidar.infra.repository.spec.AtendenteSpecifications;
+import com.cuidar.infra.repository.spec.LocalSpecifications;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,7 +16,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/locais")
@@ -21,10 +23,10 @@ import java.util.List;
 public class LocalController {
 
     @Autowired
-    private LocalService LocalService;
+    private LocalService localService;
 
     @Autowired
-    LocalRepository LocalRepository;
+    LocalRepository localRepository;
 
 
     @Operation(summary = "Busca um Local por Id")
@@ -32,13 +34,14 @@ public class LocalController {
 //            consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = "application/json;charset=UTF-8")
     public LocalED buscarLocalById(@PathVariable(name = "LocalId") Long LocalId){
-        return LocalService.buscarOuFalhar(LocalId);
+        return localService.buscarOuFalhar(LocalId);
     }
 
-    @Operation(summary = "Busca todos os Locals")
+    @Operation(summary = "Busca todos os locais filtrados por parametros")
     @GetMapping
-    public Page<LocalED> buscarLocais(@PageableDefault(size = 5)Pageable pageable){
-        return LocalService.buscarLocais(pageable);
+    public Page<LocalED> pesquisar(LocalFilter filtro, @PageableDefault(size = 5) Pageable pageable) {
+//        Page<LocalED> page = atendenteRepository.findAll(ExameSpecifications.usandoFiltro(filtro), pageable);
+        return localRepository.findAll(LocalSpecifications.usandoFiltro(filtro), pageable);
     }
 
 //    @Operation(summary = "atualiza um Local")
@@ -52,7 +55,7 @@ public class LocalController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = "application/json;charset=UTF-8")
     public LocalED cadastrarLocal(@Valid @RequestBody LocalED LocalED){
-        return LocalService.cadastrarLocal(LocalED);
+        return localService.cadastrarLocal(LocalED);
     }
 
     @Operation(summary = "Ativar um Local")
@@ -63,7 +66,7 @@ public class LocalController {
 //            produces = "application/json;charset=UTF-8"
     )
     public void AtivarLocal(@PathVariable Long id) {
-        LocalService.ativarLocal(id);
+        localService.ativar(id);
     }
 
     @Operation(summary = "Desativar um Local, delete lógico")
@@ -74,7 +77,7 @@ public class LocalController {
 //            produces = "application/json;charset=UTF-8"
     )
     public void desativarLocal(@PathVariable Long id) {
-        LocalService.desativarLocal(id);
+        localService.desativar(id);
     }
 
 
