@@ -12,7 +12,7 @@ create table tb_atendente (
 create table tb_local (
     id BIGSERIAL      PRIMARY KEY,
     nome_local        VARCHAR(255) NOT NULL,
-    boolean           DEFAULT TRUE NOT NULL,
+    ativo             BOOLEAN DEFAULT TRUE NOT NULL,
     end_bairro        VARCHAR(50),
     end_cep           VARCHAR(11),
     end_cidade        VARCHAR(50),
@@ -23,9 +23,9 @@ create table tb_local (
 );
 
 create table tb_medico (
-    id BIGSERIAL      PRIMARY KEY,
+    id                BIGSERIAL PRIMARY KEY,
     nome              VARCHAR(255) NOT NULL,
-    is_ativo BOOLEAN  DEFAULT TRUE NOT NULL
+    is_ativo          BOOLEAN DEFAULT TRUE NOT NULL
 );
 
 create table tb_paciente (
@@ -62,7 +62,7 @@ create table tb_paciente (
 );
 
 create table tb_exame (
-    id BIGSERIAL      PRIMARY KEY,
+    id                BIGSERIAL PRIMARY KEY,
     data_exame        TIMESTAMP NOT NULL,
     nome_exame        VARCHAR(100) NOT NULL,
     observacao        VARCHAR(500),
