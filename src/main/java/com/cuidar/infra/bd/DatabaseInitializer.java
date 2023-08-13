@@ -45,9 +45,10 @@ public class DatabaseInitializer {
 //                spring.datasource.url=jdbc:postgresql://${DB_HOST:localhost}:${PGPORT:5432}/${POSTGRES_DB:cuidarapp}
 //                connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/cuidarapp");
 //                connection = DriverManager.getConnection("jdbc:postgresql://localhost:" + POSTGRES_PORT + "/", POSTGRES_DB, "159951");
-                String dbUrl = "jdbc:postgresql://localhost:5433/";
+                String dbUrl = "jdbc:postgresql://postgres:nTqGuMFzCsfGRBLkx0Rt@containers-us-west-59.railway.app:5827/railway";
+                postgresql://postgres:nTqGuMFzCsfGRBLkx0Rt@containers-us-west-59.railway.app:5827/railway
 
-                connection = DriverManager.getConnection(dbUrl,"postgres","159951");
+                connection = DriverManager.getConnection(dbUrl,"postgres","nTqGuMFzCsfGRBLkx0Rt");
                 statement = connection.createStatement();
                 statement.executeQuery("SELECT count(*) FROM pg_database WHERE datname = '" + POSTGRES_DB + "'");
                 ResultSet resultSet = statement.getResultSet();
