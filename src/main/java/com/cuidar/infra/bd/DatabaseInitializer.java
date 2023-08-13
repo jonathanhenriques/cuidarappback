@@ -28,8 +28,8 @@ public class DatabaseInitializer {
             log.debug("PGPORT {}.",PGPORT );
             String POSTGRES_PORT = System.getenv("POSTGRES_PORT");
             log.debug("POSTGRES_PORT {}.",POSTGRES_PORT );
-            String POSTGRES_DB = System.getenv("POSTGRES_DB");
-            log.debug("POSTGRES_DB {}.",POSTGRES_DB );
+            String PGDATABASE = System.getenv("PGDATABASE");
+            log.debug("PGDATABASE {}.",PGDATABASE );
             String POSTGRES_USER = System.getenv("DB_USERNAME");
             log.debug("POSTGRES_USER {}.",POSTGRES_USER );
             String POSTGRES_PASSWORD = System.getenv("DB_PASSWORD");
@@ -50,13 +50,13 @@ public class DatabaseInitializer {
 
                 connection = DriverManager.getConnection(dbUrl,"postgres","nTqGuMFzCsfGRBLkx0Rt");
                 statement = connection.createStatement();
-                statement.executeQuery("SELECT count(*) FROM pg_database WHERE datname = '" + POSTGRES_DB + "'");
+                statement.executeQuery("SELECT count(*) FROM pg_database WHERE datname = '" + PGDATABASE + "'");
                 ResultSet resultSet = statement.getResultSet();
                 resultSet.next();
                 int count = resultSet.getInt(1);
 
                 if (count <= 0) {
-                    statement.executeUpdate("CREATE DATABASE " + POSTGRES_DB);
+                    statement.executeUpdate("CREATE DATABASE " + PGDATABASE);
                     log.debug("Database created.");
                 } else {
                     log.debug("Database already exist.");
