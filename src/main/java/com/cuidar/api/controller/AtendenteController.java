@@ -13,10 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -52,16 +50,9 @@ public class AtendenteController {
 
     @Operation(summary = "Busca todos os atendentes filtrados por parametros")
     @GetMapping
-    public ResponseEntity<Page<AtendenteED>> pesquisar(AtendenteFilter filtro, @PageableDefault(size = 5) Pageable pageable) {
+    public Page<AtendenteED> pesquisar(AtendenteFilter filtro, @PageableDefault(size = 5) Pageable pageable) {
 //        Page<AtendenteED> page = atendenteRepository.findAll(ExameSpecifications.usandoFiltro(filtro), pageable);
-
-        return ResponseEntity.ok()
-                //ADICIONANDO CORS MANUALMENTE SOMENTE NESTE ENDPOINT
-                .header(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "cuidar.up.railway.app")
-                .body(atendenteRepository.findAll(AtendenteSpecifications.usandoFiltro(filtro), pageable));
-
-
-//        return atendenteRepository.findAll(AtendenteSpecifications.usandoFiltro(filtro), pageable);
+        return atendenteRepository.findAll(AtendenteSpecifications.usandoFiltro(filtro), pageable);
     }
 
     @Operation(summary = "Cadastra um atendente")
