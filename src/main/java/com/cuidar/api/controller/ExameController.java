@@ -12,9 +12,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 @RestController
@@ -59,16 +61,40 @@ public class ExameController {
         return exameService.cadastrarExame(exameED);
     }
 
-    @Operation(summary = "Cancelar um exame, delete lógico")
+
+    @Operation(summary = "Ativar um exame,cancela  delete lógico")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @DeleteMapping(
-            path = "/{id}/ativar"
+            path = "/{exameCodigo}/ativar"
 //            ,consumes = MediaType.APPLICATION_JSON_VALUE,
 //            produces = "application/json;charset=UTF-8"
     )
-    public void cancelarExame(@PathVariable Long id) {
-        exameService.cancelarExame(id);
+    public void ativarExame(@PathVariable String exameCodigo) {
+        exameService.ativar(exameCodigo);
     }
+
+
+    @Operation(summary = "Cancelar um exame, delete lógico")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    @DeleteMapping(
+            path = "/{exameCodigo}/inativar"
+//            ,consumes = MediaType.APPLICATION_JSON_VALUE,
+//            produces = "application/json;charset=UTF-8"
+    )
+    public void cancelarExame(@PathVariable String exameCodigo) {
+        exameService.desativar(exameCodigo);
+    }
+
+
+
+//    @Operation(summary = "Busca um exame por data inicial e data final")
+//    @GetMapping(value = "/inicial/{dataInicial}/final/{dataFinal}",
+////            consumes = MediaType.APPLICATION_JSON_VALUE,
+//            produces = "application/json;charset=UTF-8")
+//    public List<ExameED> buscarExamesPorIntervaloDeDatas(@PathVariable(name = "dataInicial") OffsetDateTime dataInicial,
+//                                                   @PathVariable(name = "dataFinal") OffsetDateTime dataFinal){
+//        return exameService.buscarExamesPorIntervaloDeDatas(dataInicial, dataFinal);
+//    }
 
 
     /**

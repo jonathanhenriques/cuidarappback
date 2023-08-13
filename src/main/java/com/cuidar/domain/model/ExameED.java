@@ -11,6 +11,7 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
@@ -104,8 +105,8 @@ public class ExameED {
     @CreationTimestamp
 //    @Temporal(TemporalType.TIMESTAMP)
 //    @Column(nullable = false, columnDefinition = "datetime")
-    @Column(name = "DATA_EXAME", nullable = false, columnDefinition = "TIMESTAMP")
-    private OffsetDateTime dataExame;
+    @Column(name = "DATA_EXAME", nullable = false)
+    private LocalDate dataExame;
 
     @NotNull
     @ValorExame

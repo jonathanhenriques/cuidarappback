@@ -100,65 +100,65 @@ insert into tb_local (nome_local,  is_ativo, end_rua, end_numero, end_bairro,end
 --insert into tb_exame (id,paciente_id,nome_exame, medico_id,local_id, data_exame, valor,  atendente_id, observacao, is_ativo) values (3,3, 'Exame do coração', 3, 3, CURRENT_DATE(), 50, 3, 'observações', 1);
 
 
-INSERT INTO tb_exame (id, codigo, data_exame, nome_exame, observacao, valor, atendente_id, local_id, is_ativo, medico_id, paciente_id)
-VALUES (1, '92bace06-9cc0-4bb0-aa45-587aeef8f812', CURRENT_TIMESTAMP, 'Exame de exemplo', 'Observações sobre o exame', 100.00, 1, 1, true, 1, 1);
+INSERT INTO tb_exame (codigo, data_exame, nome_exame, observacao, valor, atendente_id, local_id, is_ativo, medico_id, paciente_id)
+VALUES ('92bace06-9cc0-4bb0-aa45-587aeef8f812', CURRENT_DATE, 'Exame de exemplo', 'Observações sobre o exame', 100.00, 1, 1, true, 1, 1);
 
-INSERT INTO tb_exame (id, codigo, data_exame, nome_exame, observacao, valor, atendente_id, local_id, is_ativo, medico_id, paciente_id)
-VALUES (2, 'b133bf67-715d-4a29-8f75-8d3f72f6ea45', CURRENT_TIMESTAMP, 'Exame de exemplo', 'Observações sobre o exame', 100.00, 1, 1, true, 1, 1);
+INSERT INTO tb_exame (codigo, data_exame, nome_exame, observacao, valor, atendente_id, local_id, is_ativo, medico_id, paciente_id)
+VALUES ('b133bf67-715d-4a29-8f75-8d3f72f6ea45', CURRENT_DATE, 'Exame de exemplo', 'Observações sobre o exame', 100.00, 1, 1, true, 1, 1);
 
-INSERT INTO tb_exame (id, codigo, data_exame, nome_exame, observacao, valor, atendente_id, local_id, is_ativo, medico_id, paciente_id)
-VALUES (3, '69541c9a-39ef-47a2-8c1f-88b5ac62f776', CURRENT_TIMESTAMP, 'Exame de exemplo', 'Observações sobre o exame', 100.00, 1, 1, true, 1, 1);
+INSERT INTO tb_exame (codigo, data_exame, nome_exame, observacao, valor, atendente_id, local_id, is_ativo, medico_id, paciente_id)
+VALUES ('69541c9a-39ef-47a2-8c1f-88b5ac62f776', CURRENT_DATE, 'Exame de exemplo', 'Observações sobre o exame', 100.00, 1, 1, true, 1, 1);
 
-INSERT INTO tb_exame (id, codigo, data_exame, nome_exame, observacao, valor, atendente_id, local_id, is_ativo, medico_id, paciente_id)
-VALUES (4, 'f366c720-1a6c-4cd3-975f-0ef93b145397', CURRENT_TIMESTAMP, 'Exame de exemplo', 'Observações sobre o exame', 100.00, 1, 1, true, 1, 1);
+INSERT INTO tb_exame (codigo, data_exame, nome_exame, observacao, valor, atendente_id, local_id, is_ativo, medico_id, paciente_id)
+VALUES ('f366c720-1a6c-4cd3-975f-0ef93b145397', CURRENT_DATE, 'Exame de exemplo', 'Observações sobre o exame', 100.00, 1, 1, true, 1, 1);
 
 -- Inserts 2
-INSERT INTO tb_exame (id, codigo, data_exame, nome_exame, observacao, valor, atendente_id, local_id, is_ativo, medico_id, paciente_id)
-VALUES (5, '72629b51-0dd1-4b80-82c1-1c9e7751fc5c', CURRENT_TIMESTAMP, 'Exame de exemplo 2', 'Outras observações sobre o exame', 150.00, 2, 2, true, 2, 2);
+INSERT INTO tb_exame (codigo, data_exame, nome_exame, observacao, valor, atendente_id, local_id, is_ativo, medico_id, paciente_id)
+VALUES ('72629b51-0dd1-4b80-82c1-1c9e7751fc5c', CURRENT_DATE, 'Exame de exemplo 2', 'Outras observações sobre o exame', 150.00, 2, 2, true, 2, 2);
 
-INSERT INTO tb_exame (id, codigo, data_exame, nome_exame, observacao, valor, atendente_id, local_id, is_ativo, medico_id, paciente_id)
-VALUES (6, 'cfaa2f84-c24a-4b96-8d0e-d53e44f0d9da', CURRENT_TIMESTAMP, 'Exame de terceiro', 'Observações adicionais sobre o terceiro exame', 80.00, 1, 3, true, 3, 3);
+INSERT INTO tb_exame (codigo, data_exame, nome_exame, observacao, valor, atendente_id, local_id, is_ativo, medico_id, paciente_id)
+VALUES ('cfaa2f84-c24a-4b96-8d0e-d53e44f0d9da', CURRENT_DATE, 'Exame de terceiro', 'Observações adicionais sobre o terceiro exame', 80.00, 1, 3, true, 3, 3);
 
-INSERT INTO tb_exame (id, codigo, data_exame, nome_exame, observacao, valor, atendente_id, local_id, is_ativo, medico_id, paciente_id)
-VALUES (7, '02b7d758-cf20-42f0-8b65-450b94aef40c', CURRENT_TIMESTAMP, 'Exame de teste', 'Observações sobre o exame de teste', 120.00, 2, 1, false, 4, 4);
+INSERT INTO tb_exame (codigo, data_exame, nome_exame, observacao, valor, atendente_id, local_id, is_ativo, medico_id, paciente_id)
+VALUES ('02b7d758-cf20-42f0-8b65-450b94aef40c', CURRENT_DATE, 'Exame de teste', 'Observações sobre o exame de teste', 120.00, 2, 1, false, 4, 4);
 
-INSERT INTO tb_exame (id, codigo, data_exame, nome_exame, observacao, valor, atendente_id, local_id, is_ativo, medico_id, paciente_id)
-VALUES (8, '3a2d55e2-46f4-43d5-b515-c56c2b51d2d9', CURRENT_TIMESTAMP, 'Exame 123', 'Mais informações sobre o exame 123', 90.00, 3, 2, true, 5, 5);
+INSERT INTO tb_exame (codigo, data_exame, nome_exame, observacao, valor, atendente_id, local_id, is_ativo, medico_id, paciente_id)
+VALUES ('3a2d55e2-46f4-43d5-b515-c56c2b51d2d9', CURRENT_DATE, 'Exame 123', 'Mais informações sobre o exame 123', 90.00, 3, 2, true, 5, 5);
 
-INSERT INTO tb_exame (id, codigo, data_exame, nome_exame, observacao, valor, atendente_id, local_id, is_ativo, medico_id, paciente_id)
-VALUES (9, '68e4da18-06b9-45b2-af19-33b51f6058f6', CURRENT_TIMESTAMP, 'Exame A', 'Observações sobre o exame A', 130.00, 3, 3, false, 6, 4);
+INSERT INTO tb_exame (codigo, data_exame, nome_exame, observacao, valor, atendente_id, local_id, is_ativo, medico_id, paciente_id)
+VALUES ('68e4da18-06b9-45b2-af19-33b51f6058f6', CURRENT_DATE, 'Exame A', 'Observações sobre o exame A', 130.00, 3, 3, false, 6, 4);
 
-INSERT INTO tb_exame (id, codigo, data_exame, nome_exame, observacao, valor, atendente_id, local_id, is_ativo, medico_id, paciente_id)
-VALUES (10, 'f951e11d-e05e-4c8a-92d1-5b0211d2a0e3', CURRENT_TIMESTAMP, 'Exame B', 'Observações sobre o exame B', 110.00, 2, 1, true, 4, 7);
+INSERT INTO tb_exame (codigo, data_exame, nome_exame, observacao, valor, atendente_id, local_id, is_ativo, medico_id, paciente_id)
+VALUES ('f951e11d-e05e-4c8a-92d1-5b0211d2a0e3', CURRENT_DATE, 'Exame B', 'Observações sobre o exame B', 110.00, 2, 1, true, 4, 7);
 
-INSERT INTO tb_exame (id, codigo, data_exame, nome_exame, observacao, valor, atendente_id, local_id, is_ativo, medico_id, paciente_id)
-VALUES (11, '17f52c86-d891-4d19-9677-bd9e1d0b6ce5', CURRENT_TIMESTAMP, 'Exame XPTO', 'Observações sobre o exame XPTO', 75.00, 1, 2, false, 2, 8);
+INSERT INTO tb_exame (codigo, data_exame, nome_exame, observacao, valor, atendente_id, local_id, is_ativo, medico_id, paciente_id)
+VALUES ('17f52c86-d891-4d19-9677-bd9e1d0b6ce5', CURRENT_DATE, 'Exame XPTO', 'Observações sobre o exame XPTO', 75.00, 1, 2, false, 2, 8);
 
-INSERT INTO tb_exame (id, codigo, data_exame, nome_exame, observacao, valor, atendente_id, local_id, is_ativo, medico_id, paciente_id)
-VALUES (12, '0b4ce877-b2b7-40c1-84e6-28c151f6a2e9', CURRENT_TIMESTAMP, 'Exame YZ', 'Observações sobre o exame YZ', 95.00, 3, 3, true, 3, 9);
+INSERT INTO tb_exame (codigo, data_exame, nome_exame, observacao, valor, atendente_id, local_id, is_ativo, medico_id, paciente_id)
+VALUES ('0b4ce877-b2b7-40c1-84e6-28c151f6a2e9', CURRENT_DATE, 'Exame YZ', 'Observações sobre o exame YZ', 95.00, 3, 3, true, 3, 9);
 
-INSERT INTO tb_exame (id, codigo, data_exame, nome_exame, observacao, valor, atendente_id, local_id, is_ativo, medico_id, paciente_id)
-VALUES (13, 'd3c8d330-69e5-4383-8e37-e98c69e9bdee', CURRENT_TIMESTAMP, 'Exame Final', 'Observações finais sobre o exame', 200.00, 2, 1, false, 3, 10);
+INSERT INTO tb_exame (codigo, data_exame, nome_exame, observacao, valor, atendente_id, local_id, is_ativo, medico_id, paciente_id)
+VALUES ('d3c8d330-69e5-4383-8e37-e98c69e9bdee', CURRENT_DATE, 'Exame Final', 'Observações finais sobre o exame', 200.00, 2, 1, false, 3, 10);
 
-INSERT INTO tb_exame (id, codigo, data_exame, nome_exame, observacao, valor, atendente_id, local_id, is_ativo, medico_id, paciente_id)
-VALUES (14, '71ca40b9-8d4f-48e5-bb17-57ca94db8571', CURRENT_TIMESTAMP, 'Exame Último', 'Últimas observações sobre o exame', 85.00, 1, 2, true, 4, 11);
+INSERT INTO tb_exame (codigo, data_exame, nome_exame, observacao, valor, atendente_id, local_id, is_ativo, medico_id, paciente_id)
+VALUES ('71ca40b9-8d4f-48e5-bb17-57ca94db8571', CURRENT_DATE, 'Exame Último', 'Últimas observações sobre o exame', 85.00, 1, 2, true, 4, 11);
 
-INSERT INTO tb_exame (id, codigo, data_exame, nome_exame, observacao, valor, atendente_id, local_id, is_ativo, medico_id, paciente_id)
-VALUES (15, '8218e159-9e76-46c1-b0c1-95b3a9635ed0', CURRENT_TIMESTAMP, 'Exame odontológico', 'Novas observações sobre o exame', 82.00, 1, 2, true, 5, 11);
+INSERT INTO tb_exame (codigo, data_exame, nome_exame, observacao, valor, atendente_id, local_id, is_ativo, medico_id, paciente_id)
+VALUES ('8218e159-9e76-46c1-b0c1-95b3a9635ed0', CURRENT_DATE, 'Exame odontológico', 'Novas observações sobre o exame', 82.00, 1, 2, true, 5, 11);
 
 
 
-insert into tb_permissao (id, nome, descricao) values (1, 'EDITAR_PACIENTES', 'Permite criar, editar ou gerenciar exames');
-insert into tb_permissao (id, nome, descricao) values (2, 'EDITAR_LOCAIS', 'Permite criar ou editar locais');
-insert into tb_permissao (id, nome, descricao) values (3, 'EDITAR_MEDICOS', 'Permite criar ou editar medicos');
-insert into tb_permissao (id, nome, descricao) values (4, 'EDITAR_ATENDENTES', 'Permite criar ou editar atendentes');
-insert into tb_permissao (id, nome, descricao) values (5, 'CONSULTAR_USUARIOS_GRUPOS_PERMISSOES', 'Permite consultar usuários, grupos e permissões');
-insert into tb_permissao (id, nome, descricao) values (6, 'EDITAR_USUARIOS_GRUPOS_PERMISSOES', 'Permite criar ou editar usuários, grupos e permissões');
-insert into tb_permissao (id, nome, descricao) values (7, 'CONSULTAR_EXAMES', 'Permite consultar exames');
-insert into tb_permissao (id, nome, descricao) values (8, 'GERENCIAR_EXAMES', 'Permite gerenciar exames');
-insert into tb_permissao (id, nome, descricao) values (9, 'GERAR_RELATORIOS', 'Permite gerar relatórios');
+insert into tb_permissao (nome, descricao) values ('EDITAR_PACIENTES', 'Permite criar, editar ou gerenciar exames');
+insert into tb_permissao (nome, descricao) values ('EDITAR_LOCAIS', 'Permite criar ou editar locais');
+insert into tb_permissao (nome, descricao) values ('EDITAR_MEDICOS', 'Permite criar ou editar medicos');
+insert into tb_permissao (nome, descricao) values ('EDITAR_ATENDENTES', 'Permite criar ou editar atendentes');
+insert into tb_permissao (nome, descricao) values ('CONSULTAR_USUARIOS_GRUPOS_PERMISSOES', 'Permite consultar usuários, grupos e permissões');
+insert into tb_permissao (nome, descricao) values ('EDITAR_USUARIOS_GRUPOS_PERMISSOES', 'Permite criar ou editar usuários, grupos e permissões');
+insert into tb_permissao (nome, descricao) values ('CONSULTAR_EXAMES', 'Permite consultar exames');
+insert into tb_permissao (nome, descricao) values ('GERENCIAR_EXAMES', 'Permite gerenciar exames');
+insert into tb_permissao (nome, descricao) values ('GERAR_RELATORIOS', 'Permite gerar relatórios');
 
-insert into tb_grupo (id, nome) values (1, 'Gerente'), (2, 'Medico'), (3, 'Atendente'), (4, 'Cadastrador');
+insert into tb_grupo (nome) values ('Gerente'), ('Medico'), ('Atendente'), ('Cadastrador');
 
 
 

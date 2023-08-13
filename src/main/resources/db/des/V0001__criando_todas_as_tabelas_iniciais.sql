@@ -69,7 +69,7 @@ CREATE TABLE tb_paciente
 CREATE TABLE tb_exame 
 (
     id BIGSERIAL      PRIMARY KEY,
-    data_exame        TIMESTAMP NOT NULL,
+    data_exame        DATE NOT NULL,
     nome_exame        VARCHAR(100) NOT NULL,
     observacao        VARCHAR(500),
     valor             NUMERIC(12, 2) NOT NULL,

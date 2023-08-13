@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 
 /**Classe destinada ao ExameSpecification*/
@@ -35,8 +36,8 @@ public class ExameFilter {
 
     private Long atendenteId;
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private OffsetDateTime dataExame;
+//    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    private LocalDate dataExame;
 
     private BigDecimal valor;
 

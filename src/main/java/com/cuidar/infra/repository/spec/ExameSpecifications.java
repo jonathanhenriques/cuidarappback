@@ -7,6 +7,10 @@ import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.Predicate;
 
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 
@@ -61,10 +65,15 @@ public class ExameSpecifications {
                 predicates.add(builder.equal(root.get("atendente"), filtro.getAtendenteId()));
 
             if(filtro.getDataExame() != null)
-                predicates.add(builder.lessThanOrEqualTo(root.get("dataExame"), filtro.getDataExame()));
+                predicates.add(builder.equal(root.get("dataExame"), filtro.getDataExame()));
 
             if(filtro.getValor() != null)
                 predicates.add(builder.equal(root.get("valor"), filtro.getValor()));
+
+//            if (filtro.getDataExame() != null) {
+//                LocalDate dataFiltro = filtro.getDataExame();
+//                predicates.add(builder.equal(root.get("dataExame"), dataFiltro));
+//            }
 
             if(filtro.getIsAtivo() != null)
                 predicates.add(builder.equal(root.get("isAtivo"), filtro.getIsAtivo()));
