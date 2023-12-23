@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -63,16 +65,38 @@ public class ExameService {
     public ExameED atualizarExame(ExameED exame){
         return exameRepository.save(exame);
     }
+    
+    @org.springframework.transaction.annotation.Transactional
+    public void ativar(String exameCodigo) {
+//        Objects
+//                .requireNonNull(atendente, "Objeto atendente passado é null!");
+//
+//        //TODO: Verificar se o obj esta mudando para true
+        buscarOuFalhar(exameCodigo).ativar();
+//        atendenteRepository.save(atendente);
+    }
 
-    @Transactional
-    public Boolean cancelarExame(Long exameId){
-        buscarOuFalhar(exameId).cancelar();
-//        exameRepository.save(exame);
+    @javax.transaction.Transactional
+    public Boolean desativar(String exameCodigo){
+        buscarOuFalhar(exameCodigo).inativar();
         return true;
     }
+    
+    
 
-    public ExameED buscarOuFalhar(Long exameId){
-        return exameRepository.findById(exameId).
-                orElseThrow(() -> new ExameNaoEncontradoException(exameId));
+//    public ExameED buscarOuFalhar(Long exameId){
+//        return exameRepository.findById(exameId).
+//                orElseThrow(() -> new ExameNaoEncontradoException(exameId));
+//    }
+
+    public ExameED buscarOuFalhar(String exameCodigo){
+        return exameRepository.findExameByCodigo(exameCodigo).
+                orElseThrow(() -> new ExameNaoEncontradoException(exameCodigo));
     }
+
+
+
+//    public List<ExameED> buscarExamesPorIntervaloDeDatas(OffsetDateTime dataInicio, OffsetDateTime dataFim) {
+//        return exameRepository.findByDataExameBetween(dataInicio, dataFim);
+//    }
 }

@@ -1,11 +1,15 @@
 package com.cuidar.domain.model;
-
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.time.OffsetDateTime;
 
 import com.cuidar.api.core.validation.Groups;
 import com.cuidar.domain.model.enuns.EstadoCivil;
+import com.cuidar.infra.LocalDateSerializer;
+import com.cuidar.infra.OffsetDateTimeSerializer;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.*;
 
 //import org.hibernate.annotations.Cascade;
@@ -38,6 +42,13 @@ public class PacienteED {
     @Column(name = "ID")
     private Long id;
 
+    //corrigir NAO FUNCIONA
+//    @Id
+//    @GeneratedValue(generator = "uuid4")
+//    @GenericGenerator(name = "uuid4", strategy = "org.hibernate.id.UUIDGenerator")
+//    @Column(name = "UUID", columnDefinition = "VARCHAR(32)", updatable = false, nullable = false)
+//    private UUID codigo;
+
     private String codigo;
 
 
@@ -50,6 +61,7 @@ public class PacienteED {
 
 //    @DateTimeFormat(pattern = "dd-MM-yyyy")
 //    @CreationTimestamp
+    @JsonSerialize(using = LocalDateSerializer.class)
     @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "DATA_NASC", nullable = true, columnDefinition = "TIMESTAMP")
     private LocalDate dataNasc;
@@ -73,7 +85,7 @@ public class PacienteED {
     private EstadoCivil estadoCivil;
 
     @PositiveOrZero
-    @Column(name = "FILHOS", nullable = true)
+    @Column(name = "QTD_FILHOS", nullable = true)
     private Integer filhos;
 
     @Column(name = "NOME_RESPONSAVEL_PACIENTE", nullable = true, length = 100)
@@ -97,14 +109,14 @@ public class PacienteED {
     @Column(name = "DEFICIENCIA_FAMILIA", nullable = true)
     private String deficienciaFamilia;
 
-    @Column(name = "IS_CONVENIO", nullable = true, columnDefinition = "BIT")
+    @Column(name = "HAS_CONVENIO", nullable = true, columnDefinition = "BIT")
     private Boolean convenio;
 
     @Column(name = "OBSERVACAO", nullable = true, length = 500)
     private String observacao;
 
     @Column(name = "IS_ACEITE", nullable = true, columnDefinition = "BIT")
-    private Boolean aceite; //substitui assinatura
+    private Boolean isAceite; //substitui assinatura
 
 //    @ElementCollection
 //    @CollectionTable(name = "TB_ATENDENTE", joinColumns = @JoinColumn(name = "ID_PACIENTE"))
@@ -152,6 +164,8 @@ public class PacienteED {
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     @CreationTimestamp
+    @JsonSerialize(using = OffsetDateTimeSerializer.class)
+    //NÃO ESTA RESOLVENDO PROBLEMA NO ENVIO DE JSON COM ESSA PRPRIEDADE DATACADASTRO, NECESSARIO REMOVE-LA
 //    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "DATA_CADASTRO", nullable = true, columnDefinition = "datetime")
     private OffsetDateTime dataCadastro;
@@ -170,9 +184,7 @@ public class PacienteED {
         this.setIsAtivo(true);
     }
 
-    public void desativar(){
+    public void inativar(){
         this.setIsAtivo(false);
     }
-
-
 }

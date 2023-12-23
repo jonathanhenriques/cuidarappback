@@ -23,4 +23,16 @@ public class LocalED {
 
     @Embedded
     private EnderecoED endereco;
+
+    @Column(name = "IS_ATIVO", nullable = false, length = 9, columnDefinition = "tinyint(1) DEFAULT 1 not null")
+    private Boolean isAtivo = Boolean.TRUE;
+
+
+    public void ativar(){
+        this.setIsAtivo(true);
+    }
+
+    public void inativar(){
+        this.setIsAtivo(false);
+    }
 }

@@ -7,6 +7,8 @@ import com.cuidar.domain.repository.AtendenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,8 +23,8 @@ public class AtendenteService {
     @Autowired
     private AtendenteRepository atendenteRepository;
 
-    public List<AtendenteED> buscarAtendentes(){
-        return atendenteRepository.findAll();
+    public Page<AtendenteED> buscarAtendentes(Pageable page){
+        return atendenteRepository.findAll(page);
     }
 
     public AtendenteED cadastrarAtendente(AtendenteED atendente){
@@ -36,25 +38,31 @@ public class AtendenteService {
     }
 
     @Transactional
-    public void ativar(AtendenteED atendente) {
-        Objects
-                .requireNonNull(atendente, "Objeto atendente passado é null!");
-
-        //TODO: Verificar se o obj esta mudando para true
-        var atendenteBuscada = buscarOuFalhar(atendente.getId());
-        atendenteBuscada.ativar();
+    public void ativar(Long atendenteId) {
+//        Objects
+//                .requireNonNull(atendente, "Objeto atendente passado é null!");
+//
+//        //TODO: Verificar se o obj esta mudando para true
+        buscarOuFalhar(atendenteId).ativar();
 //        atendenteRepository.save(atendente);
     }
 
-    @Transactional
-    public void excluir(AtendenteED atendente) {
-        Objects
-                .requireNonNull(atendente, "Objeto atendente passado é null!");
-
-        //TODO: Verificar se o obj esta mudando para false
-        var atendenteBuscada = buscarOuFalhar(atendente.getId());
-        atendenteBuscada.inativar();
-//        atendenteRepository.save(atendente);
+    @javax.transaction.Transactional
+    public Boolean desativar(Long atendenteId){
+        buscarOuFalhar(atendenteId).inativar();
+        return true;
     }
+
+
+//    @Transactional
+//    public void excluir(AtendenteED atendente) {
+//        Objects
+//                .requireNonNull(atendente, "Objeto atendente passado é null!");
+//
+//        //TODO: Verificar se o obj esta mudando para false
+//        var atendenteBuscada = buscarOuFalhar(atendente.getId());
+//        atendenteBuscada.inativar();
+////        atendenteRepository.save(atendente);
+//    }
 
 }

@@ -2,10 +2,16 @@ package com.cuidar.api.controller;
 
 
 
+import com.cuidar.domain.Exceptions.PacienteNotFoundException;
+import com.cuidar.domain.model.ExameED;
 import com.cuidar.domain.model.PacienteED;
+import com.cuidar.domain.repository.filter.ExameFilter;
+import com.cuidar.domain.repository.filter.PacienteFilter;
 import com.cuidar.domain.service.PacienteService;
+import com.cuidar.infra.repository.spec.ExameSpecifications;
 import io.swagger.v3.oas.annotations.Operation;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -43,6 +49,15 @@ public class PacienteController {
         return pacienteService.buscarOuFalhar(codigoPaciente);
     }
 
+    @Operation(summary = "Obtem paciente por RG")
+    @GetMapping(path = "/RG/{pacienteRG}",
+//            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public PacienteED obterPacientePorRG(@PathVariable("pacienteRG") String pacienteRG) {
+        return pacienteService.buscarPacientePorRG(pacienteRG)
+                .orElseThrow(() -> new PacienteNotFoundException(pacienteRG.toString()));
+    }
+
     @Operation(summary = "Obtem paciente por codigo")
     @GetMapping(path = "/{codigoPaciente}",
 //            consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -61,18 +76,12 @@ public class PacienteController {
     }
 
 
-//    @Operation(summary = "Obtem todos os pacientes")
-//    @GetMapping(
-////            consumes = MediaType.APPLICATION_JSON_VALUE,
-//            produces = "application/json;charset=UTF-8")
-//    public ResponseEntity<Page<PacienteED>> obterTodosPacientes(@PageableDefault(size = 5) Pageable pageable) {
-////        pageable = traduzirPageable(pageable);
-//        return ResponseEntity.ok()
-//                //ADICIONANDO CORS MANUALMENTE SOMENTE NESTE ENDPOINT
-//                .header(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "http://localhost:8000")
-//                .body(pacienteService.obterTodosPacientes(pageable));
-//    }
-
+    @Operation(summary = "Busca todos os pacientes filtrados por parametros")
+    @GetMapping
+    public Page<PacienteED> pesquisar(PacienteFilter filtro, @PageableDefault(size = 5) Pageable pageable) {
+//        Page<PacienteED> page = exameRepository.findAll(ExameSpecifications.usandoFiltro(filtro), pageable);
+        return pacienteService.findAll(filtro, pageable);
+    }
 
 
     @Operation(summary = "Obtem todos os pacientes por isAtivo, true ou falso ")
@@ -111,7 +120,7 @@ public class PacienteController {
     @Operation(summary = "Cadastra um novo paciente")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = "application/json;charset=UTF-8")
-    public ResponseEntity<PacienteED> cadastrarPaciente(@Valid @RequestBody PacienteED pacienteED) {
+    public ResponseEntity<PacienteED> cadastrarPaciente(/*@Valid*/ @RequestBody PacienteED pacienteED) {
         return ResponseEntity.ok(pacienteService.salvarPaciente(pacienteED));
     }
 
@@ -119,12 +128,15 @@ public class PacienteController {
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = "application/json;charset=UTF-8")
     public ResponseEntity<PacienteED> atualizarPaciente(@Valid @RequestBody PacienteED pacienteED) {
-        PacienteED pacienteBanco = pacienteService.buscarOuFalhar(pacienteED.getCodigo());
+        PacienteED pacienteBanco = pacienteService.buscarOuFalhar(pacienteED.getCodigo().toString());
 
-//        BeanUtils.copyProperties(pacienteBanco, pacienteED,
-//                "id", "idade", "endereco","atendente","medicoAtendente","exames","local", "dataCadastro");
+        BeanUtils.copyProperties(pacienteED, pacienteBanco, "id", "codigo","dataCadastro");
+        //"exames", "dataNasc", "dataCadastro"
 
-        return ResponseEntity.ok(pacienteService.atualizarPaciente(pacienteED));
+        PacienteED pacienteAtualizado = pacienteService.atualizarPaciente(pacienteBanco);
+
+        return ResponseEntity.ok(pacienteAtualizado);
+
     }
 
 

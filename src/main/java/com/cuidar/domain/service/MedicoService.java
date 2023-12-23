@@ -16,11 +16,11 @@ public class MedicoService {
     @Autowired
     private MedicoRepository medicoRepository;
 
-    public List<MedicoED> buscarAtendentes(){
+    public List<MedicoED> buscarMedicos(){
         return medicoRepository.findAll();
     }
 
-    public MedicoED cadastrarAtendente(MedicoED medico){
+    public MedicoED cadastrarMedico(MedicoED medico){
         return medicoRepository.save(medico);
     }
 
@@ -33,8 +33,7 @@ public class MedicoService {
     }
     @Transactional
     public void desativar(Long medicoId) {
-        MedicoED medicoBuscado = buscarOuFalhar(medicoId);
-        medicoBuscado.inativar();
+        buscarOuFalhar(medicoId).inativar();
 //        medicoRepository.save(medico);
     }
 

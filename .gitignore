@@ -12,6 +12,12 @@ target/
 *.iml
 *.ipr
 
+### Ignorar arquivos específicos do Intellij IDEA ###
+encondings.xml
+workspace.xml
+$Diagrama_back.drawio.bkp
+$Diagrama_back.drawio.dtmp
+
 ### Eclipse ###
 .apt_generated
 .classpath

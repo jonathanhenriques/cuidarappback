@@ -18,7 +18,8 @@ public enum ProblemType {
     private String uri;
 
     ProblemType(String path, String title) {
-        this.uri = "https://algafood.com.br" + path;
+        //TODO usar url atualizada
+        this.uri = "https://cuidarapp.com.br" + path;
         this.title = title;
     }
 
